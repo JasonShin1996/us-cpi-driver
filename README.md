@@ -7,7 +7,7 @@
 - **計算方法**：<https://jasonshin1996.github.io/us-cpi-driver/methodology.html>
   （原始檔 [web/methodology.html](web/methodology.html)，包含所有公式、資料來源與驗證）
 
-成果是一個仿 Bloomberg WMA「Contributions to US CPI」的互動網頁：堆疊柱狀圖、總體與核心
+成果是一個仿 Bloomberg「Contributions to US CPI」的互動網頁：堆疊柱狀圖、總體與核心
 CPI 折線、熱區資料表，資料從 1990 年起。數字已與 Bloomberg 逐項對帳一致。
 BLS 每次公布 CPI 後，GitHub Actions 會自動更新資料並重新發布網站。
 
