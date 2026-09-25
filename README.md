@@ -51,6 +51,7 @@ web/
 .github/workflows/
   update.yml             排程更新資料
   pages.yml              發布 web/ 到 GitHub Pages
+  README.md              兩個流程檔的白話說明
 ```
 
 本機才有、不進 git：`cache/`（BLS API 快取）、`cpi_dashboard_standalone.html`
