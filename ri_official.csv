@@ -1,0 +1,641 @@
+dec_year,basis,weights,node,item,cpi_u,source
+1987,new,,headline,ALL ITEMS,100.0,ri-archive-1987-1989/1987-1989_RI_archive/1987.txt
+1987,new,,core,ALL ITEMS LESS FOOD AND ENERGY,76.327,ri-archive-1987-1989/1987-1989_RI_archive/1987.txt
+1987,new,,food,FOOD,16.055,ri-archive-1987-1989/1987-1989_RI_archive/1987.txt
+1987,new,,energy,ENERGY,7.618,ri-archive-1987-1989/1987-1989_RI_archive/1987.txt
+1987,new,,core_goods,COMMODITIES LESS FOOD AND ENERGY,25.76,ri-archive-1987-1989/1987-1989_RI_archive/1987.txt
+1987,new,,core_services,SERVICES LESS ENERGY,50.567,ri-archive-1987-1989/1987-1989_RI_archive/1987.txt
+1987,new,,commodities,COMMODITIES,45.531,ri-archive-1987-1989/1987-1989_RI_archive/1987.txt
+1987,new,,services,SERVICES,54.469,ri-archive-1987-1989/1987-1989_RI_archive/1987.txt
+1987,new,,food_home,FOOD AT HOME,9.864,ri-archive-1987-1989/1987-1989_RI_archive/1987.txt
+1987,new,,food_away,FOOD AWAY FROM HOME,6.192,ri-archive-1987-1989/1987-1989_RI_archive/1987.txt
+1987,new,,energy_cmdty,ENERGY COMMODITIES,3.716,ri-archive-1987-1989/1987-1989_RI_archive/1987.txt
+1987,new,,energy_svc,(derived) Energy - Energy commodities,3.902,ri-archive-1987-1989/1987-1989_RI_archive/1987.txt
+1987,new,,rent_shelter,RENT OF SHELTER,27.151,ri-archive-1987-1989/1987-1989_RI_archive/1987.txt
+1987,new,,svc_less_ros,SERVICES LESS RENT OF SHELTER,27.318,ri-archive-1987-1989/1987-1989_RI_archive/1987.txt
+1988,new,,headline,ALL ITEMS,100.0,ri-archive-1987-1989/1987-1989_RI_archive/1988.txt
+1988,new,,core,ALL ITEMS LESS FOOD AND ENERGY,76.499,ri-archive-1987-1989/1987-1989_RI_archive/1988.txt
+1988,new,,food,FOOD,16.171,ri-archive-1987-1989/1987-1989_RI_archive/1988.txt
+1988,new,,energy,ENERGY,7.33,ri-archive-1987-1989/1987-1989_RI_archive/1988.txt
+1988,new,,core_goods,COMMODITIES LESS FOOD AND ENERGY,25.65,ri-archive-1987-1989/1987-1989_RI_archive/1988.txt
+1988,new,,core_services,SERVICES LESS ENERGY,50.849,ri-archive-1987-1989/1987-1989_RI_archive/1988.txt
+1988,new,,commodities,COMMODITIES,45.298,ri-archive-1987-1989/1987-1989_RI_archive/1988.txt
+1988,new,,services,SERVICES,54.702,ri-archive-1987-1989/1987-1989_RI_archive/1988.txt
+1988,new,,food_home,FOOD AT HOME,9.98,ri-archive-1987-1989/1987-1989_RI_archive/1988.txt
+1988,new,,food_away,FOOD AWAY FROM HOME,6.192,ri-archive-1987-1989/1987-1989_RI_archive/1988.txt
+1988,new,,energy_cmdty,ENERGY COMMODITIES,3.477,ri-archive-1987-1989/1987-1989_RI_archive/1988.txt
+1988,new,,energy_svc,(derived) Energy - Energy commodities,3.853,ri-archive-1987-1989/1987-1989_RI_archive/1988.txt
+1988,new,,rent_shelter,RENT OF SHELTER,27.177,ri-archive-1987-1989/1987-1989_RI_archive/1988.txt
+1988,new,,svc_less_ros,SERVICES LESS RENT OF SHELTER,27.525,ri-archive-1987-1989/1987-1989_RI_archive/1988.txt
+1989,new,,headline,ALL ITEMS,100.0,ri-archive-1987-1989/1987-1989_RI_archive/1989.txt
+1989,new,,core,ALL ITEMS LESS FOOD AND ENERGY,76.315,ri-archive-1987-1989/1987-1989_RI_archive/1989.txt
+1989,new,,food,FOOD,16.318,ri-archive-1987-1989/1987-1989_RI_archive/1989.txt
+1989,new,,energy,ENERGY,7.366,ri-archive-1987-1989/1987-1989_RI_archive/1989.txt
+1989,new,,core_goods,COMMODITIES LESS FOOD AND ENERGY,25.188,ri-archive-1987-1989/1987-1989_RI_archive/1989.txt
+1989,new,,core_services,SERVICES LESS ENERGY,51.127,ri-archive-1987-1989/1987-1989_RI_archive/1989.txt
+1989,new,,commodities,COMMODITIES,45.088,ri-archive-1987-1989/1987-1989_RI_archive/1989.txt
+1989,new,,services,SERVICES,54.912,ri-archive-1987-1989/1987-1989_RI_archive/1989.txt
+1989,new,,food_home,FOOD AT HOME,10.129,ri-archive-1987-1989/1987-1989_RI_archive/1989.txt
+1989,new,,food_away,FOOD AWAY FROM HOME,6.189,ri-archive-1987-1989/1987-1989_RI_archive/1989.txt
+1989,new,,energy_cmdty,ENERGY COMMODITIES,3.581,ri-archive-1987-1989/1987-1989_RI_archive/1989.txt
+1989,new,,energy_svc,(derived) Energy - Energy commodities,3.785,ri-archive-1987-1989/1987-1989_RI_archive/1989.txt
+1989,new,,rent_shelter,RENT OF SHELTER,27.263,ri-archive-1987-1989/1987-1989_RI_archive/1989.txt
+1989,new,,svc_less_ros,SERVICES LESS RENT OF SHELTER,27.649,ri-archive-1987-1989/1987-1989_RI_archive/1989.txt
+1990,new,,headline,ALL ITEMS,100.0,ri-archive-1990-1999/1990-1999_RI_archive/1990.txt
+1990,new,,core,ALL ITEMS LESS FOOD AND ENERGY,75.622,ri-archive-1990-1999/1990-1999_RI_archive/1990.txt
+1990,new,,food,FOOD,16.188,ri-archive-1990-1999/1990-1999_RI_archive/1990.txt
+1990,new,,energy,ENERGY,8.191,ri-archive-1990-1999/1990-1999_RI_archive/1990.txt
+1990,new,,core_goods,COMMODITIES LESS FOOD AND ENERGY,24.528,ri-archive-1990-1999/1990-1999_RI_archive/1990.txt
+1990,new,,core_services,SERVICES LESS ENERGY,51.093,ri-archive-1990-1999/1990-1999_RI_archive/1990.txt
+1990,new,,commodities,COMMODITIES,45.287,ri-archive-1990-1999/1990-1999_RI_archive/1990.txt
+1990,new,,services,SERVICES,54.713,ri-archive-1990-1999/1990-1999_RI_archive/1990.txt
+1990,new,,food_home,FOOD AT HOME,10.094,ri-archive-1990-1999/1990-1999_RI_archive/1990.txt
+1990,new,,food_away,FOOD AWAY FROM HOME,6.094,ri-archive-1990-1999/1990-1999_RI_archive/1990.txt
+1990,new,,energy_cmdty,ENERGY COMMODITIES,4.571,ri-archive-1990-1999/1990-1999_RI_archive/1990.txt
+1990,new,,energy_svc,(derived) Energy - Energy commodities,3.62,ri-archive-1990-1999/1990-1999_RI_archive/1990.txt
+1990,new,,rent_shelter,RENT OF SHELTER,27.035,ri-archive-1990-1999/1990-1999_RI_archive/1990.txt
+1990,new,,svc_less_ros,SERVICES LESS RENT OF SHELTER,27.678,ri-archive-1990-1999/1990-1999_RI_archive/1990.txt
+1991,new,,headline,ALL ITEMS,100.0,ri-archive-1990-1999/1990-1999_RI_archive/1991.txt
+1991,new,,core,ALL ITEMS LESS FOOD AND ENERGY,76.633,ri-archive-1990-1999/1990-1999_RI_archive/1991.txt
+1991,new,,food,FOOD,16.007,ri-archive-1990-1999/1990-1999_RI_archive/1991.txt
+1991,new,,energy,ENERGY,7.361,ri-archive-1990-1999/1990-1999_RI_archive/1991.txt
+1991,new,,core_goods,COMMODITIES LESS FOOD AND ENERGY,24.757,ri-archive-1990-1999/1990-1999_RI_archive/1991.txt
+1991,new,,core_services,SERVICES LESS ENERGY,51.876,ri-archive-1990-1999/1990-1999_RI_archive/1991.txt
+1991,new,,commodities,COMMODITIES,44.487,ri-archive-1990-1999/1990-1999_RI_archive/1991.txt
+1991,new,,services,SERVICES,55.513,ri-archive-1990-1999/1990-1999_RI_archive/1991.txt
+1991,new,,food_home,FOOD AT HOME,9.921,ri-archive-1990-1999/1990-1999_RI_archive/1991.txt
+1991,new,,food_away,FOOD AWAY FROM HOME,6.085,ri-archive-1990-1999/1990-1999_RI_archive/1991.txt
+1991,new,,energy_cmdty,ENERGY COMMODITIES,3.723,ri-archive-1990-1999/1990-1999_RI_archive/1991.txt
+1991,new,,energy_svc,(derived) Energy - Energy commodities,3.638,ri-archive-1990-1999/1990-1999_RI_archive/1991.txt
+1991,new,,rent_shelter,RENT OF SHELTER,27.273,ri-archive-1990-1999/1990-1999_RI_archive/1991.txt
+1991,new,,svc_less_ros,SERVICES LESS RENT OF SHELTER,28.241,ri-archive-1990-1999/1990-1999_RI_archive/1991.txt
+1992,new,,headline,ALL ITEMS,100.0,ri-archive-1990-1999/1990-1999_RI_archive/1992.txt
+1992,new,,core,ALL ITEMS LESS FOOD AND ENERGY,76.929,ri-archive-1990-1999/1990-1999_RI_archive/1992.txt
+1992,new,,food,FOOD,15.777,ri-archive-1990-1999/1990-1999_RI_archive/1992.txt
+1992,new,,energy,ENERGY,7.294,ri-archive-1990-1999/1990-1999_RI_archive/1992.txt
+1992,new,,core_goods,COMMODITIES LESS FOOD AND ENERGY,24.656,ri-archive-1990-1999/1990-1999_RI_archive/1992.txt
+1992,new,,core_services,SERVICES LESS ENERGY,52.273,ri-archive-1990-1999/1990-1999_RI_archive/1992.txt
+1992,new,,commodities,COMMODITIES,44.095,ri-archive-1990-1999/1990-1999_RI_archive/1992.txt
+1992,new,,services,SERVICES,55.905,ri-archive-1990-1999/1990-1999_RI_archive/1992.txt
+1992,new,,food_home,FOOD AT HOME,9.78,ri-archive-1990-1999/1990-1999_RI_archive/1992.txt
+1992,new,,food_away,FOOD AWAY FROM HOME,5.997,ri-archive-1990-1999/1990-1999_RI_archive/1992.txt
+1992,new,,energy_cmdty,ENERGY COMMODITIES,3.662,ri-archive-1990-1999/1990-1999_RI_archive/1992.txt
+1992,new,,energy_svc,(derived) Energy - Energy commodities,3.632,ri-archive-1990-1999/1990-1999_RI_archive/1992.txt
+1992,new,,rent_shelter,RENT OF SHELTER,27.263,ri-archive-1990-1999/1990-1999_RI_archive/1992.txt
+1992,new,,svc_less_ros,SERVICES LESS RENT OF SHELTER,28.642,ri-archive-1990-1999/1990-1999_RI_archive/1992.txt
+1993,new,,headline,ALL ITEMS,100.0,ri-archive-1990-1999/1990-1999_RI_archive/1993.txt
+1993,new,,core,ALL ITEMS LESS FOOD AND ENERGY,77.208,ri-archive-1990-1999/1990-1999_RI_archive/1993.txt
+1993,new,,food,FOOD,15.799,ri-archive-1990-1999/1990-1999_RI_archive/1993.txt
+1993,new,,energy,ENERGY,6.993,ri-archive-1990-1999/1990-1999_RI_archive/1993.txt
+1993,new,,core_goods,COMMODITIES LESS FOOD AND ENERGY,24.369,ri-archive-1990-1999/1990-1999_RI_archive/1993.txt
+1993,new,,core_services,SERVICES LESS ENERGY,52.839,ri-archive-1990-1999/1990-1999_RI_archive/1993.txt
+1993,new,,commodities,COMMODITIES,43.547,ri-archive-1990-1999/1990-1999_RI_archive/1993.txt
+1993,new,,services,SERVICES,56.453,ri-archive-1990-1999/1990-1999_RI_archive/1993.txt
+1993,new,,food_home,FOOD AT HOME,9.853,ri-archive-1990-1999/1990-1999_RI_archive/1993.txt
+1993,new,,food_away,FOOD AWAY FROM HOME,5.946,ri-archive-1990-1999/1990-1999_RI_archive/1993.txt
+1993,new,,energy_cmdty,ENERGY COMMODITIES,3.38,ri-archive-1990-1999/1990-1999_RI_archive/1993.txt
+1993,new,,energy_svc,(derived) Energy - Energy commodities,3.613,ri-archive-1990-1999/1990-1999_RI_archive/1993.txt
+1993,new,,rent_shelter,RENT OF SHELTER,27.337,ri-archive-1990-1999/1990-1999_RI_archive/1993.txt
+1993,new,,svc_less_ros,SERVICES LESS RENT OF SHELTER,29.116,ri-archive-1990-1999/1990-1999_RI_archive/1993.txt
+1994,new,,headline,ALL ITEMS,100.0,ri-archive-1990-1999/1990-1999_RI_archive/1994.txt
+1994,new,,core,ALL ITEMS LESS FOOD AND ENERGY,77.197,ri-archive-1990-1999/1990-1999_RI_archive/1994.txt
+1994,new,,food,FOOD,15.838,ri-archive-1990-1999/1990-1999_RI_archive/1994.txt
+1994,new,,energy,ENERGY,6.965,ri-archive-1990-1999/1990-1999_RI_archive/1994.txt
+1994,new,,core_goods,COMMODITIES LESS FOOD AND ENERGY,24.082,ri-archive-1990-1999/1990-1999_RI_archive/1994.txt
+1994,new,,core_services,SERVICES LESS ENERGY,53.115,ri-archive-1990-1999/1990-1999_RI_archive/1994.txt
+1994,new,,commodities,COMMODITIES,43.386,ri-archive-1990-1999/1990-1999_RI_archive/1994.txt
+1994,new,,services,SERVICES,56.614,ri-archive-1990-1999/1990-1999_RI_archive/1994.txt
+1994,new,,food_home,FOOD AT HOME,9.934,ri-archive-1990-1999/1990-1999_RI_archive/1994.txt
+1994,new,,food_away,FOOD AWAY FROM HOME,5.904,ri-archive-1990-1999/1990-1999_RI_archive/1994.txt
+1994,new,,energy_cmdty,ENERGY COMMODITIES,3.466,ri-archive-1990-1999/1990-1999_RI_archive/1994.txt
+1994,new,,energy_svc,(derived) Energy - Energy commodities,3.499,ri-archive-1990-1999/1990-1999_RI_archive/1994.txt
+1994,new,,rent_shelter,RENT OF SHELTER,27.422,ri-archive-1990-1999/1990-1999_RI_archive/1994.txt
+1994,new,,svc_less_ros,SERVICES LESS RENT OF SHELTER,29.192,ri-archive-1990-1999/1990-1999_RI_archive/1994.txt
+1995,new,,headline,ALL ITEMS,100.0,ri-archive-1990-1999/1990-1999_RI_archive/1995.txt
+1995,new,,core,ALL ITEMS LESS FOOD AND ENERGY,77.534,ri-archive-1990-1999/1990-1999_RI_archive/1995.txt
+1995,new,,food,FOOD,15.766,ri-archive-1990-1999/1990-1999_RI_archive/1995.txt
+1995,new,,energy,ENERGY,6.7,ri-archive-1990-1999/1990-1999_RI_archive/1995.txt
+1995,new,,core_goods,COMMODITIES LESS FOOD AND ENERGY,23.885,ri-archive-1990-1999/1990-1999_RI_archive/1995.txt
+1995,new,,core_services,SERVICES LESS ENERGY,53.648,ri-archive-1990-1999/1990-1999_RI_archive/1995.txt
+1995,new,,commodities,COMMODITIES,42.916,ri-archive-1990-1999/1990-1999_RI_archive/1995.txt
+1995,new,,services,SERVICES,57.084,ri-archive-1990-1999/1990-1999_RI_archive/1995.txt
+1995,new,,food_home,FOOD AT HOME,9.88,ri-archive-1990-1999/1990-1999_RI_archive/1995.txt
+1995,new,,food_away,FOOD AWAY FROM HOME,5.886,ri-archive-1990-1999/1990-1999_RI_archive/1995.txt
+1995,new,,energy_cmdty,ENERGY COMMODITIES,3.264,ri-archive-1990-1999/1990-1999_RI_archive/1995.txt
+1995,new,,energy_svc,(derived) Energy - Energy commodities,3.436,ri-archive-1990-1999/1990-1999_RI_archive/1995.txt
+1995,new,,rent_shelter,RENT OF SHELTER,27.671,ri-archive-1990-1999/1990-1999_RI_archive/1995.txt
+1995,new,,svc_less_ros,SERVICES LESS RENT OF SHELTER,29.414,ri-archive-1990-1999/1990-1999_RI_archive/1995.txt
+1996,new,,headline,ALL ITEMS,100.0,ri-archive-1990-1999/1990-1999_RI_archive/1996.txt
+1996,new,,core,ALL ITEMS LESS FOOD AND ENERGY,77.038,ri-archive-1990-1999/1990-1999_RI_archive/1996.txt
+1996,new,,food,FOOD,15.913,ri-archive-1990-1999/1990-1999_RI_archive/1996.txt
+1996,new,,energy,ENERGY,7.049,ri-archive-1990-1999/1990-1999_RI_archive/1996.txt
+1996,new,,core_goods,COMMODITIES LESS FOOD AND ENERGY,23.364,ri-archive-1990-1999/1990-1999_RI_archive/1996.txt
+1996,new,,core_services,SERVICES LESS ENERGY,53.674,ri-archive-1990-1999/1990-1999_RI_archive/1996.txt
+1996,new,,commodities,COMMODITIES,42.873,ri-archive-1990-1999/1990-1999_RI_archive/1996.txt
+1996,new,,services,SERVICES,57.127,ri-archive-1990-1999/1990-1999_RI_archive/1996.txt
+1996,new,,food_home,FOOD AT HOME,10.04,ri-archive-1990-1999/1990-1999_RI_archive/1996.txt
+1996,new,,food_away,FOOD AWAY FROM HOME,5.873,ri-archive-1990-1999/1990-1999_RI_archive/1996.txt
+1996,new,,energy_cmdty,ENERGY COMMODITIES,3.596,ri-archive-1990-1999/1990-1999_RI_archive/1996.txt
+1996,new,,energy_svc,(derived) Energy - Energy commodities,3.453,ri-archive-1990-1999/1990-1999_RI_archive/1996.txt
+1996,new,,rent_shelter,RENT OF SHELTER,27.577,ri-archive-1990-1999/1990-1999_RI_archive/1996.txt
+1996,new,,svc_less_ros,SERVICES LESS RENT OF SHELTER,29.55,ri-archive-1990-1999/1990-1999_RI_archive/1996.txt
+1997,new,,headline,All items,100.0,ri-archive-1990-1999/1990-1999_RI_archive/1997.txt
+1997,new,,core,All items less food and energy,77.661,ri-archive-1990-1999/1990-1999_RI_archive/1997.txt
+1997,new,,food,Food,15.326,ri-archive-1990-1999/1990-1999_RI_archive/1997.txt
+1997,new,,energy,Energy,7.013,ri-archive-1990-1999/1990-1999_RI_archive/1997.txt
+1997,new,,core_goods,Commodities less food and energy commodities,24.053,ri-archive-1990-1999/1990-1999_RI_archive/1997.txt
+1997,new,,core_services,Services less energy services,53.608,ri-archive-1990-1999/1990-1999_RI_archive/1997.txt
+1997,new,,commodities,Commodities,42.635,ri-archive-1990-1999/1990-1999_RI_archive/1997.txt
+1997,new,,services,Services,57.365,ri-archive-1990-1999/1990-1999_RI_archive/1997.txt
+1997,new,,food_home,Food at home,9.646,ri-archive-1990-1999/1990-1999_RI_archive/1997.txt
+1997,new,,food_away,Food away from home,5.68,ri-archive-1990-1999/1990-1999_RI_archive/1997.txt
+1997,new,,energy_cmdty,Energy commodities,3.256,ri-archive-1990-1999/1990-1999_RI_archive/1997.txt
+1997,new,,energy_svc,(derived) Energy - Energy commodities,3.757,ri-archive-1990-1999/1990-1999_RI_archive/1997.txt
+1997,new,,rent_shelter,Rent of shelter,29.41,ri-archive-1990-1999/1990-1999_RI_archive/1997.txt
+1997,new,,svc_less_ros,Services less rent of shelter,27.955,ri-archive-1990-1999/1990-1999_RI_archive/1997.txt
+1998,new,,headline,All items,100.0,ri-archive-1990-1999/1990-1999_RI_archive/1998.txt
+1998,new,,core,All items less food and energy,78.284,ri-archive-1990-1999/1990-1999_RI_archive/1998.txt
+1998,new,,food,Food,15.422,ri-archive-1990-1999/1990-1999_RI_archive/1998.txt
+1998,new,,energy,Energy,6.294,ri-archive-1990-1999/1990-1999_RI_archive/1998.txt
+1998,new,,core_goods,Commodities less food and energy commodities,23.967,ri-archive-1990-1999/1990-1999_RI_archive/1998.txt
+1998,new,,core_services,Services less energy services,54.316,ri-archive-1990-1999/1990-1999_RI_archive/1998.txt
+1998,new,,commodities,Commodities,42.109,ri-archive-1990-1999/1990-1999_RI_archive/1998.txt
+1998,new,,services,Services,57.891,ri-archive-1990-1999/1990-1999_RI_archive/1998.txt
+1998,new,,food_home,Food at home,9.691,ri-archive-1990-1999/1990-1999_RI_archive/1998.txt
+1998,new,,food_away,Food away from home,5.73,ri-archive-1990-1999/1990-1999_RI_archive/1998.txt
+1998,new,,energy_cmdty,Energy commodities,2.72,ri-archive-1990-1999/1990-1999_RI_archive/1998.txt
+1998,new,,energy_svc,(derived) Energy - Energy commodities,3.574,ri-archive-1990-1999/1990-1999_RI_archive/1998.txt
+1998,new,,rent_shelter,Rent of shelter,29.912,ri-archive-1990-1999/1990-1999_RI_archive/1998.txt
+1998,new,,svc_less_ros,Services less rent of shelter,27.979,ri-archive-1990-1999/1990-1999_RI_archive/1998.txt
+1999,new,,headline,All items,100.0,ri-archive-1990-1999/1990-1999_RI_archive/1999.txt
+1999,new,,core,All items less food and energy,77.731,ri-archive-1990-1999/1990-1999_RI_archive/1999.txt
+1999,new,,food,Food,15.315,ri-archive-1990-1999/1990-1999_RI_archive/1999.txt
+1999,new,,energy,Energy,6.954,ri-archive-1990-1999/1990-1999_RI_archive/1999.txt
+1999,new,,core_goods,Commodities less food and energy commodities,23.393,ri-archive-1990-1999/1990-1999_RI_archive/1999.txt
+1999,new,,core_services,Services less energy services,54.338,ri-archive-1990-1999/1990-1999_RI_archive/1999.txt
+1999,new,,commodities,Commodities,42.141,ri-archive-1990-1999/1990-1999_RI_archive/1999.txt
+1999,new,,services,Services,57.859,ri-archive-1990-1999/1990-1999_RI_archive/1999.txt
+1999,new,,food_home,Food at home,9.603,ri-archive-1990-1999/1990-1999_RI_archive/1999.txt
+1999,new,,food_away,Food away from home,5.712,ri-archive-1990-1999/1990-1999_RI_archive/1999.txt
+1999,new,,energy_cmdty,Energy commodities,3.433,ri-archive-1990-1999/1990-1999_RI_archive/1999.txt
+1999,new,,energy_svc,(derived) Energy - Energy commodities,3.521,ri-archive-1990-1999/1990-1999_RI_archive/1999.txt
+1999,new,,rent_shelter,Rent of shelter,29.865,ri-archive-1990-1999/1990-1999_RI_archive/1999.txt
+1999,new,,svc_less_ros,Services less rent of shelter,27.994,ri-archive-1990-1999/1990-1999_RI_archive/1999.txt
+2000,new,,headline,All items,100.0,ri-archive-2000-2009/2000-2009_RI_archive/2000.txt
+2000,new,,core,All items less food and energy,77.102,ri-archive-2000-2009/2000-2009_RI_archive/2000.txt
+2000,new,,food,Food,15.217,ri-archive-2000-2009/2000-2009_RI_archive/2000.txt
+2000,new,,energy,Energy,7.681,ri-archive-2000-2009/2000-2009_RI_archive/2000.txt
+2000,new,,core_goods,Commodities less food and energy commodities,22.768,ri-archive-2000-2009/2000-2009_RI_archive/2000.txt
+2000,new,,core_services,Services less energy services,54.334,ri-archive-2000-2009/2000-2009_RI_archive/2000.txt
+2000,new,,commodities,Commodities,41.828,ri-archive-2000-2009/2000-2009_RI_archive/2000.txt
+2000,new,,services,Services,58.172,ri-archive-2000-2009/2000-2009_RI_archive/2000.txt
+2000,new,,food_home,Food at home,9.56,ri-archive-2000-2009/2000-2009_RI_archive/2000.txt
+2000,new,,food_away,Food away from home,5.658,ri-archive-2000-2009/2000-2009_RI_archive/2000.txt
+2000,new,,energy_cmdty,Energy commodities,3.843,ri-archive-2000-2009/2000-2009_RI_archive/2000.txt
+2000,new,,energy_svc,(derived) Energy - Energy commodities,3.838,ri-archive-2000-2009/2000-2009_RI_archive/2000.txt
+2000,new,,rent_shelter,Rent of shelter,29.885,ri-archive-2000-2009/2000-2009_RI_archive/2000.txt
+2000,new,,svc_less_ros,Services less rent of shelter,28.287,ri-archive-2000-2009/2000-2009_RI_archive/2000.txt
+2001,new,1999-2000 Weights,headline,All items,100.0,ri-archive-2000-2009/2000-2009_RI_archive/2001.txt
+2001,new,1999-2000 Weights,core,All items less food and energy,79.094,ri-archive-2000-2009/2000-2009_RI_archive/2001.txt
+2001,new,1999-2000 Weights,food,Food,14.688,ri-archive-2000-2009/2000-2009_RI_archive/2001.txt
+2001,new,1999-2000 Weights,energy,Energy,6.218,ri-archive-2000-2009/2000-2009_RI_archive/2001.txt
+2001,new,1999-2000 Weights,core_goods,Commodities less food and energy commodities,23.86,ri-archive-2000-2009/2000-2009_RI_archive/2001.txt
+2001,new,1999-2000 Weights,core_services,Services less energy services,55.234,ri-archive-2000-2009/2000-2009_RI_archive/2001.txt
+2001,new,1999-2000 Weights,commodities,Commodities,41.3,ri-archive-2000-2009/2000-2009_RI_archive/2001.txt
+2001,new,1999-2000 Weights,services,Services,58.7,ri-archive-2000-2009/2000-2009_RI_archive/2001.txt
+2001,new,1999-2000 Weights,food_home,Food at home,8.468,ri-archive-2000-2009/2000-2009_RI_archive/2001.txt
+2001,new,1999-2000 Weights,food_away,Food away from home,6.22,ri-archive-2000-2009/2000-2009_RI_archive/2001.txt
+2001,new,1999-2000 Weights,energy_cmdty,Energy commodities,2.752,ri-archive-2000-2009/2000-2009_RI_archive/2001.txt
+2001,new,1999-2000 Weights,energy_svc,(derived) Energy - Energy commodities,3.466,ri-archive-2000-2009/2000-2009_RI_archive/2001.txt
+2001,new,1999-2000 Weights,rent_shelter,Rent of shelter,31.169,ri-archive-2000-2009/2000-2009_RI_archive/2001.txt
+2001,new,1999-2000 Weights,svc_less_ros,Services less rent of shelter,27.531,ri-archive-2000-2009/2000-2009_RI_archive/2001.txt
+2001,old,1993-95 Weights,headline,All items,100.0,ri-archive-2000-2009/2000-2009_RI_archive/old-weights-2001.txt
+2001,old,1993-95 Weights,core,All items less food and energy,78.02,ri-archive-2000-2009/2000-2009_RI_archive/old-weights-2001.txt
+2001,old,1993-95 Weights,food,Food,15.403,ri-archive-2000-2009/2000-2009_RI_archive/old-weights-2001.txt
+2001,old,1993-95 Weights,energy,Energy,6.576,ri-archive-2000-2009/2000-2009_RI_archive/old-weights-2001.txt
+2001,old,1993-95 Weights,core_goods,Commodities less food and energy commodities,22.366,ri-archive-2000-2009/2000-2009_RI_archive/old-weights-2001.txt
+2001,old,1993-95 Weights,core_services,Services less energy services,55.654,ri-archive-2000-2009/2000-2009_RI_archive/old-weights-2001.txt
+2001,old,1993-95 Weights,commodities,Commodities,40.624,ri-archive-2000-2009/2000-2009_RI_archive/old-weights-2001.txt
+2001,old,1993-95 Weights,services,Services,59.376,ri-archive-2000-2009/2000-2009_RI_archive/old-weights-2001.txt
+2001,old,1993-95 Weights,food_home,Food at home,9.661,ri-archive-2000-2009/2000-2009_RI_archive/old-weights-2001.txt
+2001,old,1993-95 Weights,food_away,Food away from home,5.743,ri-archive-2000-2009/2000-2009_RI_archive/old-weights-2001.txt
+2001,old,1993-95 Weights,energy_cmdty,Energy commodities,2.855,ri-archive-2000-2009/2000-2009_RI_archive/old-weights-2001.txt
+2001,old,1993-95 Weights,energy_svc,(derived) Energy - Energy commodities,3.721,ri-archive-2000-2009/2000-2009_RI_archive/old-weights-2001.txt
+2001,old,1993-95 Weights,rent_shelter,Rent of shelter,30.671,ri-archive-2000-2009/2000-2009_RI_archive/old-weights-2001.txt
+2001,old,1993-95 Weights,svc_less_ros,Services less rent of shelter,28.705,ri-archive-2000-2009/2000-2009_RI_archive/old-weights-2001.txt
+2002,new,1999-2000 Weights,headline,All items,100.0,ri-archive-2000-2009/2000-2009_RI_archive/2002.txt
+2002,new,1999-2000 Weights,core,All items less food and energy,78.724,ri-archive-2000-2009/2000-2009_RI_archive/2002.txt
+2002,new,1999-2000 Weights,food,Food,14.554,ri-archive-2000-2009/2000-2009_RI_archive/2002.txt
+2002,new,1999-2000 Weights,energy,Energy,6.723,ri-archive-2000-2009/2000-2009_RI_archive/2002.txt
+2002,new,1999-2000 Weights,core_goods,Commodities less food and energy commodities,22.945,ri-archive-2000-2009/2000-2009_RI_archive/2002.txt
+2002,new,1999-2000 Weights,core_services,Services less energy services,55.779,ri-archive-2000-2009/2000-2009_RI_archive/2002.txt
+2002,new,1999-2000 Weights,commodities,Commodities,40.822,ri-archive-2000-2009/2000-2009_RI_archive/2002.txt
+2002,new,1999-2000 Weights,services,Services,59.178,ri-archive-2000-2009/2000-2009_RI_archive/2002.txt
+2002,new,1999-2000 Weights,food_home,Food at home,8.338,ri-archive-2000-2009/2000-2009_RI_archive/2002.txt
+2002,new,1999-2000 Weights,food_away,Food away from home,6.216,ri-archive-2000-2009/2000-2009_RI_archive/2002.txt
+2002,new,1999-2000 Weights,energy_cmdty,Energy commodities,3.324,ri-archive-2000-2009/2000-2009_RI_archive/2002.txt
+2002,new,1999-2000 Weights,energy_svc,(derived) Energy - Energy commodities,3.399,ri-archive-2000-2009/2000-2009_RI_archive/2002.txt
+2002,new,1999-2000 Weights,rent_shelter,Rent of shelter,31.364,ri-archive-2000-2009/2000-2009_RI_archive/2002.txt
+2002,new,1999-2000 Weights,svc_less_ros,Services less rent of shelter,27.815,ri-archive-2000-2009/2000-2009_RI_archive/2002.txt
+2003,new,2001-2002 Weights,headline,All items,100.0,ri-archive-2000-2009/2000-2009_RI_archive/2003.txt
+2003,new,2001-2002 Weights,core,All items less food and energy,78.537,ri-archive-2000-2009/2000-2009_RI_archive/2003.txt
+2003,new,2001-2002 Weights,food,Food,14.383,ri-archive-2000-2009/2000-2009_RI_archive/2003.txt
+2003,new,2001-2002 Weights,energy,Energy,7.08,ri-archive-2000-2009/2000-2009_RI_archive/2003.txt
+2003,new,2001-2002 Weights,core_goods,Commodities less food and energy commodities,22.254,ri-archive-2000-2009/2000-2009_RI_archive/2003.txt
+2003,new,2001-2002 Weights,core_services,Services less energy services,56.283,ri-archive-2000-2009/2000-2009_RI_archive/2003.txt
+2003,new,2001-2002 Weights,commodities,Commodities,40.117,ri-archive-2000-2009/2000-2009_RI_archive/2003.txt
+2003,new,2001-2002 Weights,services,Services,59.883,ri-archive-2000-2009/2000-2009_RI_archive/2003.txt
+2003,new,2001-2002 Weights,food_home,Food at home,8.256,ri-archive-2000-2009/2000-2009_RI_archive/2003.txt
+2003,new,2001-2002 Weights,food_away,Food away from home,6.127,ri-archive-2000-2009/2000-2009_RI_archive/2003.txt
+2003,new,2001-2002 Weights,energy_cmdty,Energy commodities,3.48,ri-archive-2000-2009/2000-2009_RI_archive/2003.txt
+2003,new,2001-2002 Weights,energy_svc,(derived) Energy - Energy commodities,3.6,ri-archive-2000-2009/2000-2009_RI_archive/2003.txt
+2003,new,2001-2002 Weights,rent_shelter,Rent of shelter,32.494,ri-archive-2000-2009/2000-2009_RI_archive/2003.txt
+2003,new,2001-2002 Weights,svc_less_ros,Services less rent of shelter,27.389,ri-archive-2000-2009/2000-2009_RI_archive/2003.txt
+2003,old,1999-2000 Weights,headline,All items,100.0,ri-archive-2000-2009/2000-2009_RI_archive/old-weights-2003.txt
+2003,old,1999-2000 Weights,core,All items less food and energy,78.143,ri-archive-2000-2009/2000-2009_RI_archive/old-weights-2003.txt
+2003,old,1999-2000 Weights,food,Food,14.801,ri-archive-2000-2009/2000-2009_RI_archive/old-weights-2003.txt
+2003,old,1999-2000 Weights,energy,Energy,7.056,ri-archive-2000-2009/2000-2009_RI_archive/old-weights-2003.txt
+2003,old,1999-2000 Weights,core_goods,Commodities less food and energy commodities,21.965,ri-archive-2000-2009/2000-2009_RI_archive/old-weights-2003.txt
+2003,old,1999-2000 Weights,core_services,Services less energy services,56.178,ri-archive-2000-2009/2000-2009_RI_archive/old-weights-2003.txt
+2003,old,1999-2000 Weights,commodities,Commodities,40.254,ri-archive-2000-2009/2000-2009_RI_archive/old-weights-2003.txt
+2003,old,1999-2000 Weights,services,Services,59.746,ri-archive-2000-2009/2000-2009_RI_archive/old-weights-2003.txt
+2003,old,1999-2000 Weights,food_home,Food at home,8.558,ri-archive-2000-2009/2000-2009_RI_archive/old-weights-2003.txt
+2003,old,1999-2000 Weights,food_away,Food away from home,6.243,ri-archive-2000-2009/2000-2009_RI_archive/old-weights-2003.txt
+2003,old,1999-2000 Weights,energy_cmdty,Energy commodities,3.488,ri-archive-2000-2009/2000-2009_RI_archive/old-weights-2003.txt
+2003,old,1999-2000 Weights,energy_svc,(derived) Energy - Energy commodities,3.568,ri-archive-2000-2009/2000-2009_RI_archive/old-weights-2003.txt
+2003,old,1999-2000 Weights,rent_shelter,Rent of shelter,31.47,ri-archive-2000-2009/2000-2009_RI_archive/old-weights-2003.txt
+2003,old,1999-2000 Weights,svc_less_ros,Services less rent of shelter,28.276,ri-archive-2000-2009/2000-2009_RI_archive/old-weights-2003.txt
+2004,new,2001-2002 Weights,headline,All items,100.0,ri-archive-2000-2009/2000-2009_RI_archive/2004.txt
+2004,new,2001-2002 Weights,core,All items less food and energy,77.714,ri-archive-2000-2009/2000-2009_RI_archive/2004.txt
+2004,new,2001-2002 Weights,food,Food,14.295,ri-archive-2000-2009/2000-2009_RI_archive/2004.txt
+2004,new,2001-2002 Weights,energy,Energy,7.991,ri-archive-2000-2009/2000-2009_RI_archive/2004.txt
+2004,new,2001-2002 Weights,core_goods,Commodities less food and energy commodities,21.674,ri-archive-2000-2009/2000-2009_RI_archive/2004.txt
+2004,new,2001-2002 Weights,core_services,Services less energy services,56.04,ri-archive-2000-2009/2000-2009_RI_archive/2004.txt
+2004,new,2001-2002 Weights,commodities,Commodities,40.239,ri-archive-2000-2009/2000-2009_RI_archive/2004.txt
+2004,new,2001-2002 Weights,services,Services,59.761,ri-archive-2000-2009/2000-2009_RI_archive/2004.txt
+2004,new,2001-2002 Weights,food_home,Food at home,8.183,ri-archive-2000-2009/2000-2009_RI_archive/2004.txt
+2004,new,2001-2002 Weights,food_away,Food away from home,6.113,ri-archive-2000-2009/2000-2009_RI_archive/2004.txt
+2004,new,2001-2002 Weights,energy_cmdty,Energy commodities,4.269,ri-archive-2000-2009/2000-2009_RI_archive/2004.txt
+2004,new,2001-2002 Weights,energy_svc,(derived) Energy - Energy commodities,3.722,ri-archive-2000-2009/2000-2009_RI_archive/2004.txt
+2004,new,2001-2002 Weights,rent_shelter,Rent of shelter,32.3,ri-archive-2000-2009/2000-2009_RI_archive/2004.txt
+2004,new,2001-2002 Weights,svc_less_ros,Services less rent of shelter,27.462,ri-archive-2000-2009/2000-2009_RI_archive/2004.txt
+2005,new,2003-2004 Weights,headline,All items,100.0,ri-archive-2000-2009/2000-2009_RI_archive/2005.txt
+2005,new,2003-2004 Weights,core,All items less food and energy,77.373,ri-archive-2000-2009/2000-2009_RI_archive/2005.txt
+2005,new,2003-2004 Weights,food,Food,13.942,ri-archive-2000-2009/2000-2009_RI_archive/2005.txt
+2005,new,2003-2004 Weights,energy,Energy,8.685,ri-archive-2000-2009/2000-2009_RI_archive/2005.txt
+2005,new,2003-2004 Weights,core_goods,Commodities less food and energy commodities,22.319,ri-archive-2000-2009/2000-2009_RI_archive/2005.txt
+2005,new,2003-2004 Weights,core_services,Services less energy services,55.055,ri-archive-2000-2009/2000-2009_RI_archive/2005.txt
+2005,new,2003-2004 Weights,commodities,Commodities,40.79,ri-archive-2000-2009/2000-2009_RI_archive/2005.txt
+2005,new,2003-2004 Weights,services,Services,59.21,ri-archive-2000-2009/2000-2009_RI_archive/2005.txt
+2005,new,2003-2004 Weights,food_home,Food at home,7.988,ri-archive-2000-2009/2000-2009_RI_archive/2005.txt
+2005,new,2003-2004 Weights,food_away,Food away from home,5.953,ri-archive-2000-2009/2000-2009_RI_archive/2005.txt
+2005,new,2003-2004 Weights,energy_cmdty,Energy commodities,4.53,ri-archive-2000-2009/2000-2009_RI_archive/2005.txt
+2005,new,2003-2004 Weights,energy_svc,(derived) Energy - Energy commodities,4.155,ri-archive-2000-2009/2000-2009_RI_archive/2005.txt
+2005,new,2003-2004 Weights,rent_shelter,Rent of shelter,31.884,ri-archive-2000-2009/2000-2009_RI_archive/2005.txt
+2005,new,2003-2004 Weights,svc_less_ros,Services less rent of shelter,27.325,ri-archive-2000-2009/2000-2009_RI_archive/2005.txt
+2006,new,2003-2004 Weights,headline,All items,100.0,ri-archive-2000-2009/2000-2009_RI_archive/2006.txt
+2006,new,2003-2004 Weights,core,All items less food and energy,77.401,ri-archive-2000-2009/2000-2009_RI_archive/2006.txt
+2006,new,2003-2004 Weights,food,Food,13.885,ri-archive-2000-2009/2000-2009_RI_archive/2006.txt
+2006,new,2003-2004 Weights,energy,Energy,8.715,ri-archive-2000-2009/2000-2009_RI_archive/2006.txt
+2006,new,2003-2004 Weights,core_goods,Commodities less food and energy commodities,21.735,ri-archive-2000-2009/2000-2009_RI_archive/2006.txt
+2006,new,2003-2004 Weights,core_services,Services less energy services,55.666,ri-archive-2000-2009/2000-2009_RI_archive/2006.txt
+2006,new,2003-2004 Weights,commodities,Commodities,40.305,ri-archive-2000-2009/2000-2009_RI_archive/2006.txt
+2006,new,2003-2004 Weights,services,Services,59.695,ri-archive-2000-2009/2000-2009_RI_archive/2006.txt
+2006,new,2003-2004 Weights,food_home,Food at home,7.896,ri-archive-2000-2009/2000-2009_RI_archive/2006.txt
+2006,new,2003-2004 Weights,food_away,Food away from home,5.989,ri-archive-2000-2009/2000-2009_RI_archive/2006.txt
+2006,new,2003-2004 Weights,energy_cmdty,Energy commodities,4.685,ri-archive-2000-2009/2000-2009_RI_archive/2006.txt
+2006,new,2003-2004 Weights,energy_svc,(derived) Energy - Energy commodities,4.03,ri-archive-2000-2009/2000-2009_RI_archive/2006.txt
+2006,new,2003-2004 Weights,rent_shelter,Rent of shelter,32.407,ri-archive-2000-2009/2000-2009_RI_archive/2006.txt
+2006,new,2003-2004 Weights,svc_less_ros,Services less rent of shelter,27.288,ri-archive-2000-2009/2000-2009_RI_archive/2006.txt
+2007,new,2005-2006 Weights,headline,All items,100.0,ri-archive-2000-2009/2000-2009_RI_archive/2007.txt
+2007,new,2005-2006 Weights,core,All items less food and energy,76.469,ri-archive-2000-2009/2000-2009_RI_archive/2007.txt
+2007,new,2005-2006 Weights,food,Food,13.833,ri-archive-2000-2009/2000-2009_RI_archive/2007.txt
+2007,new,2005-2006 Weights,energy,Energy,9.698,ri-archive-2000-2009/2000-2009_RI_archive/2007.txt
+2007,new,2005-2006 Weights,core_goods,Commodities less food and energy commodities,21.602,ri-archive-2000-2009/2000-2009_RI_archive/2007.txt
+2007,new,2005-2006 Weights,core_services,Services less energy services,54.867,ri-archive-2000-2009/2000-2009_RI_archive/2007.txt
+2007,new,2005-2006 Weights,commodities,Commodities,41.269,ri-archive-2000-2009/2000-2009_RI_archive/2007.txt
+2007,new,2005-2006 Weights,services,Services,58.731,ri-archive-2000-2009/2000-2009_RI_archive/2007.txt
+2007,new,2005-2006 Weights,food_home,Food at home,7.66,ri-archive-2000-2009/2000-2009_RI_archive/2007.txt
+2007,new,2005-2006 Weights,food_away,Food away from home,6.173,ri-archive-2000-2009/2000-2009_RI_archive/2007.txt
+2007,new,2005-2006 Weights,energy_cmdty,Energy commodities,5.834,ri-archive-2000-2009/2000-2009_RI_archive/2007.txt
+2007,new,2005-2006 Weights,energy_svc,(derived) Energy - Energy commodities,3.864,ri-archive-2000-2009/2000-2009_RI_archive/2007.txt
+2007,new,2005-2006 Weights,rent_shelter,Rent of shelter,32.271,ri-archive-2000-2009/2000-2009_RI_archive/2007.txt
+2007,new,2005-2006 Weights,svc_less_ros,Services less rent of shelter,26.46,ri-archive-2000-2009/2000-2009_RI_archive/2007.txt
+2007,old,2003-2004 Weights,headline,All items,100.0,ri-archive-2000-2009/2000-2009_RI_archive/old-weights-2007.txt
+2007,old,2003-2004 Weights,core,All items less food and energy,76.172,ri-archive-2000-2009/2000-2009_RI_archive/old-weights-2007.txt
+2007,old,2003-2004 Weights,food,Food,13.995,ri-archive-2000-2009/2000-2009_RI_archive/old-weights-2007.txt
+2007,old,2003-2004 Weights,energy,Energy,9.833,ri-archive-2000-2009/2000-2009_RI_archive/old-weights-2007.txt
+2007,old,2003-2004 Weights,core_goods,Commodities less food and energy commodities,20.902,ri-archive-2000-2009/2000-2009_RI_archive/old-weights-2007.txt
+2007,old,2003-2004 Weights,core_services,Services less energy services,55.27,ri-archive-2000-2009/2000-2009_RI_archive/old-weights-2007.txt
+2007,old,2003-2004 Weights,commodities,Commodities,40.725,ri-archive-2000-2009/2000-2009_RI_archive/old-weights-2007.txt
+2007,old,2003-2004 Weights,services,Services,59.275,ri-archive-2000-2009/2000-2009_RI_archive/old-weights-2007.txt
+2007,old,2003-2004 Weights,food_home,Food at home,8.012,ri-archive-2000-2009/2000-2009_RI_archive/old-weights-2007.txt
+2007,old,2003-2004 Weights,food_away,Food away from home,5.983,ri-archive-2000-2009/2000-2009_RI_archive/old-weights-2007.txt
+2007,old,2003-2004 Weights,energy_cmdty,Energy commodities,5.828,ri-archive-2000-2009/2000-2009_RI_archive/old-weights-2007.txt
+2007,old,2003-2004 Weights,energy_svc,(derived) Energy - Energy commodities,4.005,ri-archive-2000-2009/2000-2009_RI_archive/old-weights-2007.txt
+2007,old,2003-2004 Weights,rent_shelter,Rent of shelter,32.119,ri-archive-2000-2009/2000-2009_RI_archive/old-weights-2007.txt
+2007,old,2003-2004 Weights,svc_less_ros,Services less rent of shelter,27.156,ri-archive-2000-2009/2000-2009_RI_archive/old-weights-2007.txt
+2008,new,2005-2006 Weights,headline,All items,100.0,ri-archive-2000-2009/2000-2009_RI_archive/2008.txt
+2008,new,2005-2006 Weights,core,All items less food and energy,77.746,ri-archive-2000-2009/2000-2009_RI_archive/2008.txt
+2008,new,2005-2006 Weights,food,Food,14.629,ri-archive-2000-2009/2000-2009_RI_archive/2008.txt
+2008,new,2005-2006 Weights,energy,Energy,7.624,ri-archive-2000-2009/2000-2009_RI_archive/2008.txt
+2008,new,2005-2006 Weights,core_goods,Commodities less food and energy commodities,21.461,ri-archive-2000-2009/2000-2009_RI_archive/2008.txt
+2008,new,2005-2006 Weights,core_services,Services less energy services,56.285,ri-archive-2000-2009/2000-2009_RI_archive/2008.txt
+2008,new,2005-2006 Weights,commodities,Commodities,39.556,ri-archive-2000-2009/2000-2009_RI_archive/2008.txt
+2008,new,2005-2006 Weights,services,Services,60.444,ri-archive-2000-2009/2000-2009_RI_archive/2008.txt
+2008,new,2005-2006 Weights,food_home,Food at home,8.156,ri-archive-2000-2009/2000-2009_RI_archive/2008.txt
+2008,new,2005-2006 Weights,food_away,Food away from home,6.474,ri-archive-2000-2009/2000-2009_RI_archive/2008.txt
+2008,new,2005-2006 Weights,energy_cmdty,Energy commodities,3.465,ri-archive-2000-2009/2000-2009_RI_archive/2008.txt
+2008,new,2005-2006 Weights,energy_svc,(derived) Energy - Energy commodities,4.159,ri-archive-2000-2009/2000-2009_RI_archive/2008.txt
+2008,new,2005-2006 Weights,rent_shelter,Rent of shelter,32.867,ri-archive-2000-2009/2000-2009_RI_archive/2008.txt
+2008,new,2005-2006 Weights,svc_less_ros,Services less rent of shelter,27.577,ri-archive-2000-2009/2000-2009_RI_archive/2008.txt
+2009,new,2007-2008 Weights,headline,All items,100.0,ri-archive-2000-2009/2000-2009_RI_archive/2009.txt
+2009,new,2007-2008 Weights,core,All items less food and energy,77.708,ri-archive-2000-2009/2000-2009_RI_archive/2009.txt
+2009,new,2007-2008 Weights,food,Food,13.738,ri-archive-2000-2009/2000-2009_RI_archive/2009.txt
+2009,new,2007-2008 Weights,energy,Energy,8.553,ri-archive-2000-2009/2000-2009_RI_archive/2009.txt
+2009,new,2007-2008 Weights,core_goods,Commodities less food and energy commodities,21.276,ri-archive-2000-2009/2000-2009_RI_archive/2009.txt
+2009,new,2007-2008 Weights,core_services,Services less energy services,56.432,ri-archive-2000-2009/2000-2009_RI_archive/2009.txt
+2009,new,2007-2008 Weights,commodities,Commodities,39.816,ri-archive-2000-2009/2000-2009_RI_archive/2009.txt
+2009,new,2007-2008 Weights,services,Services,60.184,ri-archive-2000-2009/2000-2009_RI_archive/2009.txt
+2009,new,2007-2008 Weights,food_home,Food at home,7.801,ri-archive-2000-2009/2000-2009_RI_archive/2009.txt
+2009,new,2007-2008 Weights,food_away,Food away from home,5.937,ri-archive-2000-2009/2000-2009_RI_archive/2009.txt
+2009,new,2007-2008 Weights,energy_cmdty,Energy commodities,4.801,ri-archive-2000-2009/2000-2009_RI_archive/2009.txt
+2009,new,2007-2008 Weights,energy_svc,(derived) Energy - Energy commodities,3.752,ri-archive-2000-2009/2000-2009_RI_archive/2009.txt
+2009,new,2007-2008 Weights,rent_shelter,Rent of shelter,31.942,ri-archive-2000-2009/2000-2009_RI_archive/2009.txt
+2009,new,2007-2008 Weights,svc_less_ros,Services less rent of shelter,28.243,ri-archive-2000-2009/2000-2009_RI_archive/2009.txt
+2010,new,2007-2008 Weights,headline,All items,100.0,ri-archive-2010-2019/2010-2019_RI_archive/2010.txt
+2010,new,2007-2008 Weights,core,All items less food and energy,77.179,ri-archive-2010-2019/2010-2019_RI_archive/2010.txt
+2010,new,2007-2008 Weights,food,Food,13.742,ri-archive-2010-2019/2010-2019_RI_archive/2010.txt
+2010,new,2007-2008 Weights,energy,Energy,9.079,ri-archive-2010-2019/2010-2019_RI_archive/2010.txt
+2010,new,2007-2008 Weights,core_goods,Commodities less food and energy commodities,20.882,ri-archive-2010-2019/2010-2019_RI_archive/2010.txt
+2010,new,2007-2008 Weights,core_services,Services less energy services,56.297,ri-archive-2010-2019/2010-2019_RI_archive/2010.txt
+2010,new,2007-2008 Weights,commodities,Commodities,40.012,ri-archive-2010-2019/2010-2019_RI_archive/2010.txt
+2010,new,2007-2008 Weights,services,Services,59.988,ri-archive-2010-2019/2010-2019_RI_archive/2010.txt
+2010,new,2007-2008 Weights,food_home,Food at home,7.816,ri-archive-2010-2019/2010-2019_RI_archive/2010.txt
+2010,new,2007-2008 Weights,food_away,Food away from home,5.926,ri-archive-2010-2019/2010-2019_RI_archive/2010.txt
+2010,new,2007-2008 Weights,energy_cmdty,Energy commodities,5.388,ri-archive-2010-2019/2010-2019_RI_archive/2010.txt
+2010,new,2007-2008 Weights,energy_svc,Energy services,3.691,ri-archive-2010-2019/2010-2019_RI_archive/2010.txt
+2010,new,2007-2008 Weights,rent_shelter,Rent of shelter,31.607,ri-archive-2010-2019/2010-2019_RI_archive/2010.txt
+2010,new,2007-2008 Weights,svc_less_ros,Services less rent of shelter,28.382,ri-archive-2010-2019/2010-2019_RI_archive/2010.txt
+2011,new,2009-2010 Weights,headline,All items,100.0,ri-archive-2010-2019/2010-2019_RI_archive/2011.txt
+2011,new,2009-2010 Weights,core,All items less food and energy,76.013,ri-archive-2010-2019/2010-2019_RI_archive/2011.txt
+2011,new,2009-2010 Weights,food,Food,14.308,ri-archive-2010-2019/2010-2019_RI_archive/2011.txt
+2011,new,2009-2010 Weights,energy,Energy,9.679,ri-archive-2010-2019/2010-2019_RI_archive/2011.txt
+2011,new,2009-2010 Weights,core_goods,Commodities less food and energy commodities,19.852,ri-archive-2010-2019/2010-2019_RI_archive/2011.txt
+2011,new,2009-2010 Weights,core_services,Services less energy services,56.161,ri-archive-2010-2019/2010-2019_RI_archive/2011.txt
+2011,new,2009-2010 Weights,commodities,Commodities,39.966,ri-archive-2010-2019/2010-2019_RI_archive/2011.txt
+2011,new,2009-2010 Weights,services,Services,60.034,ri-archive-2010-2019/2010-2019_RI_archive/2011.txt
+2011,new,2009-2010 Weights,food_home,Food at home,8.638,ri-archive-2010-2019/2010-2019_RI_archive/2011.txt
+2011,new,2009-2010 Weights,food_away,Food away from home,5.669,ri-archive-2010-2019/2010-2019_RI_archive/2011.txt
+2011,new,2009-2010 Weights,energy_cmdty,Energy commodities,5.806,ri-archive-2010-2019/2010-2019_RI_archive/2011.txt
+2011,new,2009-2010 Weights,energy_svc,Energy services,3.873,ri-archive-2010-2019/2010-2019_RI_archive/2011.txt
+2011,new,2009-2010 Weights,rent_shelter,Rent of shelter,31.19,ri-archive-2010-2019/2010-2019_RI_archive/2011.txt
+2011,new,2009-2010 Weights,svc_less_ros,Services less rent of shelter,28.844,ri-archive-2010-2019/2010-2019_RI_archive/2011.txt
+2012,new,2009-2010 Weights,headline,All items,100.0,ri-archive-2010-2019/2010-2019_RI_archive/2012.txt
+2012,new,2009-2010 Weights,core,All items less food and energy,76.127,ri-archive-2010-2019/2010-2019_RI_archive/2012.txt
+2012,new,2009-2010 Weights,food,Food,14.312,ri-archive-2010-2019/2010-2019_RI_archive/2012.txt
+2012,new,2009-2010 Weights,energy,Energy,9.561,ri-archive-2010-2019/2010-2019_RI_archive/2012.txt
+2012,new,2009-2010 Weights,core_goods,Commodities less food and energy commodities,19.574,ri-archive-2010-2019/2010-2019_RI_archive/2012.txt
+2012,new,2009-2010 Weights,core_services,Services less energy services,56.553,ri-archive-2010-2019/2010-2019_RI_archive/2012.txt
+2012,new,2009-2010 Weights,commodities,Commodities,39.68,ri-archive-2010-2019/2010-2019_RI_archive/2012.txt
+2012,new,2009-2010 Weights,services,Services,60.32,ri-archive-2010-2019/2010-2019_RI_archive/2012.txt
+2012,new,2009-2010 Weights,food_home,Food at home,8.598,ri-archive-2010-2019/2010-2019_RI_archive/2012.txt
+2012,new,2009-2010 Weights,food_away,Food away from home,5.713,ri-archive-2010-2019/2010-2019_RI_archive/2012.txt
+2012,new,2009-2010 Weights,energy_cmdty,Energy commodities,5.795,ri-archive-2010-2019/2010-2019_RI_archive/2012.txt
+2012,new,2009-2010 Weights,energy_svc,Energy services,3.767,ri-archive-2010-2019/2010-2019_RI_archive/2012.txt
+2012,new,2009-2010 Weights,rent_shelter,Rent of shelter,31.327,ri-archive-2010-2019/2010-2019_RI_archive/2012.txt
+2012,new,2009-2010 Weights,svc_less_ros,Services less rent of shelter,28.993,ri-archive-2010-2019/2010-2019_RI_archive/2012.txt
+2013,new,2011-2012 Weights,headline,All items,100.0,ri-archive-2010-2019/2010-2019_RI_archive/2013.txt
+2013,new,2011-2012 Weights,core,All items less food and energy,77.063,ri-archive-2010-2019/2010-2019_RI_archive/2013.txt
+2013,new,2011-2012 Weights,food,Food,13.891,ri-archive-2010-2019/2010-2019_RI_archive/2013.txt
+2013,new,2011-2012 Weights,energy,Energy,9.046,ri-archive-2010-2019/2010-2019_RI_archive/2013.txt
+2013,new,2011-2012 Weights,core_goods,Commodities less food and energy commodities,19.71,ri-archive-2010-2019/2010-2019_RI_archive/2013.txt
+2013,new,2011-2012 Weights,core_services,Services less energy services,57.353,ri-archive-2010-2019/2010-2019_RI_archive/2013.txt
+2013,new,2011-2012 Weights,commodities,Commodities,38.942,ri-archive-2010-2019/2010-2019_RI_archive/2013.txt
+2013,new,2011-2012 Weights,services,Services,61.058,ri-archive-2010-2019/2010-2019_RI_archive/2013.txt
+2013,new,2011-2012 Weights,food_home,Food at home,8.187,ri-archive-2010-2019/2010-2019_RI_archive/2013.txt
+2013,new,2011-2012 Weights,food_away,Food away from home,5.704,ri-archive-2010-2019/2010-2019_RI_archive/2013.txt
+2013,new,2011-2012 Weights,energy_cmdty,Energy commodities,5.34,ri-archive-2010-2019/2010-2019_RI_archive/2013.txt
+2013,new,2011-2012 Weights,energy_svc,Energy services,3.705,ri-archive-2010-2019/2010-2019_RI_archive/2013.txt
+2013,new,2011-2012 Weights,rent_shelter,Rent of shelter,31.671,ri-archive-2010-2019/2010-2019_RI_archive/2013.txt
+2013,new,2011-2012 Weights,svc_less_ros,Services less rent of shelter,29.387,ri-archive-2010-2019/2010-2019_RI_archive/2013.txt
+2014,new,2011-2012 Weights,headline,All items,100.0,ri-archive-2010-2019/2010-2019_RI_archive/2014.txt
+2014,new,2011-2012 Weights,core,All items less food and energy,77.713,ri-archive-2010-2019/2010-2019_RI_archive/2014.txt
+2014,new,2011-2012 Weights,food,Food,14.257,ri-archive-2010-2019/2010-2019_RI_archive/2014.txt
+2014,new,2011-2012 Weights,energy,Energy,8.03,ri-archive-2010-2019/2010-2019_RI_archive/2014.txt
+2014,new,2011-2012 Weights,core_goods,Commodities less food and energy commodities,19.408,ri-archive-2010-2019/2010-2019_RI_archive/2014.txt
+2014,new,2011-2012 Weights,core_services,Services less energy services,58.305,ri-archive-2010-2019/2010-2019_RI_archive/2014.txt
+2014,new,2011-2012 Weights,commodities,Commodities,37.88,ri-archive-2010-2019/2010-2019_RI_archive/2014.txt
+2014,new,2011-2012 Weights,services,Services,62.12,ri-archive-2010-2019/2010-2019_RI_archive/2014.txt
+2014,new,2011-2012 Weights,food_home,Food at home,8.427,ri-archive-2010-2019/2010-2019_RI_archive/2014.txt
+2014,new,2011-2012 Weights,food_away,Food away from home,5.83,ri-archive-2010-2019/2010-2019_RI_archive/2014.txt
+2014,new,2011-2012 Weights,energy_cmdty,Energy commodities,4.215,ri-archive-2010-2019/2010-2019_RI_archive/2014.txt
+2014,new,2011-2012 Weights,energy_svc,Energy services,3.815,ri-archive-2010-2019/2010-2019_RI_archive/2014.txt
+2014,new,2011-2012 Weights,rent_shelter,Rent of shelter,32.336,ri-archive-2010-2019/2010-2019_RI_archive/2014.txt
+2014,new,2011-2012 Weights,svc_less_ros,Services less rent of shelter,29.784,ri-archive-2010-2019/2010-2019_RI_archive/2014.txt
+2015,new,2013-2014 Weights,headline,All items,100.0,ri-archive-2010-2019/2010-2019_RI_archive/2015.txt
+2015,new,2013-2014 Weights,core,All items less food and energy,79.169,ri-archive-2010-2019/2010-2019_RI_archive/2015.txt
+2015,new,2013-2014 Weights,food,Food,14.015,ri-archive-2010-2019/2010-2019_RI_archive/2015.txt
+2015,new,2013-2014 Weights,energy,Energy,6.816,ri-archive-2010-2019/2010-2019_RI_archive/2015.txt
+2015,new,2013-2014 Weights,core_goods,Commodities less food and energy commodities,19.613,ri-archive-2010-2019/2010-2019_RI_archive/2015.txt
+2015,new,2013-2014 Weights,core_services,Services less energy services,59.556,ri-archive-2010-2019/2010-2019_RI_archive/2015.txt
+2015,new,2013-2014 Weights,commodities,Commodities,36.856,ri-archive-2010-2019/2010-2019_RI_archive/2015.txt
+2015,new,2013-2014 Weights,services,Services,63.144,ri-archive-2010-2019/2010-2019_RI_archive/2015.txt
+2015,new,2013-2014 Weights,food_home,Food at home,8.23,ri-archive-2010-2019/2010-2019_RI_archive/2015.txt
+2015,new,2013-2014 Weights,food_away,Food away from home,5.785,ri-archive-2010-2019/2010-2019_RI_archive/2015.txt
+2015,new,2013-2014 Weights,energy_cmdty,Energy commodities,3.228,ri-archive-2010-2019/2010-2019_RI_archive/2015.txt
+2015,new,2013-2014 Weights,energy_svc,Energy services,3.588,ri-archive-2010-2019/2010-2019_RI_archive/2015.txt
+2015,new,2013-2014 Weights,rent_shelter,Rent of shelter,32.801,ri-archive-2010-2019/2010-2019_RI_archive/2015.txt
+2015,new,2013-2014 Weights,svc_less_ros,Services less rent of shelter,30.343,ri-archive-2010-2019/2010-2019_RI_archive/2015.txt
+2016,new,2013-2014 Weights,headline,All items,100.0,ri-archive-2010-2019/2010-2019_RI_archive/2016.txt
+2016,new,2013-2014 Weights,core,All items less food and energy,79.263,ri-archive-2010-2019/2010-2019_RI_archive/2016.txt
+2016,new,2013-2014 Weights,food,Food,13.698,ri-archive-2010-2019/2010-2019_RI_archive/2016.txt
+2016,new,2013-2014 Weights,energy,Energy,7.039,ri-archive-2010-2019/2010-2019_RI_archive/2016.txt
+2016,new,2013-2014 Weights,core_goods,Commodities less food and energy commodities,19.101,ri-archive-2010-2019/2010-2019_RI_archive/2016.txt
+2016,new,2013-2014 Weights,core_services,Services less energy services,60.162,ri-archive-2010-2019/2010-2019_RI_archive/2016.txt
+2016,new,2013-2014 Weights,commodities,Commodities,36.246,ri-archive-2010-2019/2010-2019_RI_archive/2016.txt
+2016,new,2013-2014 Weights,services,Services,63.754,ri-archive-2010-2019/2010-2019_RI_archive/2016.txt
+2016,new,2013-2014 Weights,food_home,Food at home,7.899,ri-archive-2010-2019/2010-2019_RI_archive/2016.txt
+2016,new,2013-2014 Weights,food_away,Food away from home,5.799,ri-archive-2010-2019/2010-2019_RI_archive/2016.txt
+2016,new,2013-2014 Weights,energy_cmdty,Energy commodities,3.447,ri-archive-2010-2019/2010-2019_RI_archive/2016.txt
+2016,new,2013-2014 Weights,energy_svc,Energy services,3.592,ri-archive-2010-2019/2010-2019_RI_archive/2016.txt
+2016,new,2013-2014 Weights,rent_shelter,Rent of shelter,33.309,ri-archive-2010-2019/2010-2019_RI_archive/2016.txt
+2016,new,2013-2014 Weights,svc_less_ros,Services less rent of shelter,30.445,ri-archive-2010-2019/2010-2019_RI_archive/2016.txt
+2017,new,2015-2016 Weights,headline,All items,100.0,ri-archive-2010-2019/2010-2019_RI_archive/2017.txt
+2017,new,2015-2016 Weights,core,All items less food and energy,79.103,ri-archive-2010-2019/2010-2019_RI_archive/2017.txt
+2017,new,2015-2016 Weights,food,Food,13.384,ri-archive-2010-2019/2010-2019_RI_archive/2017.txt
+2017,new,2015-2016 Weights,energy,Energy,7.513,ri-archive-2010-2019/2010-2019_RI_archive/2017.txt
+2017,new,2015-2016 Weights,core_goods,Commodities less food and energy commodities,19.849,ri-archive-2010-2019/2010-2019_RI_archive/2017.txt
+2017,new,2015-2016 Weights,core_services,Services less energy services,59.254,ri-archive-2010-2019/2010-2019_RI_archive/2017.txt
+2017,new,2015-2016 Weights,commodities,Commodities,37.327,ri-archive-2010-2019/2010-2019_RI_archive/2017.txt
+2017,new,2015-2016 Weights,services,Services,62.673,ri-archive-2010-2019/2010-2019_RI_archive/2017.txt
+2017,new,2015-2016 Weights,food_home,Food at home,7.382,ri-archive-2010-2019/2010-2019_RI_archive/2017.txt
+2017,new,2015-2016 Weights,food_away,Food away from home,6.002,ri-archive-2010-2019/2010-2019_RI_archive/2017.txt
+2017,new,2015-2016 Weights,energy_cmdty,Energy commodities,4.094,ri-archive-2010-2019/2010-2019_RI_archive/2017.txt
+2017,new,2015-2016 Weights,energy_svc,Energy services,3.419,ri-archive-2010-2019/2010-2019_RI_archive/2017.txt
+2017,new,2015-2016 Weights,rent_shelter,Rent of shelter,32.468,ri-archive-2010-2019/2010-2019_RI_archive/2017.txt
+2017,new,2015-2016 Weights,svc_less_ros,Services less rent of shelter,30.205,ri-archive-2010-2019/2010-2019_RI_archive/2017.txt
+2018,new,2015-2016 Weights,headline,All items,100.0,ri-archive-2010-2019/2010-2019_RI_archive/2018.txt
+2018,new,2015-2016 Weights,core,All items less food and energy,79.312,ri-archive-2010-2019/2010-2019_RI_archive/2018.txt
+2018,new,2015-2016 Weights,food,Food,13.341,ri-archive-2010-2019/2010-2019_RI_archive/2018.txt
+2018,new,2015-2016 Weights,energy,Energy,7.347,ri-archive-2010-2019/2010-2019_RI_archive/2018.txt
+2018,new,2015-2016 Weights,core_goods,Commodities less food and energy commodities,19.503,ri-archive-2010-2019/2010-2019_RI_archive/2018.txt
+2018,new,2015-2016 Weights,core_services,Services less energy services,59.809,ri-archive-2010-2019/2010-2019_RI_archive/2018.txt
+2018,new,2015-2016 Weights,commodities,Commodities,36.791,ri-archive-2010-2019/2010-2019_RI_archive/2018.txt
+2018,new,2015-2016 Weights,services,Services,63.209,ri-archive-2010-2019/2010-2019_RI_archive/2018.txt
+2018,new,2015-2016 Weights,food_home,Food at home,7.286,ri-archive-2010-2019/2010-2019_RI_archive/2018.txt
+2018,new,2015-2016 Weights,food_away,Food away from home,6.055,ri-archive-2010-2019/2010-2019_RI_archive/2018.txt
+2018,new,2015-2016 Weights,energy_cmdty,Energy commodities,3.947,ri-archive-2010-2019/2010-2019_RI_archive/2018.txt
+2018,new,2015-2016 Weights,energy_svc,Energy services,3.4,ri-archive-2010-2019/2010-2019_RI_archive/2018.txt
+2018,new,2015-2016 Weights,rent_shelter,Rent of shelter,32.884,ri-archive-2010-2019/2010-2019_RI_archive/2018.txt
+2018,new,2015-2016 Weights,svc_less_ros,Services less rent of shelter,30.325,ri-archive-2010-2019/2010-2019_RI_archive/2018.txt
+2019,new,2017-2018 Weights,headline,All items,100.0,ri-archive-2010-2019/2010-2019_RI_archive/2019.txt
+2019,new,2017-2018 Weights,core,All items less food and energy,79.524,ri-archive-2010-2019/2010-2019_RI_archive/2019.txt
+2019,new,2017-2018 Weights,food,Food,13.771,ri-archive-2010-2019/2010-2019_RI_archive/2019.txt
+2019,new,2017-2018 Weights,energy,Energy,6.706,ri-archive-2010-2019/2010-2019_RI_archive/2019.txt
+2019,new,2017-2018 Weights,core_goods,Commodities less food and energy commodities,20.137,ri-archive-2010-2019/2010-2019_RI_archive/2019.txt
+2019,new,2017-2018 Weights,core_services,Services less energy services,59.387,ri-archive-2010-2019/2010-2019_RI_archive/2019.txt
+2019,new,2017-2018 Weights,commodities,Commodities,37.518,ri-archive-2010-2019/2010-2019_RI_archive/2019.txt
+2019,new,2017-2018 Weights,services,Services,62.482,ri-archive-2010-2019/2010-2019_RI_archive/2019.txt
+2019,new,2017-2018 Weights,food_home,Food at home,7.579,ri-archive-2010-2019/2010-2019_RI_archive/2019.txt
+2019,new,2017-2018 Weights,food_away,Food away from home,6.191,ri-archive-2010-2019/2010-2019_RI_archive/2019.txt
+2019,new,2017-2018 Weights,energy_cmdty,Energy commodities,3.61,ri-archive-2010-2019/2010-2019_RI_archive/2019.txt
+2019,new,2017-2018 Weights,energy_svc,Energy services,3.096,ri-archive-2010-2019/2010-2019_RI_archive/2019.txt
+2019,new,2017-2018 Weights,rent_shelter,Rent of shelter,32.787,ri-archive-2010-2019/2010-2019_RI_archive/2019.txt
+2019,new,2017-2018 Weights,svc_less_ros,Services less rent of shelter,29.696,ri-archive-2010-2019/2010-2019_RI_archive/2019.txt
+2020,new,2017 - 2018 Weights,headline,All items,100.0,2020.xlsx
+2020,new,2017 - 2018 Weights,core,All items less food and energy,79.726,2020.xlsx
+2020,new,2017 - 2018 Weights,food,Food,14.119,2020.xlsx
+2020,new,2017 - 2018 Weights,energy,Energy,6.155,2020.xlsx
+2020,new,2017 - 2018 Weights,core_goods,Commodities less food and energy commodities,20.2,2020.xlsx
+2020,new,2017 - 2018 Weights,core_services,Services less energy services,59.526,2020.xlsx
+2020,new,2017 - 2018 Weights,commodities,Commodities,37.339,2020.xlsx
+2020,new,2017 - 2018 Weights,services,Services,62.661,2020.xlsx
+2020,new,2017 - 2018 Weights,food_home,Food at home,7.772,2020.xlsx
+2020,new,2017 - 2018 Weights,food_away,Food away from home,6.347,2020.xlsx
+2020,new,2017 - 2018 Weights,energy_cmdty,Energy commodities,3.02,2020.xlsx
+2020,new,2017 - 2018 Weights,energy_svc,Energy services,3.135,2020.xlsx
+2020,new,2017 - 2018 Weights,rent_shelter,Rent of shelter,32.95,2020.xlsx
+2020,new,2017 - 2018 Weights,svc_less_ros,Services less rent of shelter,29.711,2020.xlsx
+2021,new,2019 - 2020 Weights,headline,All items,100.0,2021.xlsx
+2021,new,2019 - 2020 Weights,core,All items less food and energy,79.282,2021.xlsx
+2021,new,2019 - 2020 Weights,food,Food,13.37,2021.xlsx
+2021,new,2019 - 2020 Weights,energy,Energy,7.348,2021.xlsx
+2021,new,2019 - 2020 Weights,core_goods,Commodities less food and energy commodities,21.699,2021.xlsx
+2021,new,2019 - 2020 Weights,core_services,Services less energy services,57.583,2021.xlsx
+2021,new,2019 - 2020 Weights,commodities,Commodities,39.083,2021.xlsx
+2021,new,2019 - 2020 Weights,services,Services,60.917,2021.xlsx
+2021,new,2019 - 2020 Weights,food_home,Food at home,8.165,2021.xlsx
+2021,new,2019 - 2020 Weights,food_away,Food away from home,5.205,2021.xlsx
+2021,new,2019 - 2020 Weights,energy_cmdty,Energy commodities,4.014,2021.xlsx
+2021,new,2019 - 2020 Weights,energy_svc,Energy services,3.334,2021.xlsx
+2021,new,2019 - 2020 Weights,rent_shelter,Rent of shelter,32.563,2021.xlsx
+2021,new,2019 - 2020 Weights,svc_less_ros,Services less rent of shelter,28.354,2021.xlsx
+2021,old,,headline,All items,100.0,html_old-weights-2021.htm
+2021,old,,core,All items less food and energy,78.546,html_old-weights-2021.htm
+2021,old,,food,Food,14.018,html_old-weights-2021.htm
+2021,old,,energy,Energy,7.435,html_old-weights-2021.htm
+2021,old,,core_goods,Commodities less food and energy commodities,20.889,html_old-weights-2021.htm
+2021,old,,core_services,Services less energy services,57.657,html_old-weights-2021.htm
+2021,old,,commodities,Commodities,39.11,html_old-weights-2021.htm
+2021,old,,services,Services,60.89,html_old-weights-2021.htm
+2021,old,,food_home,Food at home,7.732,html_old-weights-2021.htm
+2021,old,,food_away,Food away from home,6.287,html_old-weights-2021.htm
+2021,old,,energy_cmdty,Energy commodities,4.203,html_old-weights-2021.htm
+2021,old,,energy_svc,Energy services,3.233,html_old-weights-2021.htm
+2021,old,,rent_shelter,Rent of shelter,32.073,html_old-weights-2021.htm
+2021,old,,svc_less_ros,Services less rent of shelter,28.817,html_old-weights-2021.htm
+2022,new,2021 Weights,headline,All items,100.0,2022.xlsx
+2022,new,2021 Weights,core,All items less food and energy,79.548,2022.xlsx
+2022,new,2021 Weights,food,Food,13.531,2022.xlsx
+2022,new,2021 Weights,energy,Energy,6.921,2022.xlsx
+2022,new,2021 Weights,core_goods,Commodities less food and energy commodities,21.361,2022.xlsx
+2022,new,2021 Weights,core_services,Services less energy services,58.187,2022.xlsx
+2022,new,2021 Weights,commodities,Commodities,38.382,2022.xlsx
+2022,new,2021 Weights,services,Services,61.618,2022.xlsx
+2022,new,2021 Weights,food_home,Food at home,8.728,2022.xlsx
+2022,new,2021 Weights,food_away,Food away from home,4.803,2022.xlsx
+2022,new,2021 Weights,energy_cmdty,Energy commodities,3.49,2022.xlsx
+2022,new,2021 Weights,energy_svc,Energy services,3.431,2022.xlsx
+2022,new,2021 Weights,rent_shelter,Rent of shelter,34.037,2022.xlsx
+2022,new,2021 Weights,svc_less_ros,Services less rent of shelter,27.581,2022.xlsx
+2022,old,,headline,All items,100.0,html_old-weights-2022.htm
+2022,old,,food,Food,13.867,html_old-weights-2022.htm
+2022,old,,food_home,Food at home,8.574,html_old-weights-2022.htm
+2022,old,,food_away,Food away from home,5.293,html_old-weights-2022.htm
+2022,old,,energy_svc,Energy services,3.62,html_old-weights-2022.htm
+2023,new,2022 Weights,headline,All items,100.0,2023.xlsx
+2023,new,2022 Weights,core,All items less food and energy,79.79,2023.xlsx
+2023,new,2022 Weights,food,Food,13.555,2023.xlsx
+2023,new,2022 Weights,energy,Energy,6.655,2023.xlsx
+2023,new,2022 Weights,core_goods,Commodities less food and energy commodities,18.891,2023.xlsx
+2023,new,2022 Weights,core_services,Services less energy services,60.899,2023.xlsx
+2023,new,2022 Weights,commodities,Commodities,35.985,2023.xlsx
+2023,new,2022 Weights,services,Services,64.015,2023.xlsx
+2023,new,2022 Weights,food_home,Food at home,8.167,2023.xlsx
+2023,new,2022 Weights,food_away,Food away from home,5.388,2023.xlsx
+2023,new,2022 Weights,energy_cmdty,Energy commodities,3.539,2023.xlsx
+2023,new,2022 Weights,energy_svc,Energy services,3.116,2023.xlsx
+2023,new,2022 Weights,rent_shelter,Rent of shelter,35.778,2023.xlsx
+2023,new,2022 Weights,svc_less_ros,Services less rent of shelter,28.237,2023.xlsx
+2023,old,,headline,All items,100.0,html_old-weights-2023.htm
+2023,old,,food,Food,13.447,html_old-weights-2023.htm
+2023,old,,food_home,Food at home,8.555,html_old-weights-2023.htm
+2023,old,,food_away,Food away from home,4.891,html_old-weights-2023.htm
+2023,old,,energy_svc,Energy services,3.282,html_old-weights-2023.htm
+2024,new,2023 Weights,headline,All items,100.0,2024.xlsx
+2024,new,2023 Weights,core,All items less food and energy,80.094,2024.xlsx
+2024,new,2023 Weights,food,Food,13.691,2024.xlsx
+2024,new,2023 Weights,energy,Energy,6.216,2024.xlsx
+2024,new,2023 Weights,core_goods,Commodities less food and energy commodities,19.388,2024.xlsx
+2024,new,2023 Weights,core_services,Services less energy services,60.705,2024.xlsx
+2024,new,2023 Weights,commodities,Commodities,36.201,2024.xlsx
+2024,new,2023 Weights,services,Services,63.799,2024.xlsx
+2024,new,2023 Weights,food_home,Food at home,8.043,2024.xlsx
+2024,new,2023 Weights,food_away,Food away from home,5.648,2024.xlsx
+2024,new,2023 Weights,energy_cmdty,Energy commodities,3.122,2024.xlsx
+2024,new,2023 Weights,energy_svc,Energy services,3.094,2024.xlsx
+2024,new,2023 Weights,rent_shelter,Rent of shelter,35.072,2024.xlsx
+2024,new,2023 Weights,svc_less_ros,Services less rent of shelter,28.726,2024.xlsx
+2024,old,,headline,All items,100.0,html_old-weights-2024.htm
+2024,old,,core,All items less food and energy,80.061,html_old-weights-2024.htm
+2024,old,,food,Food,13.505,html_old-weights-2024.htm
+2024,old,,energy,Energy,6.434,html_old-weights-2024.htm
+2024,old,,core_goods,Commodities less food and energy commodities,18.263,html_old-weights-2024.htm
+2024,old,,core_services,Services less energy services,61.799,html_old-weights-2024.htm
+2024,old,,commodities,Commodities,35.074,html_old-weights-2024.htm
+2024,old,,services,Services,64.925,html_old-weights-2024.htm
+2024,old,,food_home,Food at home,8.078,html_old-weights-2024.htm
+2024,old,,food_away,Food away from home,5.427,html_old-weights-2024.htm
+2024,old,,energy_cmdty,Energy commodities,3.307,html_old-weights-2024.htm
+2024,old,,energy_svc,Energy services,3.127,html_old-weights-2024.htm
+2024,old,,rent_shelter,Rent of shelter,36.375,html_old-weights-2024.htm
+2024,old,,svc_less_ros,Services less rent of shelter,28.55,html_old-weights-2024.htm
+2025,new,2024 Weights,headline,All items,100.0,2025.xlsx
+2025,new,2024 Weights,core,All items less food and energy,79.919,2025.xlsx
+2025,new,2024 Weights,food,Food,13.698,2025.xlsx
+2025,new,2024 Weights,energy,Energy,6.383,2025.xlsx
+2025,new,2024 Weights,core_goods,Commodities less food and energy commodities,19.176,2025.xlsx
+2025,new,2024 Weights,core_services,Services less energy services,60.744,2025.xlsx
+2025,new,2024 Weights,commodities,Commodities,35.994,2025.xlsx
+2025,new,2024 Weights,services,Services,64.006,2025.xlsx
+2025,new,2024 Weights,food_home,Food at home,8.325,2025.xlsx
+2025,new,2024 Weights,food_away,Food away from home,5.373,2025.xlsx
+2025,new,2024 Weights,energy_cmdty,Energy commodities,3.12,2025.xlsx
+2025,new,2024 Weights,energy_svc,Energy services,3.262,2025.xlsx
+2025,new,2024 Weights,rent_shelter,Rent of shelter,35.333,2025.xlsx
+2025,new,2024 Weights,svc_less_ros,Services less rent of shelter,28.673,2025.xlsx
+2025,old,,headline,All items,100.0,html_old-weights-2025.htm
+2025,old,,core,All items less food and energy,80.065,html_old-weights-2025.htm
+2025,old,,food,Food,13.743,html_old-weights-2025.htm
+2025,old,,energy,Energy,6.193,html_old-weights-2025.htm
+2025,old,,core_goods,Commodities less food and energy commodities,19.151,html_old-weights-2025.htm
+2025,old,,core_services,Services less energy services,60.913,html_old-weights-2025.htm
+2025,old,,commodities,Commodities,35.843,html_old-weights-2025.htm
+2025,old,,services,Services,64.157,html_old-weights-2025.htm
+2025,old,,food_home,Food at home,8.018,html_old-weights-2025.htm
+2025,old,,food_away,Food away from home,5.725,html_old-weights-2025.htm
+2025,old,,energy_cmdty,Energy commodities,2.949,html_old-weights-2025.htm
+2025,old,,energy_svc,Energy services,3.244,html_old-weights-2025.htm
+2025,old,,rent_shelter,Rent of shelter,35.219,html_old-weights-2025.htm
+2025,old,,svc_less_ros,Services less rent of shelter,28.938,html_old-weights-2025.htm

@@ -1,0 +1,400 @@
+Relative importance of components in the Consumer Price                                                                                                                             
+Indexes: U.S. city average, December 1989                                                                                                                                           
+                                                                                                                                                                                    
+(Percent of All items)                                                                                                                                                              
+                                                                                                                                                                                    
+Item     Item and group                               U.S. city average                                                                                                             
+code                                                                                                                                                                                
+         Expenditure category                         CPI-U     CPI-W                                                                                                               
+                                                                                                                                                                                    
+                                                                                                                                                                                    
+SAC      COMMODITIES                                    45.088    49.025                                                                                                            
+SACE     ENERGY COMMODITIES                              3.581     4.260                                                                                                            
+SACL1    COMMODITIES LESS FOOD                          28.770    30.910                                                                                                            
+SACL1E   COMMODITIES LESS FOOD AND ENERGY               25.188    26.649                                                                                                            
+SACL1E4  COMMODITIES LESS FOOD, ENERGY, & UCR           23.952    24.438                                                                                                            
+SACL11   COMMODITIES LESS FOOD & BEVERAGES              27.223    29.257                                                                                                            
+SAD      DURABLES                                       11.256    12.323                                                                                                            
+SAN      NONDURABLES                                    33.832    36.702                                                                                                            
+SANL1    NONDURABLES LESS FOOD                          17.513    18.586                                                                                                            
+SANL11   NONDURABLES LESS FOOD AND BEVERAGES            15.967    16.934                                                                                                            
+SANL113  NONDURABLES LESS FOOD, BVRGS, APPAREL          10.394    11.319                                                                                                            
+SANL13   NONDURABLES LESS FOOD AND APPAREL              11.940    12.971                                                                                                            
+SAN1D    DOMESTICALLY PRODUCED FARM FOODS                8.878    10.039                                                                                                            
+SAN1S    SELECTED BEEF CUTS                              0.719     0.884                                                                                                            
+SAS      SERVICES                                       54.912    50.975                                                                                                            
+SASLE    SERVICES LESS ENERGY                           51.127    47.061                                                                                                            
+SASL2RS  SERVICES LESS RENT OF SHELTER                  27.649    25.950                                                                                                            
+SASL5    SERVICES LESS MEDICAL CARE                     49.902    46.683                                                                                                            
+SAS2LSRS HOUSEHOLD SER LESS RENT OF SHELTER              9.075     8.877                                                                                                            
+SAS2RS   RENT OF SHELTER                                27.263    25.025                                                                                                            
+SAS22    HOUSEKEEPING, HOME MAINTENANCE SER              1.588     1.211                                                                                                            
+SAS24    UTILITIES AND PUBLIC TRANSPORTATION             8.487     8.394                                                                                                            
+SAS367   OTHER SERVICES                                  6.795     5.834                                                                                                            
+SAS4     TRANSPORTATION SERVICES                         6.768     6.947                                                                                                            
+SAS5L58  MEDICAL CARE SERVICES LESS HEALTH INS           4.859     4.177                                                                                                            
+SA0      ALL ITEMS                                     100.000   100.000                                                                                                            
+SA0E     ENERGY                                          7.366     8.174                                                                                                            
+SA0LE    ALL ITEMS LESS ENERGY                          92.634    91.826                                                                                                            
+SA0L1    ALL ITEMS LESS FOOD                            83.682    81.884                                                                                                            
+SA0L1E   ALL ITEMS LESS FOOD AND ENERGY                 76.315    73.710                                                                                                            
+SA0L12   ALL ITEMS LESS FOOD AND SHELTER                55.773    56.294                                                                                                            
+SA0L12E  ALL ITEMS LESS FOOD,SHEL,AND ENERGY            48.407    48.120                                                                                                            
+SA0L12E4 ALL ITEMS LESS FOOD,SHEL,ENRGY & UCR           47.170    45.908                                                                                                            
+SA0L2    ALL ITEMS LESS SHELTER                         72.092    74.410                                                                                                            
+SA0L22   ALL ITEMS LESS HOMEOWNERS' COSTS               80.175    82.667                                                                                                            
+SA0L5    ALL ITEMS LESS MEDICAL CARE                    93.811    94.740                                                                                                            
+SA1      FOOD AND BEVERAGES                             17.865    19.768                                                                                                            
+SA11     FOOD                                           16.318    18.116                                                                                                            
+SA111    FOOD AT HOME                                   10.129    11.454                                                                                                            
+SA1111   CEREALS AND BAKERY PRODUCTS                     1.440     1.638                                                                                                            
+SA1112   MEATS, POULTRY, FISH AND EGGS                   3.119     3.654                                                                                                            
+SA11121  MEATS, POULTRY, AND FISH                        2.905     3.404                                                                                                            
+SA111211 MEATS                                           2.057     2.473                                                                                                            
+SA1113   DAIRY PRODUCTS                                  1.296     1.435                                                                                                            
+SA1114   FRUITS AND VEGETABLES                           1.813     1.905                                                                                                            
+SA11141  FRESH FRUITS AND VEGETABLES                     1.150     1.199                                                                                                            
+SA11142  PROCESSED FRUITS AND VEGETABLES                 0.663     0.707                                                                                                            
+SA1115   OTHER FOOD AT HOME                              2.462     2.822                                                                                                            
+SA2      HOUSING                                        42.037    39.509                                                                                                            
+SA21     SHELTER                                        27.908    25.590                                                                                                            
+SA211    RENTERS' COSTS                                  7.871     8.056                                                                                                            
+SA2112   OTHER RENTERS' COSTS                            1.916     1.267                                                                                                            
+SA213    MAINTENANCE AND REPAIRS                         0.212     0.201                                                                                                            
+SA22     HOUSEHOLD FUELS AND OTHER UTILITIES             7.484     7.691                                                                                                            
+SA221    HOUSEHOLD FUELS                                 4.214     4.304                                                                                                            
+SA23     HOUSEHOLD FURNISHINGS & OPERATION               6.645     6.227                                                                                                            
+SA231    HOUSEFURNISHINGS                                3.982     3.892                                                                                                            
+SA2313   APPLIANCES & ELECTRONIC EQUIPMENT               1.105     1.151                                                                                                            
+SA3      APPAREL AND UPKEEP                              6.131     6.134                                                                                                            
+SA31     APPAREL COMMODITIES                             5.573     5.615                                                                                                            
+SA311    APPAREL COMMODITIES LESS FOOTWEAR               4.750     4.707                                                                                                            
+SA3111   MEN'S AND BOY'S APPAREL                         1.497     1.488                                                                                                            
+SA3112   WOMEN'S AND GIRL'S APPAREL                      2.495     2.438                                                                                                            
+SA3114   OTHER APPAREL COMMODITIES                       0.545     0.501                                                                                                            
+SA4      TRANSPORTATION                                 17.102    19.033                                                                                                            
+SA41     PRIVATE TRANSPORTATION                         15.670    17.939                                                                                                            
+SA415    OTHER PRIVATE TRANSPORTATION                    4.532     5.171                                                                                                            
+SA4151   OTHER PRIVATE TRANS. COMMODITIES                0.720     0.907                                                                                                            
+SA4152   OTH PRIVATE TRANS. SERVICES                     3.812     4.264                                                                                                            
+SA5      MEDICAL CARE                                    6.189     5.260                                                                                                            
+SA5L58   MEDICAL CARE LESS HEALTH INSURANCE              6.038     5.145                                                                                                            
+SA51     MEDICAL CARE COMMODITIES                        1.179     0.968                                                                                                            
+SA512    MEDICAL CARE SERVICES                           5.010     4.292                                                                                                            
+SA6      ENTERTAINMENT                                   4.396     4.071                                                                                                            
+SA61     ENTERTAINMENT COMMODITIES                       2.079     2.171                                                                                                            
+SA7      OTHER GOODS AND SERVICES                        6.281     6.226                                                                                                            
+SA712    PERSONAL CARE                                   1.217     1.168                                                                                                            
+SA713    PERSONAL AND EDUCATIONAL EXPENSES               3.586     3.113                                                                                                            
+SA7132   PERSONAL AND EDUCATIONAL SERVICES               3.350     2.910                                                                                                            
+SE01     CEREALS AND CEREAL PRODUCTS                     0.463     0.534                                                                                                            
+SE0101   FLOUR,PREP FLOUR MIXES                          0.078     0.091                                                                                                            
+SE0102   CEREAL                                          0.281     0.321                                                                                                            
+SE0103   RICE,PASTA,CORNMEAL                             0.104     0.122                                                                                                            
+SE02     BAKERY PRODUCTS                                 0.978     1.104                                                                                                            
+SE0201   WHITE BREAD                                     0.238     0.293                                                                                                            
+SE0202   FRESH OTH BREADS/BISC/ROLLS/MUFFINS             0.219     0.228                                                                                                            
+SE0204   COOKIES, FRESH CAKES & CUPCAKES                 0.246     0.290                                                                                                            
+SE0206   OTHER BAKERY PRODUCTS                           0.274     0.292                                                                                                            
+SE03     BEEF AND VEAL                                   1.065     1.276                                                                                                            
+SE0301   GROUND BEEF EXCLUDE CANNED                      0.381     0.474                                                                                                            
+SE0302   CHUCK ROAST                                     0.092     0.106                                                                                                            
+SE0303   ROUND ROAST                                     0.055     0.063                                                                                                            
+SE0304   OTHER BEEF AND VEAL                             0.366     0.415                                                                                                            
+SE0305   ROUND STEAK                                     0.089     0.116                                                                                                            
+SE0306   SIRLOIN STEAK                                   0.082     0.102                                                                                                            
+SE04     PORK                                            0.583     0.712                                                                                                            
+SE0401   BACON                                           0.094     0.112                                                                                                            
+SE0402   PORK CHOPS                                      0.144     0.180                                                                                                            
+SE0403   HAM                                             0.139     0.169                                                                                                            
+SE0404   OTHER PORK INCL SAUSAGE                         0.206     0.251                                                                                                            
+SE05     OTHER MEATS                                     0.409     0.484                                                                                                            
+SE0501   OTHER MEATS                                     0.409     0.484                                                                                                            
+SE06     POULTRY                                         0.463     0.515                                                                                                            
+SE0601   FRESH WHOLE CHICKEN                             0.155     0.183                                                                                                            
+SE0602   FRESH/FROZEN CHICKEN PARTS                      0.221     0.241                                                                                                            
+SE0603   OTHER POULTRY                                   0.086     0.091                                                                                                            
+SE07     FISH AND SEAFOOD                                0.385     0.416                                                                                                            
+SE0701   CANNED FISH,SEAFOOD                             0.085     0.093                                                                                                            
+SE0702   FRESH/FROZEN FISH,SEAFOOD                       0.300     0.323                                                                                                            
+SE08     EGGS                                            0.214     0.250                                                                                                            
+SE0801   EGGS                                            0.214     0.250                                                                                                            
+SE09     FRESH MILK AND CREAM                            0.651     0.760                                                                                                            
+SE0901   FRESH WHOLE MILK                                0.380     0.472                                                                                                            
+SE0902   OTHER FRESH MILK AND CREAM                      0.270     0.289                                                                                                            
+SE10     PROCESSED DAIRY PRODUCTS                        0.645     0.675                                                                                                            
+SE1001   OTHER DAIRY PRODUCTS INCL BUTTER                0.111     0.116                                                                                                            
+SE1002   CHEESE                                          0.370     0.382                                                                                                            
+SE1004   ICE CREAM,RELATED PROD.                         0.163     0.177                                                                                                            
+SE11     FRESH FRUITS                                    0.612     0.630                                                                                                            
+SE1101   APPLES                                          0.096     0.104                                                                                                            
+SE1102   BANANAS                                         0.069     0.074                                                                                                            
+SE1103   ORANGES INCLUDING TANGERINES                    0.079     0.095                                                                                                            
+SE1104   OTHER FRESH FRUITS                              0.369     0.357                                                                                                            
+SE12     FRESH VEGETABLES                                0.537     0.569                                                                                                            
+SE1201   POTATOES                                        0.103     0.115                                                                                                            
+SE1202   LETTUCE                                         0.061     0.065                                                                                                            
+SE1203   TOMATOES                                        0.081     0.095                                                                                                            
+SE1204   OTHER FRESH VEGETABLES                          0.292     0.295                                                                                                            
+SE13     PROCESSED FRUITS                                0.377     0.379                                                                                                            
+SE1301   FRUIT JUICES, & FROZEN FRUIT                    0.298     0.304                                                                                                            
+SE1303   CANNED AND DRIED FRUITS                         0.079     0.075                                                                                                            
+SE14     PROCESSED VEGETABLES                            0.286     0.328                                                                                                            
+SE1401   FROZEN VEGETABLES                               0.094     0.103                                                                                                            
+SE1402   PROCESSED VEGETABLES EXCLUDING FROZEN           0.192     0.225                                                                                                            
+SE15     SUGAR AND SWEETS                                0.348     0.391                                                                                                            
+SE1501   SWEETS INCLUDING CANDY                          0.255     0.275                                                                                                            
+SE1502   SUGAR AND ARTIFICIAL SWEETNERS                  0.094     0.117                                                                                                            
+SE16     FATS AND OILS                                   0.267     0.306                                                                                                            
+SE1601   FATS AND OILS                                   0.267     0.306                                                                                                            
+SE17     NONALCOHOLIC BEVERAGES                          0.797     0.926                                                                                                            
+SE1701   CARBONATED DRINKS                               0.422     0.519                                                                                                            
+SE1703   COFFEE                                          0.229     0.240                                                                                                            
+SE1705   OTH NONCARBONATED DRINKS                        0.147     0.166                                                                                                            
+SE18     OTHER PREPARED FOODS                            1.050     1.199                                                                                                            
+SE1801   CANNED PACKAGED SOUP                            0.086     0.095                                                                                                            
+SE1802   FROZEN PREPARED FOODS                           0.191     0.210                                                                                                            
+SE1803   SNACKS                                          0.213     0.242                                                                                                            
+SE1804   SEASNGS/CONDIMENTS/SAUCES/GRAVIES               0.268     0.303                                                                                                            
+SE1806   MISC. PREPARED FOODS INCL. BABY FOOD            0.292     0.350                                                                                                            
+SE19     FOOD AWAY FROM HOME                             6.189     6.661                                                                                                            
+SE1901   LUNCH                                           2.187     2.477                                                                                                            
+SE1902   DINNER                                          2.647     2.729                                                                                                            
+SE1903   OTHER MEALS AND SNACKS                          1.034     1.224                                                                                                            
+SE1909   UNPRICED ITEMS                                  0.321     0.230                                                                                                            
+SE20     ALCOHOLIC BEVERAGES                             1.546     1.652                                                                                                            
+SE200A   ALCOHOLIC BEVERAGES AT HOME                     0.833     0.912                                                                                                            
+SE2001   BEER AND ALE AT HOME                            0.432     0.540                                                                                                            
+SE2002   DISTILLED SPIRITS AT HOME                       0.215     0.204                                                                                                            
+SE2003   WINE AT HOME                                    0.186     0.168                                                                                                            
+SE2005   ALCOHOLIC BEV AWAY FROM HOME                    0.713     0.740                                                                                                            
+SE21     RENT-RENTER OCCUPIED                            7.836     8.027                                                                                                            
+SE2101   RENT OF DWELLING                                5.955     6.789                                                                                                            
+SE2102   LODGING WHILE OUT OF TOWN                       1.675     1.109                                                                                                            
+SE2103   LODGING WHILE AT SCHOOL                         0.206     0.129                                                                                                            
+SE22     HOMEOWNERS' COSTS                              19.825    17.333                                                                                                            
+SE2201   OWNERS' EQUIVALENT RENT                        19.428    16.998                                                                                                            
+SE2202   HOUSEHOLD INSURANCE                             0.398     0.336                                                                                                            
+SE23     MAINTENANCE AND REPAIR SERVICES                 0.127     0.107                                                                                                            
+SE2301   MAINTENANCE AND REPAIR SERVICES                 0.127     0.107                                                                                                            
+SE24     MAINTENANCE AND REPAIR COMMOD.                  0.085     0.094                                                                                                            
+SE2401   MATERIALS, SUPP & EQUIP FOR HM REPS             0.038     0.042                                                                                                            
+SE2404   OTHER MAINTENANCE & REPAIR COMMOD.              0.046     0.052                                                                                                            
+SE25     FUEL OIL & OTH HOUS. FUEL COM.                  0.429     0.390                                                                                                            
+SE2501   FUEL OIL                                        0.307     0.264                                                                                                            
+SE2502   OTHER HOUSEHOLD FUEL COMMOD.                    0.122     0.126                                                                                                            
+SE26     GAS (PIPED) AND ELECTRICITY                     3.785     3.914                                                                                                            
+SE2601   ELECTRICITY                                     2.587     2.652                                                                                                            
+SE2602   UTILITY (PIPED) GAS                             1.198     1.262                                                                                                            
+SE27     OTHER UTIL AND PUBLIC SERVICES                  3.269     3.387                                                                                                            
+SE270A   TELEPHONE SERVICES                              1.932     1.955                                                                                                            
+SE270B   OTHER UTIL AND PUBLIC SER EXCL TELE             1.337     1.432                                                                                                            
+SE2701   TELEPHONE- MAIN STATN SERV                      1.272     1.292                                                                                                            
+SE2702   WATER/SEWERAGE MAINTENANCE                      0.689     0.715                                                                                                            
+SE2703   COMMUNITY ANTENNA,CABLE TV                      0.468     0.539                                                                                                            
+SE2704   GARBAGE/TRASH COLLECTION                        0.180     0.178                                                                                                            
+SE2705   TELE.INTERSTATE TOLL CALL                       0.364     0.361                                                                                                            
+SE2706   TELE.INTRASTATE TOLL CALL                       0.297     0.302                                                                                                            
+SE28     TEXTILE HOUSEFURNISHINGS                        0.394     0.372                                                                                                            
+SE2801   TEXTILE HOUSEFURNISHINGS                        0.394     0.372                                                                                                            
+SE29     FURNITURE AND BEDDING                           1.188     1.152                                                                                                            
+SE2901   BEDROOM FURNITURE                               0.385     0.427                                                                                                            
+SE2902   SOFAS                                           0.237     0.228                                                                                                            
+SE2903   LIVING ROOM CHAIRS, TABLES                      0.194     0.183                                                                                                            
+SE2904   OTHER FURNITURE                                 0.372     0.315                                                                                                            
+SE30     MAJOR HOUSEHOLD APPLIANCES                      0.348     0.381                                                                                                            
+SE3001   REFRIGERATOR, HOME FREEZER                      0.103     0.113                                                                                                            
+SE3002   LAUNDRY EQUIPMENT                               0.109     0.127                                                                                                            
+SE3003   STOVES/OVENS/DSHWHRS/AIR CONDS                  0.135     0.141                                                                                                            
+SE31     TV AND SOUND EQUIPMENT                          0.597     0.650                                                                                                            
+SE3101   TELEVISION                                      0.207     0.234                                                                                                            
+SE3102   OTHER VIDEO EQUIPMENT                           0.128     0.132                                                                                                            
+SE3103   SOUND EQUIPMENT                                 0.262     0.284                                                                                                            
+SE3109   UNPRICED ITEMS                                  0.000     0.000                                                                                                            
+SE32     OTHER HOUSEFURNISHINGS                          1.296     1.216                                                                                                            
+SE3201   FL/WDW CV,IN/LDY/CL/OD EQ                       0.185     0.156                                                                                                            
+SE3202   CLOCKS,LAMPS, AND DECOR ITEMS                   0.260     0.210                                                                                                            
+SE3203   TBLWR,SRV PCS,NONEL KTNWR                       0.223     0.201                                                                                                            
+SE3204   LAWN EQ, POWER TOOLS & OTH HRDW                 0.204     0.249                                                                                                            
+SE3205   SEWING MACH & PORTABLE HEATING EQUIP            0.159     0.166                                                                                                            
+SE3206   INDOOR PLANTS & FRESH CUT FLOWERS               0.173     0.152                                                                                                            
+SE3209   UNPRICED ITEMS                                  0.092     0.083                                                                                                            
+SE33     HOUSEKEEPING SUPPLIES                           1.202     1.232                                                                                                            
+SE3301   LAUNDRY & CLNING PRODUCTS INCL SOAP             0.421     0.484                                                                                                            
+SE3303   HOUSEHOLD PAPER PROD & STNRY SUPPLIES           0.389     0.383                                                                                                            
+SE3305   MISC HOUSEHOLD PRODUCTS                         0.392     0.364                                                                                                            
+SE34     HOUSEKEEPING SERVICES                           1.461     1.104                                                                                                            
+SE3401   POSTAGE                                         0.253     0.246                                                                                                            
+SE3402   BABYSITTING                                     0.237     0.305                                                                                                            
+SE3403   DOMESTIC SERVICE                                0.237     0.068                                                                                                            
+SE3404   GARDENING,OTH HOME SERV.                        0.391     0.221                                                                                                            
+SE3406   APPLIANCE AND FURNITURE REPAIR                  0.178     0.138                                                                                                            
+SE3407   CARE OF INVALIDS/ELDERLY/CONVALES               0.051     0.037                                                                                                            
+SE3409   UNPRICED ITEMS                                  0.114     0.089                                                                                                            
+SE35     TENANTS' INSURANCE                              0.035     0.028                                                                                                            
+SE3501   TENANTS' INSURANCE                              0.035     0.028                                                                                                            
+SE36     MEN'S APPAREL                                   1.225     1.153                                                                                                            
+SE3601   MEN'S SUITS, SPT CTS, CTS & JCKTS               0.367     0.283                                                                                                            
+SE3603   MEN'S FURN. & SPEC. CLOTHING                    0.288     0.274                                                                                                            
+SE3604   MEN'S SHIRTS                                    0.308     0.307                                                                                                            
+SE3605   MEN'S DNGREES, JEANS, TRSRS                     0.246     0.268                                                                                                            
+SE3609   UNPRICED ITEMS                                  0.016     0.021                                                                                                            
+SE37     BOYS' APPAREL                                   0.272     0.335                                                                                                            
+SE3701   BOYS' APPAREL                                   0.270     0.333                                                                                                            
+SE3709   UNPRICED ITEMS                                  0.002     0.002                                                                                                            
+SE38     WOMEN'S APPAREL                                 2.127     2.014                                                                                                            
+SE3801   WOMEN'S COATS AND JACKETS                       0.199     0.155                                                                                                            
+SE3802   WOMEN'S DRESSES                                 0.376     0.375                                                                                                            
+SE3803   WOMEN'S SEPARATES & SPORTSWEAR                  1.003     0.990                                                                                                            
+SE3804   WOMEN'S NGHTWR,UNDWR,HSRY,ACCESSORIES           0.354     0.357                                                                                                            
+SE3805   WOMEN'S SUITS                                   0.163     0.110                                                                                                            
+SE3809   UNPRICED ITEMS                                  0.031     0.028                                                                                                            
+SE39     GIRLS' APPAREL                                  0.368     0.423                                                                                                            
+SE3901   GIRLS' APPAREL                                  0.360     0.414                                                                                                            
+SE3909   UNPRICED ITEMS                                  0.008     0.010                                                                                                            
+SE40     FOOTWEAR                                        0.823     0.908                                                                                                            
+SE4001   MEN'S FOOTWEAR                                  0.266     0.311                                                                                                            
+SE4002   BOYS' AND GIRLS' FOOTWEAR                       0.175     0.225                                                                                                            
+SE4003   WOMEN'S FOOTWEAR                                0.382     0.372                                                                                                            
+SE41     INFANTS',TODDLERS' APPAREL                      0.213     0.280                                                                                                            
+SE4101   INFANTS' & TODDLERS' APPAREL                    0.193     0.256                                                                                                            
+SE4109   UNPRICED ITEMS                                  0.020     0.024                                                                                                            
+SE42     SEWING MATERIALS,NOTIONS & LUGGAGE              0.096     0.084                                                                                                            
+SE4201   SEWING MATERIALS,NOTIONS & LUGGAGE              0.096     0.084                                                                                                            
+SE43     WATCHES AND JEWELRY                             0.449     0.417                                                                                                            
+SE4301   WATCHES                                         0.088     0.083                                                                                                            
+SE4302   JEWELRY                                         0.361     0.334                                                                                                            
+SE44     APPAREL SERVICES                                0.557     0.519                                                                                                            
+SE4401   OTHER APPAREL SERVICES                          0.261     0.291                                                                                                            
+SE4402   OTH LNDRY,DRY CL-APPAREL                        0.297     0.228                                                                                                            
+SE45     NEW VEHICLES                                    5.226     5.097                                                                                                            
+SE4501   NEW CARS                                        4.232     3.771                                                                                                            
+SE4502   NEW TRUCKS                                      0.911     1.176                                                                                                            
+SE4503   NEW MOTORCYCLES                                 0.083     0.149                                                                                                            
+SE46     USED CARS                                       1.237     2.212                                                                                                            
+SE4601   USED CARS                                       1.128     1.942                                                                                                            
+SE4609   UNPRICED ITEMS                                  0.109     0.270                                                                                                            
+SE47     MOTOR FUEL, MOTOR OIL, COOLANT, ET              3.214     3.949                                                                                                            
+SE4701   MOTOR FUEL                                      3.152     3.870                                                                                                            
+SE4702   MOTOR OIL, COOLANT, AND OTHERS                  0.062     0.079                                                                                                            
+SE48     AUTOMOBILE PARTS AND EQUIPMENT                  0.658     0.828                                                                                                            
+SE4801   TIRES                                           0.328     0.389                                                                                                            
+SE4802   OTHER PARTS AND EQUIPMENT                       0.330     0.439                                                                                                            
+SE49     AUTOMOBILE MAINTENANCE AND REPAIR               1.524     1.589                                                                                                            
+SE4901   AUTOMOTIVE BODY WORK                            0.163     0.167                                                                                                            
+SE4902   AUTO DRIVE TRAIN,FRONT END REP.                 0.438     0.476                                                                                                            
+SE4903   AUTO MAINTENANCE AND SERVICING                  0.505     0.482                                                                                                            
+SE4904   AUTO POWER PLANT REPAIR                         0.395     0.444                                                                                                            
+SE4909   UNPRICED ITEMS                                  0.023     0.021                                                                                                            
+SE50     AUTOMOBILE INSURANCE                            2.274     2.564                                                                                                            
+SE5001   AUTOMOBILE INSURANCE                            2.274     2.564                                                                                                            
+SE51     AUTOMOBILE FINANCE CHARGES                      0.813     1.020                                                                                                            
+SE5101   AUTO FINANCE CHARGES                            0.668     0.798                                                                                                            
+SE5109   UNPRICED ITEMS                                  0.145     0.222                                                                                                            
+SE52     VEHICL RENTL,REGISTR,OTHR                       0.725     0.681                                                                                                            
+SE5201   AUTO REGISTR, LICEN & INSPEC FEES               0.339     0.369                                                                                                            
+SE5205   OTHER AUTOMOBILE RELATED FEES                   0.361     0.295                                                                                                            
+SE5209   UNPRICED ITEMS                                  0.026     0.017                                                                                                            
+SE53     PUBLIC TRANSPORTATION                           1.432     1.093                                                                                                            
+SE5301   AIRLINE FARE                                    0.918     0.573                                                                                                            
+SE5302   OTHER INTERCITY PUBLIC TRANSPORTATION           0.159     0.110                                                                                                            
+SE5303   INTRACITY PUBLIC TRANSPORTATION                 0.345     0.401                                                                                                            
+SE5309   UNPRICED ITEMS                                  0.011     0.009                                                                                                            
+SE54     PRESCRIPTION DRUGS                              0.785     0.627                                                                                                            
+SE5401   PRESCRIPTION DRUGS                              0.785     0.627                                                                                                            
+SE55     NONPRESC DRUGS,MED SUPPLS                       0.394     0.341                                                                                                            
+SE5502   INT & RESP OVER-THE-COUNTER ITEM                0.256     0.257                                                                                                            
+SE5503   NONPRSCRPT MED EQUIP, SUPP                      0.138     0.084                                                                                                            
+SE56     PROFESSIONAL MEDICAL SERVICES                   3.103     2.633                                                                                                            
+SE5601   PHYSICIANS' SERVICES                            1.668     1.420                                                                                                            
+SE5602   DENTAL SERVICES                                 0.923     0.826                                                                                                            
+SE5603   EYE CARE                                        0.343     0.286                                                                                                            
+SE5604   SERVICES BY OTHER MED. PROFESSIONALS            0.168     0.101                                                                                                            
+SE57     HOSPITAL AND RELATED SERVICES                   1.757     1.544                                                                                                            
+SE5701   HOSPITAL ROOM                                   0.696     0.659                                                                                                            
+SE5702   OTHER INPATIENT MEDICAL SERVICES                0.670     0.577                                                                                                            
+SE5703   OUTPATIENT SERVICES                             0.386     0.305                                                                                                            
+SE5709   UNPRICED ITEMS                                  0.005     0.003                                                                                                            
+SE58     HEALTH INSURANCE                                0.151     0.115                                                                                                            
+SE581    COMM HLTH INS, RETND EARNG                      0.060     0.060                                                                                                            
+SE5811   COMM HLTH INS, RETND-PRESCRIP DRUG              0.001     0.001                                                                                                            
+SE5812   COMM HLTH INS, RETND-PHYSICIANS' SER            0.016     0.016                                                                                                            
+SE5813   COMM HLTH INS, RETND-DENTAL SER                 0.005     0.005                                                                                                            
+SE5814   COMM HLTH INS, RETND-EYECARE SER                0.000     0.000                                                                                                            
+SE5815   COMM HLTH INS, RETND-OTHER SER                  0.001     0.001                                                                                                            
+SE5816   COMM HLTH INS, RETND-HOSP ROOM                  0.015     0.015                                                                                                            
+SE5817   COMM HLTH INS, RETND-OTH IN HOSP SER            0.015     0.015                                                                                                            
+SE5818   COMM HLTH INS, RETND-OUT HOSP SER               0.006     0.006                                                                                                            
+SE582    BLUE CR HLTH INS, RETND EARNG                   0.036     0.030                                                                                                            
+SE5821   BLUE CR RETND EARNG-PRESCRIP DRUG               0.001     0.001                                                                                                            
+SE5822   BLUE CR RETND EARNG-PHYSICIANS' SER             0.009     0.007                                                                                                            
+SE5823   BLUE CR RETND EARNG-DENTAL SER                  0.000     0.000                                                                                                            
+SE5824   BLUE CR RETND EARNG-EYECARE SER                 0.000     0.000                                                                                                            
+SE5825   BLUE CR RETND EARNG-OTHER SER                   0.001     0.001                                                                                                            
+SE5826   BLUE CR RETND EARNG-HOSP ROOM                   0.011     0.009                                                                                                            
+SE5827   BLUE CR RETND EARNG-OTHER IN HOSP SER           0.010     0.008                                                                                                            
+SE5828   BLUE CR RETND EARNG-OUT HOSP SER                0.004     0.003                                                                                                            
+SE583    HLTH MAINTENANCE PLAN, RETND EARNG              0.004     0.004                                                                                                            
+SE5831   HMO RETND EARNG-PRESCRIP DRUG                   0.000     0.000                                                                                                            
+SE5832   HMO RETND EARNG-PHYSICIANS' SER                 0.002     0.002                                                                                                            
+SE5833   HMO RETND EARNG-DENTAL SER                      0.000     0.000                                                                                                            
+SE5834   HMO RETND EARNG-EYECARE SER                     0.000     0.000                                                                                                            
+SE5835   HMO RETND EARNG-OTHER SER                       0.000     0.000                                                                                                            
+SE5836   HMO RETND EARNG-HOSP ROOM                       0.001     0.001                                                                                                            
+SE5837   HMO RETND EARNG-OTHER IN HOSP SER               0.001     0.001                                                                                                            
+SE5838   HMO RETND EARNG-OUT HOSP SER                    0.000     0.000                                                                                                            
+SE584    MEDICARE & COMM MEDI SUPP, RETND                0.051     0.022                                                                                                            
+SE5841   OTH HLTH INS, RETND-PRESCRIP DRUG               0.001     0.000                                                                                                            
+SE5842   OTH HLTH INS, RETND-PHYSICIANS' SER             0.026     0.011                                                                                                            
+SE5843   OTH HLTH INS, RETND-DENTAL SER                  0.002     0.001                                                                                                            
+SE5844   OTH HLTH INS, RETND-EYECARE SER                 0.000     0.000                                                                                                            
+SE5845   OTH HLTH INS, RETND-OTHER SER                   0.002     0.001                                                                                                            
+SE5846   OTH HLTH INS, RETND-HOSP ROOM                   0.006     0.002                                                                                                            
+SE5847   OTH HLTH INS, RETND-OTHER IN HOSP SER           0.005     0.002                                                                                                            
+SE5848   OTH HLTH INS, RETND-OUT HOSP SER                0.010     0.004                                                                                                            
+SE59     READING MATERIALS                               0.686     0.599                                                                                                            
+SE5901   NEWSPAPERS                                      0.330     0.305                                                                                                            
+SE5902   MAGAZINES,PERIODICALS, AND BOOKS                0.356     0.295                                                                                                            
+SE5909   UNPRICED ITEMS                                  0.000     0.000                                                                                                            
+SE60     SPORTING GOODS, EQUIPMENT                       0.463     0.573                                                                                                            
+SE6001   SPORT VEHICLES INCLUDING BICYCLES               0.212     0.335                                                                                                            
+SE6002   OTHER SPORTING GOODS                            0.251     0.238                                                                                                            
+SE61     TOYS, HOBBIES, OTHER ENTERTAINMENT              0.930     0.999                                                                                                            
+SE6101   TOYS,HOBBIES, & MUSIC EQUIPMENT                 0.427     0.465                                                                                                            
+SE6102   PHOTO SUPPLIES, EQUIPMENT                       0.134     0.120                                                                                                            
+SE6103   PET EXPENSE                                     0.357     0.399                                                                                                            
+SE6109   UNPRICED ITEMS                                  0.011     0.015                                                                                                            
+SE62     ENTERTAINMENT SERVICES                          2.317     1.900                                                                                                            
+SE6201   CLUB MEMBERSHIPS                                0.384     0.212                                                                                                            
+SE6202   FEES FOR PARTICIPANT SPORTS EXCL CLUB           0.362     0.323                                                                                                            
+SE6203   ADMISSIONS                                      0.677     0.579                                                                                                            
+SE6204   FEES FOR LSSNS OR INSTRUCTION                   0.225     0.159                                                                                                            
+SE6205   PHTGR FEES/FLM PRC/PET & VET SER/OTH            0.648     0.614                                                                                                            
+SE6209   UNPRICED ITEMS                                  0.022     0.013                                                                                                            
+SE63     TOBACCO AND SMOKING PRODUCTS                    1.478     1.945                                                                                                            
+SE6301   TOBACCO AND SMOKING PRODUCTS                    1.478     1.945                                                                                                            
+SE6309   UNPRICED ITEMS                                  0.000     0.000                                                                                                            
+SE64     TOILET GDS,PERS CARE APPL                       0.646     0.663                                                                                                            
+SE6401   OTH TLT GDS, SM PCARE APPL INCL H & D           0.375     0.408                                                                                                            
+SE6403   COS,BATH & NAIL PREP/MANICURE & EYE             0.271     0.255                                                                                                            
+SE65     PERSONAL CARE SERVICES                          0.571     0.505                                                                                                            
+SE6501   BEAUTY PARLOR SVC-FEMALES                       0.455     0.399                                                                                                            
+SE6502   HAIRCTS,OTH BRBR SVC-MALE                       0.115     0.106                                                                                                            
+SE6509   UNPRICED ITEMS                                  0.000     0.000                                                                                                            
+SE66     SCHOOL BOOKS AND SUPPLIES                       0.236     0.203                                                                                                            
+SE6601   SCHOOL BOOKS,SUPP-COLLEGE                       0.165     0.132                                                                                                            
+SE6602   ELEM/HIGH SCHL BOOKS,SUPP                       0.058     0.059                                                                                                            
+SE6609   UNPRICED ITEMS                                  0.012     0.012                                                                                                            
+SE67     TUITION,OTHER SCHOOL FEES                       2.159     1.830                                                                                                            
+SE6701   COLLEGE TUITION                                 1.208     0.896                                                                                                            
+SE6702   ELEM,HIGH SCHOOL TUITION                        0.392     0.313                                                                                                            
+SE6703   DAY CARE & NURSERY SCHOOL                       0.337     0.409                                                                                                            
+SE6704   TUITION FOR TECH, BUSINESS & OTH SCH            0.134     0.136                                                                                                            
+SE6709   UNPRICED ITEMS                                  0.088     0.076                                                                                                            
+SE68     PERSONAL EXPENSES                               1.192     1.080                                                                                                            
+SE6801   LEGAL SERVICE FEES                              0.442     0.383                                                                                                            
+SE6802   PERSONAL FINANCIAL SERVICES                     0.315     0.260                                                                                                            
+SE6803   FUNERAL EXPENSES                                0.339     0.347                                                                                                            
+SE6809   UNPRICED ITEMS                                  0.095     0.090                                                                                                            
+SE69     INFORMATION PROCESSING EQUIPMENT                0.159     0.120                                                                                                            
+SE6901   INFORMATION PROCESSING EQUIPMENT                0.159     0.120                                                                                                            	

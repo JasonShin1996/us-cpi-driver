@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>US CPI Driver</title>
+<meta name="description" content="Contributions to US CPI inflation by component (BLS CPI-U, relative-importance weighted). 美國 CPI 細項貢獻度。">
+<style>
+  :root{
+    --bg:#000; --panel:#0b0b0c; --grid:#232326; --amber:#ff9d1c; --amber-dim:#a8650f;
+    --field:#e2761b; --text:#e8e8ea; --muted:#8b8b93; --cyan:#22d3ee; --white:#fff;
+    --pos:#8c1616; --neg:#173a80;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;background:var(--bg);color:var(--text);
+    font-family:"Helvetica Neue",Helvetica,Arial,"Noto Sans TC",sans-serif;
+    font-variant-numeric:tabular-nums;-webkit-font-smoothing:antialiased}
+  body{padding:10px 12px 40px;max-width:1680px;margin:0 auto}
+  .topbar{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:6px}
+  .field{border:1px solid var(--field);color:var(--amber);padding:3px 10px;font-size:13px;
+    background:#151007;white-space:nowrap}
+  .brand{color:var(--amber);font-size:15px;font-weight:700;letter-spacing:.03em;margin-right:auto}
+  .toplinks{display:flex;gap:8px;align-items:center}
+  .toplinks a{color:var(--muted);font-size:12px;text-decoration:none;border-bottom:1px dotted #555}
+  .toplinks a:hover{color:var(--amber)}
+  .note a{color:#c9a978}
+  .btn{background:#1b1b1e;border:1px solid #37373c;color:var(--text);font-size:12px;
+    padding:3px 10px;cursor:pointer;font-family:inherit}
+  .btn:hover{border-color:var(--amber-dim);color:var(--amber)}
+  .btn:focus-visible{outline:2px solid var(--amber);outline-offset:1px}
+  .btn.on{background:var(--field);border-color:var(--field);color:#120a02;font-weight:700}
+  .ctl{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin:3px 0}
+  .lbl{color:var(--amber);font-size:12px;letter-spacing:.02em}
+  .seg{display:flex}
+  .seg .btn{border-right-width:0}
+  .seg .btn:last-child{border-right-width:1px}
+  h1{font-size:19px;font-weight:600;margin:12px 0 2px;color:#f2f2f4;letter-spacing:.01em}
+  .sub{color:var(--muted);font-size:12px;margin-bottom:8px}
+  .meta{float:right;text-align:right;color:var(--amber);font-size:12px;line-height:1.5}
+  .legend{display:flex;gap:14px;flex-wrap:wrap;font-size:12px;margin:8px 0 2px;align-items:center}
+  .lg{display:flex;align-items:center;gap:5px;cursor:pointer;user-select:none;padding:1px 2px}
+  .lg.off{opacity:.35}
+  .sw{width:11px;height:11px;flex:none;border:1px solid #00000060}
+  .lg b{font-weight:600}
+  .chartwrap{position:relative;border:1px solid #1c1c20;background:var(--panel)}
+  svg{display:block;width:100%;height:auto}
+  #tip{position:absolute;pointer-events:none;background:#0d0d10;border:1px solid var(--amber-dim);
+    padding:7px 9px;font-size:11.5px;line-height:1.55;display:none;z-index:5;min-width:190px;
+    box-shadow:0 4px 18px #000a}
+  #tip .r{display:flex;justify-content:space-between;gap:14px}
+  #tip .hd{color:var(--amber);margin-bottom:4px;font-weight:700}
+  table{border-collapse:collapse;width:100%;font-size:11.5px;margin-top:14px}
+  th,td{padding:3px 7px;text-align:right;white-space:nowrap}
+  thead th{color:var(--amber);border-bottom:1px solid #35353a;font-weight:600}
+  tbody th{text-align:left;font-weight:500;color:#d6d6da}
+  tbody tr.tot th,tbody tr.tot td{font-weight:700;color:#fff}
+  tbody tr:hover td{filter:brightness(1.35)}
+  .wcol{color:var(--muted)}
+  .scroll{overflow-x:auto}
+  .note{color:var(--muted);font-size:11.5px;margin-top:10px;line-height:1.7;max-width:78ch}
+  .note code{color:#c9a978}
+  .err{color:#ff7a7a;font-size:13px;padding:20px;border:1px solid #5a2020;background:#180a0a}
+  @media (max-width:760px){ .meta{float:none;text-align:left;margin-bottom:6px} h1{font-size:16px} }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="brand">US CPI Driver</div>
+  <div class="toplinks">
+    <a id="lnkMethod" href="methodology.html">Methodology</a>
+    <!-- Export buttons are hidden for now; remove the `hidden` attribute to bring them back. -->
+    <button class="btn" id="btnCsv" hidden>Export CSV</button>
+    <button class="btn" id="btnPng" hidden>Export SVG</button>
+    <button class="btn" id="btnLang" title="Language / 語言">EN</button>
+  </div>
+</div>
+
+<div class="ctl">
+  <span class="lbl" data-i18n="dimension">Dimension</span><div class="field" data-i18n="contribution">Contribution</div>
+  <span class="lbl" data-i18n="transform">Transform</span>
+  <div class="seg" id="segTf">
+    <button class="btn" data-tf="mom">MoM%</button>
+    <button class="btn" data-tf="yoy">YoY%</button>
+  </div>
+  <span class="lbl" data-i18n="breakdown">Breakdown</span>
+  <div class="seg" id="segBk"></div>
+  <button class="btn" id="btnExact" data-i18n="exact">Exact sum</button>
+</div>
+
+<div class="ctl">
+  <span class="lbl" data-i18n="range">Range</span>
+  <div class="seg" id="segRg">
+    <button class="btn" data-rg="6M">6M</button><button class="btn" data-rg="YTD">YTD</button>
+    <button class="btn" data-rg="1Y">1Y</button><button class="btn" data-rg="3Y">3Y</button>
+    <button class="btn" data-rg="5Y">5Y</button><button class="btn" data-rg="10Y">10Y</button>
+    <button class="btn" data-rg="MAX">MAX</button>
+  </div>
+  <div class="field" id="rangeLabel">—</div>
+</div>
+
+<div id="app"></div>
+
+<!-- cpi_contrib.py replaces the next tag with the inlined data to build cpi_dashboard_standalone.html -->
+<script src="data/cpi_data.js"></script>
+<script>
+(function(){
+"use strict";
+
+// Published site; the standalone file links its methodology page here.
+var SITE = "https://jasonshin1996.github.io/us-cpi-driver/";
+
+/* ---------- i18n ---------- */
+var I18N = {
+  zh: {
+    htmlLang:"zh-Hant", other:"EN", dimension:"維度", contribution:"貢獻度", transform:"變動率",
+    breakdown:"拆分", exact:"精確加總", range:"區間", methodology:"計算方法",
+    exactTip:"改用鏈式分解，讓各項貢獻加總完全等於總體漲幅",
+    modeExact:"鏈式精確分解", modeStd:"標準分解（保留 residual）",
+    through:"資料更新至", source:"來源：BLS CPI-U　產生於 ",
+    stale:"資料可能已過期", next:"下次公布",
+    series:"細項", weight:"權重", residual:"Residual", months:"個月變動",
+    note:"貢獻度 = 基期相對重要性（relative importance）× 該細項期間漲幅，單位為百分點。"+
+      "MoM 使用季調指數（CUSR0000），YoY 使用未季調指數（CUUR0000），與 BLS／Bloomberg 慣例一致。"+
+      "權重欄位為<strong>基期</strong>（YoY 為 t−12 月、MoM 為前一月）的相對重要性。",
+    unpublished:function(l){ return " 未發布月份："+l+"；橘色底線標記的長條代表跨越缺漏月份的多月變動。"; },
+    wOfficial:"BLS 官方公布的 12 月相對重要性（權重年 ", wEst:"由指數反推（", wCarried:"沿用前一年（",
+    wLabel:"權重：", wNone:"由指數以最小平方反推。", sep:"；", comma:"、",
+    more:"完整公式與資料來源見 ",
+    noData:"找不到資料檔 <code>data/cpi_data.js</code>。請在專案資料夾執行 <code>python cpi_contrib.py</code>，"+
+      "或開啟 <code>cpi_dashboard_standalone.html</code>（資料已內嵌）。",
+    badData:"資料檔格式不正確，請重新執行 <code>python cpi_contrib.py</code>。"
+  },
+  en: {
+    htmlLang:"en", other:"中文", dimension:"Dimension", contribution:"Contribution", transform:"Transform",
+    breakdown:"Breakdown", exact:"Exact sum", range:"Range", methodology:"Methodology",
+    exactTip:"Chain-link the decomposition so the components add up exactly to the headline",
+    modeExact:"exact chained decomposition", modeStd:"standard decomposition (residual shown)",
+    through:"Data through", source:"Source: BLS CPI-U · generated ",
+    stale:"Data may be out of date", next:"Next release",
+    series:"Series", weight:"Weight", residual:"Residual", months:"-month change",
+    note:"Contribution = base-period relative importance × the component's price change over the period, "+
+      "in percentage points. MoM uses seasonally adjusted indexes (CUSR0000), YoY uses not seasonally adjusted "+
+      "indexes (CUUR0000), as BLS and Bloomberg do. The weight column is the relative importance in the "+
+      "<strong>base</strong> period (t−12 for YoY, the prior month for MoM).",
+    unpublished:function(l){ return " Not published: "+l+"; bars with an orange underline span more than one month."; },
+    wOfficial:"BLS published December relative importance (weight years ", wEst:"recovered from the indexes (",
+    wCarried:"carried forward (", wLabel:"Weights: ", wNone:"recovered from the indexes by least squares.",
+    sep:"; ", comma:", ",
+    more:"Formulas and sources: ",
+    noData:"Data file <code>data/cpi_data.js</code> not found. Run <code>python cpi_contrib.py</code> in the "+
+      "project folder, or open <code>cpi_dashboard_standalone.html</code> (data inlined).",
+    badData:"The data file is malformed; run <code>python cpi_contrib.py</code> again."
+  }
+};
+var LANG = (function(){
+  var m = location.hash.match(/lang=(zh|en)/);
+  if(m) return m[1];
+  try{ var saved = localStorage.getItem("cpiLang"); if(saved==="zh"||saved==="en") return saved; }catch(e){}
+  return /^zh/i.test(navigator.language||"") ? "zh" : "en";
+})();
+function T(k){ return I18N[LANG][k]; }
+function applyStatic(){
+  document.documentElement.lang = T("htmlLang");
+  Array.prototype.forEach.call(document.querySelectorAll("[data-i18n]"), function(el){
+    el.textContent = T(el.getAttribute("data-i18n"));
+  });
+  document.getElementById("btnExact").title = T("exactTip");
+  document.getElementById("btnLang").textContent = T("other");
+  var lm = document.getElementById("lnkMethod");
+  lm.textContent = T("methodology");
+  lm.href = (window.CPI_STANDALONE ? SITE : "") + "methodology.html#lang=" + LANG;
+}
+applyStatic();
+
+var app = document.getElementById("app");
+if(window.CPI_DATA){ boot(window.CPI_DATA); return; }
+// fallback: data file sitting next to this page
+var fb = document.createElement("script");
+fb.src = "cpi_data.js";
+fb.onload = function(){ boot(window.CPI_DATA); };
+fb.onerror = function(){ app.innerHTML = '<div class="err">'+T("noData")+'</div>'; };
+document.head.appendChild(fb);
+
+function boot(D){
+if(!D || !D.breakdowns){ app.innerHTML='<div class="err">'+T("badData")+'</div>'; return; }
+
+var S = { tf:"yoy", bk:"basic4", rg:"5Y", exact:false, hidden:{} };
+function cname(c){ return LANG==="zh" ? c.zh : c.en; }
+
+/* ---------- URL state (#tf=yoy&bk=basic4&rg=5Y&exact=0) so a view can be bookmarked ---------- */
+function readHash(){
+  location.hash.replace(/^#/,"").split("&").forEach(function(kv){
+    var p=kv.split("="), k=p[0], v=decodeURIComponent(p[1]||"");
+    if(k==="tf" && (v==="mom"||v==="yoy")) S.tf=v;
+    if(k==="bk" && D.breakdowns[v]) S.bk=v;
+    if(k==="rg" && /^(6M|YTD|1Y|3Y|5Y|10Y|MAX)$/.test(v)) S.rg=v;
+    if(k==="exact") S.exact = v==="1";
+  });
+}
+function writeHash(){
+  var h="#lang="+LANG+"&tf="+S.tf+"&bk="+S.bk+"&rg="+S.rg+"&exact="+(S.exact?1:0);
+  if(location.hash!==h) try{ history.replaceState(null,"",h); }catch(e){ location.hash=h; }
+}
+readHash();
+
+/* ---------- shell ---------- */
+app.innerHTML =
+  '<div class="meta" id="meta"></div>'+
+  '<h1 id="title"></h1><div class="sub" id="subtitle"></div>'+
+  '<div class="legend" id="legend"></div>'+
+  '<div class="chartwrap"><svg id="chart" viewBox="0 0 1200 470" preserveAspectRatio="none"></svg>'+
+  '<div id="tip"></div></div>'+
+  '<div class="scroll"><table id="tbl"></table></div>'+
+  '<div class="note" id="note"></div>';
+
+var segBk = document.getElementById("segBk");
+Object.keys(D.breakdowns).forEach(function(k){
+  var b=document.createElement("button");
+  b.className="btn"; b.dataset.bk=k;
+  segBk.appendChild(b);
+});
+function labelBreakdowns(){
+  Array.prototype.forEach.call(segBk.children,function(b){
+    var bk=D.breakdowns[b.dataset.bk]; b.textContent = LANG==="zh" ? bk.label_zh : bk.label_en;
+  });
+}
+
+/* ---------- helpers ---------- */
+function cur(){ return D.breakdowns[S.bk][S.tf + (S.exact?"_exact":"")]; }
+function comps(){ return D.breakdowns[S.bk].components; }
+function visible(){ return comps().filter(function(c){ return !S.hidden[c.id]; }); }
+function fmt(v,d){ return v==null||isNaN(v) ? "—" : (v>=0?"":"") + v.toFixed(d==null?3:d); }
+function monthNum(m){ return parseInt(m.slice(0,4),10)*12 + parseInt(m.slice(5),10) - 1; }
+function monthName(m){ return ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"][parseInt(m.slice(5),10)-1]; }
+
+// a MoM bar that spans more than one month (e.g. Nov-2025, across the unpublished Oct-2025).
+// YoY is always a true 12-month change; its span only counts the chained links.
+function irregular(s,k){ return S.tf==="mom" && (s.span[k]||1)>1; }
+
+function sliceIdx(){
+  var s = cur(), n = s.dates.length, last = s.dates[n-1];
+  if(S.rg==="MAX") return 0;
+  if(S.rg==="YTD"){
+    var y = last.slice(0,4);
+    for(var i=0;i<n;i++) if(s.dates[i].slice(0,4)===y) return i;
+    return 0;
+  }
+  var months = {"6M":6,"1Y":12,"3Y":36,"5Y":60,"10Y":120}[S.rg] || 60;
+  var cutoff = monthNum(last) - months + 1;
+  for(var j=0;j<n;j++) if(monthNum(s.dates[j])>=cutoff) return j;
+  return 0;
+}
+
+function niceStep(raw){
+  var e = Math.pow(10, Math.floor(Math.log10(raw))), f = raw/e;
+  return (f<=1?1:f<=2?2:f<=2.5?2.5:f<=5?5:10)*e;
+}
+
+/* ---------- chart ---------- */
+var W=1200, H=470, M={t:14,r:78,b:44,l:12};
+
+function draw(){
+  var s = cur(), i0 = sliceIdx();
+  var dates = s.dates.slice(i0), vis = visible();
+  var N = dates.length;
+  var iw = W-M.l-M.r, ih = H-M.t-M.b;
+
+  var lo=0, hi=0, sums=[];
+  for(var i=0;i<N;i++){
+    var p=0,ng=0, k=i0+i;
+    vis.forEach(function(c){ var v=s.contrib[c.id][k]||0; if(v>0)p+=v; else ng+=v; });
+    sums.push([p,ng]);
+    if(p>hi)hi=p; if(ng<lo)lo=ng;
+    var h=s.headline[k], cc=s.core[k];
+    [h,cc].forEach(function(v){ if(v==null)return; if(v>hi)hi=v; if(v<lo)lo=v; });
+  }
+  if(hi===lo){ hi+=1; lo-=1; }
+  var pad=(hi-lo)*0.08; hi+=pad; lo-=pad;
+  var step = niceStep((hi-lo)/6);
+  hi = Math.ceil(hi/step)*step; lo = Math.floor(lo/step)*step;
+
+  var y = function(v){ return M.t + ih - (v-lo)/(hi-lo)*ih; };
+  var bw = iw/N, bar = Math.max(1, Math.min(bw*0.78, 26));
+  var cx = function(i){ return M.l + bw*(i+0.5); };
+
+  var g=[];
+  g.push('<rect x="0" y="0" width="'+W+'" height="'+H+'" fill="#0b0b0c"/>');
+
+  for(var v=lo; v<=hi+1e-9; v+=step){
+    var yy=y(v);
+    g.push('<line x1="'+M.l+'" y1="'+yy.toFixed(1)+'" x2="'+(W-M.r)+'" y2="'+yy.toFixed(1)+
+           '" stroke="'+(Math.abs(v)<1e-9?"#5a5a62":"#1e1e22")+'" stroke-width="1"/>');
+    g.push('<text x="'+(W-M.r+7)+'" y="'+(yy+3.5).toFixed(1)+'" fill="#7d7d86" font-size="10.5">'+
+           v.toFixed(Math.abs(step)<0.1?3:(Math.abs(step)<1?2:1))+'</text>');
+  }
+
+  // stacked bars
+  for(var i=0;i<N;i++){
+    var k=i0+i, up=0, dn=0, x=cx(i)-bar/2;
+    vis.forEach(function(c){
+      var val = s.contrib[c.id][k]; if(val==null||val===0) return;
+      var y0,y1;
+      if(val>0){ y0=y(up+val); y1=y(up); up+=val; } else { y0=y(dn); y1=y(dn+val); dn+=val; }
+      g.push('<rect x="'+x.toFixed(2)+'" y="'+Math.min(y0,y1).toFixed(2)+'" width="'+bar.toFixed(2)+
+             '" height="'+Math.max(0.6,Math.abs(y1-y0)).toFixed(2)+'" fill="'+c.color+'"/>');
+    });
+    if(irregular(s,k)){
+      g.push('<rect x="'+x.toFixed(2)+'" y="'+(H-M.b-3)+'" width="'+bar.toFixed(2)+
+             '" height="2.5" fill="#ff9d1c"/>');
+    }
+  }
+
+  // overlay lines
+  D.overlays.forEach(function(o){
+    if(S.hidden[o.id]) return;
+    var key = o.id==="headline" ? "headline" : "core";
+    var d="", pen=false;
+    for(var i=0;i<N;i++){
+      var v=s[key][i0+i];
+      if(v==null){ pen=false; continue; }
+      d += (pen?"L":"M")+cx(i).toFixed(2)+" "+y(v).toFixed(2)+" "; pen=true;
+    }
+    g.push('<path d="'+d+'" fill="none" stroke="'+o.color+'" stroke-width="'+o.width+
+           '" stroke-linejoin="round" stroke-linecap="round"/>');
+  });
+
+  // right-edge value tags
+  var tags=[];
+  vis.forEach(function(c){ tags.push({v:s.contrib[c.id][i0+N-1], col:c.color, fg:"#000"}); });
+  D.overlays.forEach(function(o){
+    if(S.hidden[o.id]) return;
+    tags.push({v:s[o.id==="headline"?"headline":"core"][i0+N-1], col:o.color, fg:"#000"});
+  });
+  tags.sort(function(a,b){ return b.v-a.v; });
+  var used=[];
+  tags.forEach(function(t){
+    if(t.v==null) return;
+    var yy=y(t.v);
+    while(used.some(function(u){return Math.abs(u-yy)<12;})) yy+=12;
+    used.push(yy);
+    g.push('<rect x="'+(W-M.r+2)+'" y="'+(yy-7).toFixed(1)+'" width="46" height="14" fill="'+t.col+'"/>');
+    g.push('<text x="'+(W-M.r+25)+'" y="'+(yy+3.5).toFixed(1)+'" fill="'+t.fg+
+           '" font-size="10" font-weight="700" text-anchor="middle">'+t.v.toFixed(3)+'</text>');
+  });
+
+  // x axis
+  var everyY = N>200?5:(N>110?2:1);
+  var lastYear=null, lastLabel=-99;
+  for(var i=0;i<N;i++){
+    var m=dates[i], mm=parseInt(m.slice(5),10), yr=m.slice(0,4);
+    var showM = N<=40 ? true : (N<=90 ? mm%3===1 : (N<=200 ? mm%6===1 : false));
+    if(showM && cx(i)-lastLabel>26){
+      g.push('<text x="'+cx(i).toFixed(1)+'" y="'+(H-M.b+15)+'" fill="#8b8b93" font-size="10" text-anchor="middle">'+monthName(m)+'</text>');
+      lastLabel=cx(i);
+    }
+    if(yr!==lastYear && (parseInt(yr,10)%everyY===0 || N<=40)){
+      lastYear=yr;
+      g.push('<line x1="'+(cx(i)-bw/2).toFixed(1)+'" y1="'+M.t+'" x2="'+(cx(i)-bw/2).toFixed(1)+
+             '" y2="'+(H-M.b)+'" stroke="#2a2a30" stroke-width="1"/>');
+      g.push('<text x="'+(cx(i)-bw/2+3).toFixed(1)+'" y="'+(H-M.b+30)+'" fill="#a9a9b2" font-size="10.5">'+yr+'</text>');
+    } else if(yr!==lastYear){ lastYear=yr; }
+  }
+  g.push('<line id="xh" x1="0" y1="'+M.t+'" x2="0" y2="'+(H-M.b)+'" stroke="#ff9d1c" stroke-width="1" opacity="0"/>');
+
+  var svg=document.getElementById("chart");
+  svg.setAttribute("viewBox","0 0 "+W+" "+H);
+  svg.innerHTML=g.join("");
+  svg.__ctx={i0:i0,N:N,bw:bw,dates:dates};
+}
+
+/* ---------- hover ---------- */
+var svgEl=document.getElementById("chart"), tip=document.getElementById("tip");
+svgEl.addEventListener("mousemove",function(e){
+  var c=svgEl.__ctx; if(!c) return;
+  var r=svgEl.getBoundingClientRect(), sx=(e.clientX-r.left)/r.width*W;
+  var i=Math.floor((sx-M.l)/c.bw);
+  if(i<0||i>=c.N){ tip.style.display="none"; return; }
+  var xh=svgEl.querySelector("#xh"), px=M.l+c.bw*(i+0.5);
+  xh.setAttribute("x1",px); xh.setAttribute("x2",px); xh.setAttribute("opacity","0.55");
+
+  var s=cur(), k=c.i0+i, m=c.dates[i];
+  var h='<div class="hd">'+m+(irregular(s,k)?'  ('+s.span[k]+(LANG==="zh"?" ":"")+T("months")+')':'')+'</div>';
+  h+='<div class="r"><span>All items</span><b>'+fmt(s.headline[k])+'%</b></div>';
+  h+='<div class="r"><span style="color:#22d3ee">Core CPI</span><b>'+fmt(s.core[k])+'%</b></div>';
+  h+='<div style="border-top:1px solid #2c2c32;margin:4px 0"></div>';
+  comps().forEach(function(cc){
+    h+='<div class="r"><span><span style="display:inline-block;width:8px;height:8px;background:'+
+       cc.color+';margin-right:5px"></span>'+cname(cc)+'</span><b>'+fmt(s.contrib[cc.id][k])+
+       ' <span style="color:#8b8b93;font-weight:400">('+fmt(s.weights[cc.id][k],2)+'%)</span></b></div>';
+  });
+  if(Math.abs(s.residual[k])>0.0005)
+    h+='<div class="r" style="color:#8b8b93"><span>residual</span><b>'+fmt(s.residual[k])+'</b></div>';
+  tip.innerHTML=h; tip.style.display="block";
+  var wrapW=svgEl.getBoundingClientRect().width;
+  var left=(px/W)*wrapW+14;
+  if(left+215>wrapW) left=(px/W)*wrapW-tip.offsetWidth-14;
+  tip.style.left=Math.max(4,left)+"px";
+  tip.style.top=Math.min(e.clientY-r.top-10, r.height-tip.offsetHeight-6)+"px";
+});
+svgEl.addEventListener("mouseleave",function(){
+  tip.style.display="none";
+  var xh=svgEl.querySelector("#xh"); if(xh) xh.setAttribute("opacity","0");
+});
+
+function yearsText(a){
+  if(!a || !a.length) return "";
+  var out=[], s0=a[0], p=a[0];
+  for(var i=1;i<=a.length;i++){
+    if(i<a.length && a[i]===p+1){ p=a[i]; continue; }
+    out.push(s0===p ? String(s0) : s0+"–"+p);
+    if(i<a.length){ s0=p=a[i]; }
+  }
+  return out.join(T("comma"));
+}
+function weightNote(){
+  var wy=D.meta.weight_years, cl = LANG==="zh" ? "）" : ")";
+  if(!wy) return T("wLabel")+T("wNone");
+  var parts=[];
+  if(wy.official.length) parts.push(T("wOfficial")+yearsText(wy.official)+cl);
+  if(wy.estimated.length) parts.push(T("wEst")+yearsText(wy.estimated)+cl);
+  if(wy.carried.length) parts.push(T("wCarried")+yearsText(wy.carried)+cl);
+  return T("wLabel")+parts.join(T("sep"))+(LANG==="zh"?"。":".");
+}
+
+/* ---------- legend / header / table ---------- */
+function heat(v,mx){
+  if(v==null) return "";
+  var t=Math.min(1,Math.abs(v)/(mx||1));
+  return v>=0 ? "background:rgba(170,20,20,"+(0.10+0.75*t).toFixed(3)+")"
+              : "background:rgba(28,70,170,"+(0.10+0.75*t).toFixed(3)+")";
+}
+
+function render(){
+  var s=cur(), n=s.dates.length, last=n-1;
+  var tfName = S.tf==="mom" ? "MoM% SA" : "YoY% NSA";
+  document.getElementById("title").textContent="Contributions to US CPI "+tfName;
+  var bkl = LANG==="zh" ? D.breakdowns[S.bk].label_zh : D.breakdowns[S.bk].label_en;
+  document.getElementById("subtitle").innerHTML =
+    "All Items &nbsp;·&nbsp; "+bkl+" &nbsp;·&nbsp; "+(S.exact?T("modeExact"):T("modeStd"));
+  var latest = s.dates[last], now = new Date();
+  var lag = (now.getFullYear()*12 + now.getMonth()) - monthNum(latest);
+  // BLS releases month M around the middle of M+1, so a lag above 2 months means a newer print exists
+  document.getElementById("meta").innerHTML =
+    T("through")+" <span style='color:#fff'>"+latest+"</span>"+
+    (D.meta.next_release ? "　"+T("next")+" <span style='color:#fff'>"+D.meta.next_release.date+
+      " "+D.meta.next_release.time_et+" ET</span>" : "")+"<br>"+
+    T("source")+D.meta.generated_utc.slice(0,10)+
+    (lag>2 ? "<br><span style='color:#ff7a7a'>"+T("stale")+"</span>" : "");
+
+  var i0=sliceIdx();
+  document.getElementById("rangeLabel").textContent=s.dates[i0]+"  —  "+s.dates[last];
+
+  // legend
+  var lg=document.getElementById("legend"); lg.innerHTML="";
+  function chip(id,label,color,val,box){
+    var d=document.createElement("div");
+    d.className="lg"+(S.hidden[id]?" off":"");
+    d.innerHTML='<span class="sw" style="background:'+color+
+      (box?"":";height:3px;border:0")+'"></span><span>'+label+'</span><b>'+fmt(val)+'</b>';
+    d.onclick=function(){ S.hidden[id]=!S.hidden[id]; render(); };
+    lg.appendChild(d);
+  }
+  chip("headline","All Items","#ffffff",s.headline[last],false);
+  chip("core","Core CPI","#22d3ee",s.core[last],false);
+  comps().forEach(function(c){ chip(c.id,cname(c),c.color,s.contrib[c.id][last],true); });
+
+  // table: last 13 available periods
+  var cols=[], start=Math.max(0,n-13);
+  for(var i=start;i<n;i++) cols.push(i);
+  var mx=0;
+  cols.forEach(function(k){ comps().forEach(function(c){
+    var v=s.contrib[c.id][k]; if(v!=null&&Math.abs(v)>mx)mx=Math.abs(v); }); });
+
+  var t='<thead><tr><th style="text-align:left">'+T("series")+'</th>';
+  cols.forEach(function(k){ t+='<th>'+s.dates[k].slice(2)+'</th>'; });
+  t+='<th>'+T("weight")+'</th></tr></thead><tbody>';
+  t+='<tr class="tot"><th>All Items</th>';
+  cols.forEach(function(k){ t+='<td>'+fmt(s.headline[k])+'</td>'; });
+  t+='<td class="wcol">100.00</td></tr>';
+  comps().forEach(function(c){
+    t+='<tr><th><span class="sw" style="display:inline-block;background:'+c.color+
+       ';margin-right:6px;vertical-align:-1px"></span>'+cname(c)+
+       (LANG==="zh" ? ' <span style="color:#6e6e77">'+c.en+'</span>' : '')+'</th>';
+    cols.forEach(function(k){
+      var v=s.contrib[c.id][k];
+      t+='<td style="'+heat(v,mx)+'">'+fmt(v)+'</td>';
+    });
+    t+='<td class="wcol">'+fmt(s.weights[c.id][last],3)+'</td></tr>';
+  });
+  t+='<tr class="tot"><th style="color:#22d3ee">Core CPI</th>';
+  cols.forEach(function(k){ t+='<td>'+fmt(s.core[k])+'</td>'; });
+  t+='<td class="wcol">—</td></tr>';
+  if(!S.exact){
+    t+='<tr><th style="color:#8b8b93">'+T("residual")+'</th>';
+    cols.forEach(function(k){ t+='<td style="color:#8b8b93">'+fmt(s.residual[k])+'</td>'; });
+    t+='<td class="wcol">—</td></tr>';
+  }
+  t+='</tbody>';
+  document.getElementById("tbl").innerHTML=t;
+
+  document.getElementById("note").innerHTML =
+    T("note")+
+    (D.meta.unpublished_months && D.meta.unpublished_months.length
+      ? T("unpublished")(D.meta.unpublished_months.join(T("comma"))) : "")+
+    "<br>"+weightNote()+
+    "<br>"+T("more")+'<a href="'+document.getElementById("lnkMethod").href+'">'+T("methodology")+"</a>";
+
+  // active states
+  [["segTf","tf"],["segBk","bk"],["segRg","rg"]].forEach(function(p){
+    var box=document.getElementById(p[0]);
+    Array.prototype.forEach.call(box.children,function(b){
+      var v=b.dataset.tf||b.dataset.bk||b.dataset.rg;
+      b.classList.toggle("on", v===S[p[1]]);
+    });
+  });
+  document.getElementById("btnExact").classList.toggle("on",S.exact);
+  labelBreakdowns();
+  writeHash();
+  draw();
+}
+
+/* ---------- events ---------- */
+function bind(id,key){
+  document.getElementById(id).addEventListener("click",function(e){
+    var b=e.target.closest("button"); if(!b) return;
+    S[key]=b.dataset.tf||b.dataset.bk||b.dataset.rg;
+    if(key==="bk") S.hidden={};
+    render();
+  });
+}
+bind("segTf","tf"); bind("segBk","bk"); bind("segRg","rg");
+document.getElementById("btnExact").onclick=function(){ S.exact=!S.exact; render(); };
+
+document.getElementById("btnCsv").onclick=function(){
+  var s=cur(), cs=comps(), rows=[["date","headline","core"]
+    .concat(cs.map(function(c){return "contrib_"+c.id;}))
+    .concat(cs.map(function(c){return "weight_"+c.id;})).concat(["residual","span_months"])];
+  for(var i=0;i<s.dates.length;i++){
+    rows.push([s.dates[i],s.headline[i],s.core[i]]
+      .concat(cs.map(function(c){return s.contrib[c.id][i];}))
+      .concat(cs.map(function(c){return s.weights[c.id][i];}))
+      .concat([s.residual[i],s.span[i]]));
+  }
+  var blob=new Blob([rows.map(function(r){return r.join(",");}).join("\n")],{type:"text/csv"});
+  var a=document.createElement("a");
+  a.href=URL.createObjectURL(blob);
+  a.download="us_cpi_contrib_"+S.bk+"_"+S.tf+(S.exact?"_exact":"")+".csv"; a.click();
+};
+document.getElementById("btnPng").onclick=function(){
+  var svg=document.getElementById("chart").outerHTML;
+  var blob=new Blob(['<?xml version="1.0"?>'+svg],{type:"image/svg+xml"});
+  var a=document.createElement("a");
+  a.href=URL.createObjectURL(blob); a.download="us_cpi_contrib.svg"; a.click();
+};
+window.addEventListener("resize",function(){ tip.style.display="none"; });
+window.addEventListener("hashchange",function(){
+  var m=location.hash.match(/lang=(zh|en)/);
+  if(m && m[1]!==LANG){ LANG=m[1]; applyStatic(); }
+  readHash(); render();
+});
+document.getElementById("btnLang").onclick=function(){
+  LANG = LANG==="zh" ? "en" : "zh";
+  try{ localStorage.setItem("cpiLang",LANG); }catch(e){}
+  applyStatic(); render();
+};
+
+render();
+} // boot
+})();
+</script>
+</body>
+</html>

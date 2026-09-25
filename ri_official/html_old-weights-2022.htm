@@ -1,0 +1,854 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+  <head>
+    <title>Relative importance of components in the Consumer Price Indexes: U.S. city average, December 2022, old weights : U.S. Bureau of Labor Statistics</title>
+              
+	<!-- START include/global/head.stm -->
+	<script id="_fed_an_ua_tag" src="https://dap.digitalgov.gov/Universal-Federated-Analytics-Min.js?agency=DOL&subagency=BLS&yt=true"></script>
+
+	<script src="/javascripts/jquery-latest.js"></script>
+	<script src="/javascripts/bls-latest.js"></script>
+	<script src="/javascripts/jquery-tools.js"></script>
+	<script src="/javascripts/jquery-migrate-1.2.1.min.js"></script>
+	
+	<link rel="stylesheet" href="/assets/bootstrap/latest/bootstrap.min.css">
+	<script src="/assets/bootstrap/latest/popper.min.js"></script>
+	<script src="/assets/bootstrap/latest/bootstrap.min.js"></script>
+
+
+	<link rel="stylesheet" type="text/css" href="/stylesheets/bls_combined.css">
+	<link rel="stylesheet" type="text/css" href="/stylesheets/bls_content.css">
+	<link rel="stylesheet" type="text/css" href="/stylesheets/bls_tables.css">
+	<link rel="stylesheet" type="text/css" href="/stylesheets/jquery-tools.css">
+	<link rel="stylesheet" type="text/css" href="/stylesheets/bls_nr.css">
+    <!--[if lt IE 9]>
+		<link href="/stylesheets/ie8-styles.css" media="all" rel="Stylesheet" type="text/css"> 
+	<![endif]-->
+	<!--[if lt IE 8]>
+		<link href="/stylesheets/ie7-styles.css" media="all" rel="Stylesheet" type="text/css"> 
+	<![endif]-->
+	<!--[if lt IE 7]>
+		<link href="/stylesheets/ie6-styles.css" media="all" rel="Stylesheet" type="text/css"> 
+		<style>
+		body {
+			behavior:url(/stylesheets/csshover2.htc);
+		}
+		</style>			
+	<![endif]-->
+	<!--[if IE]>
+		<style>
+		body {
+			font-size: expression(1 / (screen.deviceXDPI / 96) * 84 + '%');
+		}
+		</style>	
+	<![endif]-->
+	<noscript>
+	<link rel="stylesheet" type="text/css" href="/stylesheets/bls_noscript.css">
+	</noscript>
+	<!--  This means that the browser will (probably) render the width of the page at the width of its own screen. -->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<meta http-equiv="x-ua-compatible" content="IE=Edge" />
+    <meta property="og:image" content="https://www.bls.gov/images/bls_emblem_2016.png" />
+	<meta property="og:image:alt" content="BLS Logo">
+	<meta name="robots" content="index, follow">
+	<meta property="og:locale" content="en_US">
+	<meta property="og:site_name" content="Bureau of Labor Statistics">
+		<style>
+			td.gsc-table-cell-thumbnail{
+			display:none !important;
+			}
+		</style>
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+	<link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32" />
+	<link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16" />
+	<link rel="manifest" href="/manifest.json" />
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5" />
+	<meta name="theme-color" content="#ffffff" />
+    <!-- END include/global/head.stm -->
+<meta charset="UTF-8">
+
+  <link rel="stylesheet" type="text/css" href="/stylesheets/bls_programs.css">
+<noscript>
+	<style>
+
+		#programs-banner.generic #program-browse{
+			display: block;
+			top: 3px;
+			width:100%;
+		}
+		#programs-banner.generic #program-browse > div{
+			display: block;
+			position: static;
+			border: none;
+			border-top: 1px solid #fff;
+			margin: 10px 0 0;
+		}
+	</style>
+</noscript>
+
+<script>
+$(document).ready(function(){
+	/* Nav, tabbable*/
+	$(".main-content #programs-banner-nav > li a").focus(function(){
+		var parentUL = $(this).parent().parent();
+		$(".focus").removeClass("focus");
+		$(this).parent().addClass("focus");
+		if(parentUL.find("span").size() == 1){
+			parentUL.parent().find("ul").parent().addClass("focus");
+		};
+	});
+	$(".main-content #programs-banner-nav a").blur(function(){
+		setTimeout(function(){if( !$(document.activeElement).parents("#programs-banner-nav").size()){$(".focus").removeClass("focus");};},100);
+	});
+	
+	$(".main-content #programs-banner-nav li").click(function(e){
+		e.stopPropagation();
+		if($(this).find("a").attr("target") == "_blank"){
+			window.open($(this).find("a").attr("href"));
+		}else{
+			window.location = $(this).find("a").attr("href");
+		}
+	});
+	$(".main-content #programs-banner-nav li a").click(function(e){
+		$(this).blur();
+		e.stopPropagation();
+		e.stopImmediatePropagation();
+	});
+	
+
+	$("#programs-banner.generic #program-browse > a").focus(function(){
+		$(this).parent().addClass("focused");
+		$("#programs-banner.generic #program-browse").hover(function(){
+			$(this).removeClass("focused");
+			$("#programs-banner.generic #program-browse *").blur();
+		});
+	});			
+	$("#programs-banner.generic #program-browse a").each(function(){
+		$(this).blur(function(){
+			setTimeout(function(){
+				if($(document.activeElement).parents("#program-browse").length < 1 ){
+					$("#programs-banner.generic #program-browse").removeClass("focused")
+				};
+			});
+		});
+	});
+
+	/*Notices Archive Page, load*/
+	$(".main-content #archive-left-side .notice-items").hide();
+	var archiveLeftShow = $(".main-content #archive-left-side .notice-items")[0];
+	$(archiveLeftShow).show();
+	var archiveRightCurrent = $(".main-content #archive-right-side a")[0];
+	$(archiveRightCurrent).addClass("current");
+	/*Notices Archive Page, fcns*/
+	$(".main-content #archive-right-side a").click(function(e){
+		e.preventDefault();
+		$(".main-content #archive-right-side a.current").removeClass("current");
+		$(this).addClass("current");
+		$(".main-content #archive-left-side .notice-items").hide();
+		$(".main-content #archive-left-side #notices-"+$(this).text()).show();
+	});	
+
+});
+</script>  
+
+
+ 
+      </head>
+  <body class="toolbar-icon-10 toolbar-loading">
+            <div class="page-wrapper dialog-off-canvas-main-canvas" data-off-canvas-main-canvas>
+          
+
+<!-- OneColHeadBasic Begin: Name -->
+
+<!-- Header Filename: "/include/cpi/cpi_header.txt" -->
+
+<!--no_index_start-->
+
+<!-- DOL BANNER BEGIN -->
+<!-- DOL BANNER START -->
+<header > <!-- Header is closed at the end of BLS banner -->
+		<a class="skiplink" href="#startcontent">Skip to Content</a>
+
+		<div id="usa-banner-wrapper">
+<div id="usa-banner" class="bootstrap standard-width">
+	<div class="content">
+	<div class="USA-flag-link">
+	<img src="https://www.dol.gov/themes/opa_theme/img/flag-favicon-57.png" alt="U.S. flag">
+	<p>An official website of the United States government 
+	  
+	<button type="button" data-toggle="collapse" data-target="#usaBanner" aria-expanded="false" aria-controls="usaBanner">Here is how you know <span class="oi" data-glyph="chevron-bottom"></span></button>
+	</p>
+	</div>
+		<a href="https://www.dol.gov/" id="dolHolder" class="dolHolder" target="_blank"><img src="https://www.dol.gov/themes/opa_theme/img/logo-primary.svg" alt="Department of Labor Logo"/>  United States Department of Labor</a>
+	</div>
+	
+	<div class="collapse " id="usaBanner">	
+	<div class="row">
+	<div class="col-md-6">
+		<img src="https://www.dol.gov/themes/opa_theme/img/icon-dot-gov.svg" alt="Dot gov">
+
+		<p>
+			<strong>The .gov means it's official.</strong>
+			<br> Federal government websites often end in .gov or .mil. Before sharing sensitive information,
+			make sure you're on a federal government site.
+		</p>
+	</div>
+
+	<div class="col-md-6">
+	<img class="usa-banner-icon usa-media_block-img" src="https://www.dol.gov/themes/opa_theme/img/icon-https.svg" alt="Https">
+	
+		<p>
+			<strong>The site is secure.</strong>
+			<br> The
+			<strong>https://</strong> ensures that you are connecting to the official website and that any
+			information you provide is encrypted and transmitted securely.
+		</p>
+	</div>
+	</div>
+	</div>		
+</div>
+</div>
+
+
+
+<!-- DOL BANNER END -->
+
+
+<!-- DOL BANNER END -->
+<!-- BLS BANNER BEGIN -->
+
+<div id="bls-banner-wrapper">
+<div id="top"></div>
+		<div class="bootstrap standard-width">
+<div>
+  <div id="bls-banner" class="row">
+    <div id="bls-banner-emblem" class="col-sm-12 col-md-7">
+      <a href="https://www.bls.gov/">U.S. Bureau of Labor Statistics</a>
+    </div>
+    <div id="bls-banner-right" class="col-sm-12 col-md-5 d-none d-md-block">
+<div id="bls-banner-links"><a href="/schedule/news_release/">Release Calendar</a> | <a href="javascript:window.open('https://public.govdelivery.com/accounts/USDOLBLS/subscriber/new ','Popup','width=800,height=500,toolbar=no,scrollbars=yes,resizable=yes'); void('');" onclick="window.status='Subscribe'; return true" onmouseover="window.status='Subscribe'; return true" onmouseout="window.status=''; return true" id="social-email-1" title="Subscribe to BLS E-mail Updates" aria-label="Subscribe to BLS E-mail Updates">Subscribe</a></div> 
+      <div id="bls-banner-search1" class="bls-banner-search">
+        <form method="get" action="/search/query">
+		  <label for="bls-banner-search-submit1" class="invisible">Search button</label>
+          <input type="image" src="/images/buttons/search_button_blue_16.png" name="term" id="bls-banner-search-submit1" alt="BLS Search Submit" title="Submit" >
+		  <label for="bls-banner-search-input1" class="invisible">Search:</label>
+          <input name="query" type="text" id="bls-banner-search-input1" value="Search BLS.gov" title="Search Input" onclick="this.value=''; this.onclick = null;">
+
+        </form>
+      </div>
+    </div>
+    <div class="clearfloat"></div>
+  </div>
+</div>
+</div>
+</div>
+</header> <!-- Header is opened at the begining of DOL banner -->
+
+<!-- BLS BANNER END -->
+<!-- MAIN NAV BEGIN -->
+
+<div id="main-nav-wrapper">
+	<div id="main-nav-container">
+		<div>
+			<div class="bootstrap standard-width">
+<nav aria-label="top-level navigation menu" class="navbar navbar-expand-md">
+  
+  
+   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation menu">
+    <span class="navbar-toggler-icon">Menu</span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+  
+
+
+<ul class="nojs navbar-nav mr-auto">
+     <li class="dropdownSearch"><div id="bls-banner-search" class="dropdown-search">
+        <form method="get" action="/search/query">
+		  <label for="bls-banner-search-submit" class="invisible">Search button</label>
+          <input type="image" src="/images/buttons/search_button_blue_20.png" name="term" id="bls-banner-search-submit" alt="BLS Search Submit" title="Submit">
+		  <label for="bls-banner-search-input" class="invisible">Search:</label>
+          <input name="query" type="text" id="bls-banner-search-input" value="Search BLS.gov" title="Search Input" onclick="this.value=''; this.onclick = null;">
+
+        </form>
+      </div>
+	
+	  <div class="bls-banner-links-mob"><a href="/schedule/news_release/">Release Calendar</a> | <a href="javascript:window.open('https://public.govdelivery.com/accounts/USDOLBLS/subscriber/new ','Popup','width=800,height=500,toolbar=no,scrollbars=yes,resizable=yes'); void('');" onclick="window.status='Subscribe'; return true" onmouseover="window.status='Subscribe'; return true" onmouseout="window.status=''; return true" id="social-email-2" title="Subscribe to BLS E-mail Updates" aria-label="Subscribe to BLS E-mail Updates">Subscribe</a></div>
+	</li>
+    <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="https://www.bls.gov/" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Home <span class="circle-arrow"></span></a>
+        <div class="dropdown-menu"><!-- ********************************************** Begin Home Tab LIST ****************************************** -->
+<!-- 1st column -->
+<div class="main-nav-submenu" id="submenu-home">
+	<ul class="main-nav-submenu-inn">
+	
+		<li class="heading"><a href="/about-bls/home.htm" aria-label="About BLS">About BLS</a></li>
+		<li><a href="/bls/history/home.htm" aria-label="BLS History">History</a></li>	
+		<li><a href="/bls/senior_staff/home.htm" aria-label="Our Leadership">Our Leadership</a></li>
+		<li><a href="/bls/bls_budget_and_performance.htm" aria-label="Budget and Performance">Budget and Performance</a></li>		
+		<li><a href="/bls/faqs.htm" aria-label="Questions and Answers">Questions and Answers</a></li>	
+		<li><a href="/bls/topicsaz.htm" aria-label="A-Z Index">A-Z Index</a></li>	
+		<li><a href="/bls/glossary.htm" aria-label="Glossary">Glossary</a></li>	
+		<li><a href="/bls/bls-speakers/" aria-label="BLS Speakers Available">BLS Speakers Available</a></li>
+		<li><a href="/errata/" aria-label="Errata">Errata</a></li>  				
+		<li><a href="/bls/contact.htm" aria-label="Contact BLS">Contact BLS</a></li>	
+
+	</ul>	
+	<!-- 2nd column -->	
+<ul class="main-nav-submenu-inn">	
+		<li class="heading"><a href="/bls/overview.htm" aria-label="Overview of BLS Statistics">Overview of BLS Statistics</a></li>
+		<li><a href="/information-guide/home.htm" aria-label="Guide to Programs & Services">Guide to Programs &amp; Services</a></li>
+		<li><a href="/bls/demographics.htm" aria-label="Demographics Data">Demographics</a></li>
+		<li><a href="/bls/industry.htm" aria-label="Statistics by Industries">Industries</a></li>
+		<li><a href="/bls/business.htm" aria-label="Statistics on Business Costs">Business Costs</a></li>
+		<li><a href="/bls/occupation.htm" aria-label="Statistics by Occupations">Occupations</a></li>
+		<li><a href="/bls/geography.htm" aria-label="Statistics by Geography">Geography</a></li>	
+	
+	</ul>
+	<!-- 3rd column -->
+	<ul class="main-nav-submenu-inn">
+		<li class="heading"><a href="/audience/" aria-label="Resources For">Resources For</a></li>
+		<li><a href="/audience/business.htm" aria-label="Resources for Business Leaders">Business Leaders</a></li>
+		<li><a href="/audience/consumers.htm" aria-label="Resources for Consumers">Consumers</a></li>
+		<li><a href="/audience/developers.htm" aria-label="Developers site">Developers</a></li>
+		<li><a href="/audience/economists.htm" aria-label="Economists or Economic Analyst">Economists</a></li>
+		<li><a href="/audience/investors.htm" aria-label="Resources for Financial Investors">Investors</a></li>
+		<li><a href="/audience/jobseekers.htm" aria-label="Resources for Jobseekers">Jobseekers</a></li>
+		<li><a href="/audience/media.htm" aria-label="Media">Media</a></li>
+		<li><a href="/audience/policy.htm" aria-label="Resources for Public Policymakers">Public Policymakers</a></li>
+		<li><a href="/audience/researcher.htm" aria-label="Researcher">Researcher</a></li>		
+		<li><a href="/audience/students.htm" aria-label="Resources for Students & Teachers">Students &amp; Teachers</a></li>
+		<li><a href="/respondents/" aria-label="Survey Respondents">Survey Respondents</a></li>
+	</ul>
+</div>
+
+<!-- ***********************************************End Home Tab LIST ******************************************** --> 
+
+</div>
+    </li>
+    <li class="nav-item dropdown active"><a class="nav-link dropdown-toggle" href="/bls/proghome.htm" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Subjects <span class="circle-arrow"></span></a>
+        <div class="dropdown-menu"><!-- ************************************* Begin SUBJECTS TAB list ****************************************** -->
+<!-- 1st column -->
+<div class="main-nav-submenu" id="submenu-programs">
+	<ul class="main-nav-submenu-inn">
+		<li class="heading"><a href="/bls/inflation.htm" aria-label="Statistics on Inflation & Prices">Inflation &amp; Prices</a></li>
+		<li><a href="/cpi/" aria-label="Consumer Price Index ">Consumer Price Index</a></li>
+		<li><a href="/ppi/" aria-label="Producer Price Indexes">Producer Price Indexes</a></li>
+		<li><a href="/mxp/" aria-label="Import/Export Price Indexes">Import/Export Price Indexes</a></li>
+		<li><a href="/bls/escalation.htm" aria-label="Contract Escalation">Contract Escalation</a></li>
+		<li><a href="/pir/" aria-label="Price Index Research">Price Index Research</a></li>
+		<li class="heading"><a href="/bls/wages.htm" aria-label="Statistics on Pay & Benefits">Pay &amp; Benefits</a></li>
+		<li><a href="/eci/" aria-label="Employment Cost Index">Employment Cost Index</a></li>
+		<li><a href="/ecec/home.htm" aria-label="Employer Costs for Employee Compensation">Employer Costs for Employee Compensation</a></li>
+						<li><a href="https://www.bls.gov/oes/" aria-label="Wage Data by Occupation">Wage Data by Occupation</a></li>
+		<li><a href="/cps/earnings.htm#demographics" aria-label="Earnings by Demographics">Earnings by Demographics</a></li>
+		<li><a href="/ces/" aria-label="Earnings by Industry">Earnings by Industry</a></li>
+		<li><a href="https://www.bls.gov/cew/" aria-label="County Wages">County Wages</a></li>  <!--full path is needed since they have a folder on the data server-->
+		<li><a href="/ebs/" aria-label="Employee Benefits Survey">Benefits</a></li>
+		<li><a href="/mwe/" aria-label="Modeled Wage Estimates">Modeled Wage Estimates</a></li>		
+		<li><a href="/crp/" aria-label="Compensation Research & Program Development">Compensation Research</a></li>
+		<li><a href="/wsp/" aria-label="Strikes & Lockouts">Strikes &amp; Lockouts </a></li>
+		<li><a href="/wrp/" aria-label="Wage Records from Unemployment Insurance">Wage Records from Unemployment Insurance</a></li>
+		<li class="heading"><a href="/ors/" aria-label="Occupational Requirements Survey">Occupational Requirements</a></li>		
+	</ul>
+	<!-- 2nd column -->
+	<ul class="main-nav-submenu-inn">
+		<li class="heading"><a href="/bls/unemployment.htm" aria-label="Statistics on Unemployment">Unemployment</a></li>
+		<li><a href="/cps/" aria-label="National Unemployment Rate">National Unemployment Rate </a></li>
+		<li><a href="/lau/" aria-label="State & Local Unemployment Rates">State &amp; Local Unemployment Rates </a></li>
+		<li><a href="/ers/" aria-label="Unemployment Research">Unemployment Research</a></li>
+		<li class="heading"><a href="/bls/employment.htm" aria-label="Statistics on Employment">Employment</a></li>
+		<li><a href="/ces/" aria-label="National Employment Statistics">National Employment </a></li>
+		<li><a href="/sae/" aria-label="State & Local Employment, Hours, and Earnings">State &amp; Local Employment </a></li>
+		<li><a href="https://www.bls.gov/cew/" aria-label="County Employment">County Employment </a></li> <!--full path is needed since they have a folder on the data server-->
+		<li><a href="/cps/" aria-label="Worker Characteristics">Worker Characteristics </a></li>
+		<li><a href="/air/" aria-label="American Indian Report">American Indian Report</a></li>
+		<li><a href="/emp/" aria-label="Employment Projections">Employment Projections </a></li>
+		<li><a href="/jlt/" aria-label="Job Openings & Labor Turnover Survey">Job Openings &amp; Labor Turnover Survey </a></li>
+		<li><a href="/brs/" aria-label="Business Response Survey">Business Response Survey</a></li>
+		<li><a href="https://www.bls.gov/oes/" aria-label="Employment by Occupation">Employment by Occupation </a></li>
+		<li><a href="/nls/" aria-label="Work Experience Over Time">Work Experience Over Time </a></li>
+		<li><a href="/bdm/" aria-label="Business Employment Dynamics">Business Employment Dynamics </a></li>
+		<li><a href="/fdi/" aria-label="Foreign Direct Investment">Foreign Direct Investment </a></li>
+		<li><a href="/ers/" aria-label="Employment Research and Program Development">Employment Research</a></li>
+		<li class="heading"><a href="/iif/" aria-label="Workplace Injuries, Illnesses, and Fatalities">Workplace Injuries</a></li>
+	</ul>
+	<!-- 3rd column -->
+	<ul class="main-nav-submenu-inn">
+		<li class="heading"><a href="/bls/productivity.htm" aria-label="Productivity Statistics">Productivity</a></li>
+		<li><a href="/productivity/" aria-label="Labor and Total Factor Productivity">Labor and Total Factor Productivity</a></li>
+		<li><a href="/dpr/" aria-label="Productivity Research and Program Development">Productivity Research</a></li>
+		<li class="heading"><a href="/bls/spending.htm" aria-label="Statistics on Spending & Time Use">Spending &amp; Time Use</a></li>
+		<li><a href="/cex/" aria-label="Consumer Expenditures Surveys">Consumer Expenditures </a></li>
+		<li><a href="/tus/" aria-label="How Americans Spend Time Survey">How Americans Spend Time</a></li>			
+		<li class="heading"><a href="/bls/international.htm" aria-label="International Data and Technical Cooperation">International</a></li>
+		<li><a href="/itc/" aria-label="International Technical Cooperation">International Technical Cooperation</a></li>
+		<li><a href="/mxp/" aria-label="Import/Export Price Indexes">Import/Export Price Indexes</a></li>
+		<li class="heading"><a href="/regions/" aria-label="Geographic Information">Geographic Information</a></li>
+		<li><a href="/regions/northeast/" aria-label="Northeast (Boston-New York) Information Office">Northeast (Boston-New York)</a></li>
+		<li><a href="/regions/mid-atlantic/" aria-label="Mid-Atlantic (Philadelphia) Information Office">Mid-Atlantic (Philadelphia)</a></li>
+		<li><a href="/regions/southeast/" aria-label="Southeast (Atlanta) Information Office">Southeast (Atlanta)</a></li>
+		<li><a href="/regions/midwest/" aria-label="Midwest (Chicago) Information Office">Midwest (Chicago)</a></li>
+		<li><a href="/regions/southwest/" aria-label="Southwest (Dallas) Information Office">Southwest (Dallas)</a></li>
+		<li><a href="/regions/mountain-plains/" aria-label="Mountain-Plains (Kansas City) Information Office">Mountain-Plains (Kansas City)</a></li>
+		<li><a href="/regions/west/" aria-label="West (San Francisco) Information Office">West (San Francisco)</a></li>
+	</ul>
+</div>
+<!-- **************************************End SUBJECT AREAS ******************************************** --> 
+	</div>	
+    </li>
+    <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="/data/" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Data Tools <span class="circle-arrow"></span></a>
+        <div class="dropdown-menu"><!-- ******************************************** Begin DATA TOOLS LIST ****************************************** -->
+<div class="main-nav-submenu"  id="submenu-data">
+    <ul class="main-nav-submenu-inn">
+        <li class="heading"><a href="/data/tools.htm" aria-label="Data Retrieval Tools Databases, Tables & Calculators by Subject">Data Retrieval Tools</a></li>
+		<li><a href="https://data.bls.gov/toppicks?code=&survey=bls" aria-label="BLS Popular Series Top Picks">BLS Popular Series</a></li>
+		<li><a href="https://data.bls.gov/series-report" aria-label="Series Report">Series Report</a></li>
+		<li><a href="/data/home.htm" aria-label="Top Picks, One Screen, Multi-Screen, and Maps" >Top Picks, One Screen, Multi-Screen, and Maps</a></li>
+		<li><a href="https://data.bls.gov/dataQuery/search" aria-label="Data Finder">Data Finder</a></li>
+		<li><a href="/developers/home.htm" aria-label="Public Data API Programming Interface">Public Data API</a></li>
+
+    </ul>
+    <!-- 2nd column -->
+    <ul class="main-nav-submenu-inn">
+        <li class="heading"><a href="/data/apps.htm" aria-label="Charts and Applications">Charts and Applications</a></li>
+		<li><a href="/charts/home.htm" aria-label="Charts for Economic News Releases">Charts for Economic News Releases</a></li>	
+		<li><a href="/data/inflation_calculator.htm" aria-label="CPI Inflation Calculator">CPI Inflation Calculator</a></li>	
+		<li><a href="https://data.bls.gov/iirc/" aria-label="Injury and Illness Calculator">Injury and Illness Calculator</a></li>		
+		<li><a href="https://data.bls.gov/apps/compensation-comparison-matrix/home.htm" aria-label="Pay Measure Comparison">Pay Measure Comparison</a></li>
+		<li><a href="https://data.bls.gov/apps/demographic-comparison-matrix/home.htm" aria-label="Demographic Data Sources">Demographic Data Sources</a></li>
+		<li><a href="https://data.bls.gov/apps/covid-dashboard/home.htm" aria-label="COVID-19 Economic Trends">COVID-19 Economic Trends</a></li>
+		<li><a href="https://data.bls.gov/apps/industry-productivity-viewer/home.htm" aria-label="Industry Productivity Viewer" >Industry Productivity Viewer</a></li>
+		<li><a href="https://data.bls.gov/cew/apps/data_views/data_views.htm#tab=Tables" aria-label="Employment and Wages Data Viewer">Employment and Wages Data Viewer</a></li>
+		<li><a href="https://data.bls.gov/cew/apps/bls_naics/bls_naics_app.htm" aria-label="Industry Finder from the Quarterly Census of Employment and Wages">Industry Finder from the Quarterly Census of Employment and Wages</a></li>
+	
+    </ul>
+	<!-- 3rd column -->
+	<ul class="main-nav-submenu-inn">
+	    <li class="heading"><a href="/data/tables.htm" aria-label="Customized Tables">Customized Tables</a></li>
+		<li><a href="/eag/eag.us.htm" aria-label="U.S. Economy at a Glance">U.S. Economy at a Glance</a></li>
+		<li><a href="/eag/home.htm" aria-label="Regions, States & Areas at a Glance">Regions, States &amp; Areas at a Glance</a></li>
+		<li><a href="/iag/home.htm" aria-label="Industry at a Glance">Industry at a Glance</a></li>			
+		<li><a href="https://download.bls.gov/pub/time.series/" aria-label="Text Files">Text Files</a></li>
+		<li><a href="/data/#historical-tables" aria-label="Historical News Release Tables">News Release Tables</a></li>
+		
+		<li class="heading"><a href="/bls/moredata.htm" aria-label="More Sources of Data">More Sources of Data</a></li>
+		<li><a href="/rda/home.htm" aria-label="Bureau of Labor Statistics Restricted Data Access">Restricted Data Access</a></li>
+		<li><a href="/data/archived.htm" aria-label="Discontinued Databases">Discontinued Databases </a></li>
+		<li><a href="/help/hlpform1.htm" aria-label="Questions & Answers regarding Bureau of Labor Statistics website data retrieval tools">Questions &amp; Answers</a></li>
+		<li><a href="/help/notice.htm" aria-label="Special Notices">Special Notices </a></li>	
+	</ul>
+</div>
+<!-- *********************************************End DATABASES and TOOLS LIST ******************************************** --></div>
+    </li>
+    <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="/opub/" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Publications <span class="circle-arrow"></span></a>
+        <div class="dropdown-menu"><!-- ********************************************** Begin PUBLICATIONS LIST ****************************************** -->
+<div class="main-nav-submenu"  id="submenu-pubs">    
+    <ul class="main-nav-submenu-inn"> 
+		<li class="heading"><a href="/opub/" aria-label="Latest Publications">Latest Publications</a></li>
+		<li><a href="/opub/ted/" aria-label="The Economics Daily">The Economics Daily</a></li>
+		<li><a href="/opub/mlr/" aria-label="Monthly Labor Review">Monthly Labor Review</a></li>
+		<li><a href="/opub/btn/" aria-label="Beyond the Numbers">Beyond the Numbers</a></li>
+		<li><a href="/spotlight/" aria-label="Spotlight on Statistics">Spotlight on Statistics</a></li>
+		<li><a href="/opub/reports" aria-label="Bureau of Labor Statistics Reports">Reports</a></li>
+		<li><a href="/video/" aria-label="Videos">Videos</a></li>
+		<li><a href="/careeroutlook/" aria-label="Career Outlook">Career Outlook</a></li>		
+    </ul>
+    <!-- 2nd column -->
+    <ul class="main-nav-submenu-inn">
+		<li><a href="/ooh/" aria-label="Occupational Outlook Handbook">Occupational Outlook Handbook</a></li>
+		<li><a href="/opub/geographic-profile/" aria-label="Geographic Profile">Geographic Profile</a></li>
+		<li><a href="/opub/hom/" aria-label="Handbook of Methods">Handbook of Methods</a></li>
+		<li><a href="/osmr/research-papers/" aria-label="Research Papers - Office of Survey Methods Research">Research Papers</a></li>
+		<li><a href="/opub/copyright-information.htm" aria-label="Copyright Information">Copyright Information</a></li>
+		<li><a href="/opub/opbinfo.htm" aria-label="Contact & Help">Contact &amp; Help </a></li>
+		<li><a href="/opub/update.htm" aria-label="Weekly Update">Weekly Update</a></li>		
+    </ul>
+</div>
+<!-- ***********************************************End PUBLICATIONS LIST ******************************************** --> </div>
+    </li>
+    <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="/bls/newsrels.htm" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Economic Releases <span class="circle-arrow"></span></a>
+        <div class="dropdown-menu"><!-- ********************************************** Begin ECONOMIC RELEASES LIST ****************************************** -->
+<!-- 1st column -->
+
+<div class="main-nav-submenu" id="submenu-news">
+    <ul class="main-nav-submenu-inn">
+        <li class="heading"><a href="/bls/newsrels.htm#latest-releases" aria-label="Latest Releases">Latest Releases</a></li>
+		<li class="heading"><a href="/bls/newsrels.htm#major" aria-label="Major Economic Indicators">Major Economic Indicators</a></li>
+		<li class="heading"><a href="/schedule/news_release/" aria-label="Schedules for news Releases">Schedules for news Releases</a></li>
+		<li><a href="/schedule/" aria-label="Release Calendar By Month">By Month</a></li>
+		<li><a href="/schedule/schedule/by_prog/all_sched.htm" aria-label="Release Calendar By News Release">By News Release</a></li>
+		<li><a href="/schedule/news_release/current_year.asp" aria-label="Release Calendar Current Year">Current Year</a></li>
+		<li><a href="/bls/archived_sched.htm" aria-label="Schedules for Selected Bureau of Labor Statistics Economic News Releases for Prior Years">Prior Years</a></li>
+		<li class="heading"><a href="/bls/news-release/" aria-label="Archived News Releases">Archived News Releases</a></li>
+    </ul>
+    <!-- 2nd column -->
+    <ul class="main-nav-submenu-inn">
+        <li class="heading"><a href="/bls/newsrels.htm#OEUS" aria-label="Employment & Unemployment">Employment &amp; Unemployment</a></li>
+		<li><a href="/bls/newsrels.htm#OEUS" aria-label="Monthly">Monthly</a></li>
+		<li><a href="/bls/newsrels.htm#OEUS" aria-label="Quarterly, annual, and other">Quarterly, annual, and other</a></li>
+		<li class="heading"><a href="/bls/newsrels.htm#OPLC" aria-label="Inflation & Prices"> Inflation &amp; Prices</a></li>
+		<li class="heading"><a href="/bls/newsrels.htm#OCWC" aria-label="Pay & Benefits & Workplace Injuries">Pay &amp; Benefits &amp; Workplace Injuries</a></li>
+		<li class="heading"><a href="/bls/newsrels.htm#OPT" aria-label="Productivity & Technology">Productivity &amp; Technology</a></li>
+		<li class="heading"><a href="/bls/newsrels.htm#OEP" aria-label="Employment Projections">Employment Projections</a></li>
+		<li class="heading"><a href="/bls/newsrels.htm#NEWS" aria-label="Regional News Releases">Regional News Releases</a></li>
+    </ul>
+</div></div>
+    </li>
+    <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="/k12/" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Classroom <span class="circle-arrow"></span></a>
+        <div class="dropdown-menu"><!-- ********************************************** Begin Students Tab LIST ****************************************** -->
+<div class="main-nav-submenu" id="submenu-students">
+	<ul class="main-nav-submenu-inn">
+		<li class="heading"><a href="/k12/" aria-label="K-12 Student & Teacher Resources">K-12 Student &amp; Teacher Resources</a></li>		
+        <li><a href="/k12/games/" aria-label="Games & Quizzes">Games &amp; Quizzes</a></li>
+		<li><a href="/k12/students/" aria-label="Student's Desk">Student&apos;s Desk</a></li>
+		<li><a href="/k12/teachers/" aria-label="Teacher's Desk">Teacher&apos;s Desk</a></li>
+		<li><a href="/k12/faq.htm" aria-label="Questions & Answers">Questions &amp; Answers</a></li>
+    </ul>
+</div>
+<!-- ***********************************************End Students Tab LIST ******************************************** --></div>
+    </li>
+    <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="/beta/" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Beta <span class="circle-arrow"></span></a>
+        <div class="dropdown-menu"><!-- ***********************************************Start BETA LIST ******************************************** -->
+
+<div class="main-nav-submenu" id="submenu-beta">
+  <ul class="main-nav-submenu-inn">
+    <li class="heading"><a href="/beta/redesigned-news-releases.htm" aria-label="Redesigned News Releases">Redesigned News Releases</a></li>
+  </ul>
+</div>
+<!-- ***********************************************End BETA LIST ******************************************** --></div>
+    </li>
+</ul>
+
+
+  </div>
+</nav>
+</div>
+
+		</div>
+		<div class="clearfloat"></div>
+	</div>
+</div>
+
+
+<!-- MAIN NAV END -->
+
+<!-- WRAPPER TOP BEGIN -->
+	<div id="wrapper-outer" role="main">
+		<div id="wrapper">
+			<div id="container">
+<!-- WRAPPER TOP END -->
+<!-- SUBDOMAIN TITLE TOP BEGIN -->
+
+<!-- 1COL CMS LAYOUT COL1 BEGIN -->	
+
+<div class="main-content">
+<div id="startcontent" class="hidden"></div>
+
+<!-- 1COL CMS LAYOUT COL1 END -->
+
+
+
+<!--no_index_end-->
+
+<!-- OneColHeadBasic End -->
+
+
+        
+    
+        
+      
+         <div id="programs-banner">
+<div id="program-title" aria-level="1" role="heading">Consumer Price Index</div><div id="social-search-box"><div class="article-tools-box social-media"><span class="social-media"><span>SHARE ON:</span><a href="javascript:void(0);" class="share_facebook"><img alt="share on facebook" src="/images/icons/facebook.png" title="Facebook"></a><a href="javascript:void(0);" class="share_twitter"><img alt="share on twitter" src="/images/icons/twitter.png" title="Twitter"></a><a href="javascript:void(0);" class="share_linkedin"><img alt="share on linkedin" src="/images/icons/linkedin.png" title="LinkedIn"></a></span></div><form method="get" id="search-secondary-nav-form" action="/search/query"><input type="hidden" value="https://www.bls.gov/cpi" id="search-secondary-nav-category" name="prefix"><label for="search-secondary-nav-query" class="invisible">Search Consumer Price Index</label><input type="text" onclick="this.value=''; this.onclick = null;" value="Search Consumer Price Index" id="search-secondary-nav-query" name="query"><input type="submit" value="Go" id="search-secondary-nav-submit" name="submit"></form></div><div class="clearfloat"></div><style>.layout-wide #dol-bar-content, .layout-wide #bls-banner, .layout-wide #main-nav-container{margin:0 !important;}.layout-wide #wrapper, .layout-wide #footer-links-wrapper{max-width:100% !important;}.layout-wide #programs-banner{width:923px !important;}div.p{font-family: Tahoma, Arial, Helvetica, sans-serif;margin: 0 0 1em 0 !important;padding: 0;font-size: 100%;color: #333;line-height: 160%;}</style>
+
+<div class="bootstrap standard-width">
+<nav class="navbar navbar-expand-md programsNavBar " aria-label="secondary-nav">
+  <ul class="navbar-nav" role="menu">
+			        					<li class="nav-item" role="none">
+        																						<a role="menuitem" class="nav-link home progNav" href="/cpi/" aria-label="CPI Home Consumer Price Index homepage">CPI Home</a>
+				</li>        							        					<li class="nav-item dropdown" role="none">
+        																						<a data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle nav-link publications progNav" href="javascript:">CPI Publications</a>
+				        			        	        		<div class="dropdown-menu" role="menu">                                								<a class="dropdown-item heading" role="menuitem" href="/cpi/publications-overview.htm">Publications Overview</a>
+								        			        	        		                                								<a class="dropdown-item" role="menuitem" href="/cpi/news.htm">News Releases</a>
+								        			        	        		                                								<a class="dropdown-item" role="menuitem" href="/cpi/factsheets/">Factsheets</a>
+								        			        	        		                                								<a class="dropdown-item" role="menuitem" href="/cpi/videos.htm">Videos</a>
+								        			        	        		                                								<a class="dropdown-item" role="menuitem" href="/cpi/additional-publications/">Additional Publications</a>
+								        			        	        		                                								<a class="dropdown-item" role="menuitem" target="_blank" href="https://public.govdelivery.com/accounts/USDOLBLS/subscribers/new?topic_id=USDOLBLS_003">Subscriptions</a>
+								</div></li>        													        					<li class="nav-item dropdown" role="none">
+        																						<a data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle nav-link data progNav" href="javascript:">CPI Data</a>
+				        			        	        		<div class="dropdown-menu" role="menu">                                								<a class="dropdown-item heading" role="menuitem" href="/cpi/data-overview.htm">Data Overview</a>
+								        			        	        		                                								<a class="dropdown-item" role="menuitem" href="/cpi/data.htm">Databases</a>
+								        			        	        		                                								<a class="dropdown-item" role="menuitem" target="_blank" href="https://www.bls.gov/charts/consumer-price-index/consumer-price-index-by-category.htm">Interactive Charts</a>
+								        			        	        		                                								<a class="dropdown-item" role="menuitem" href="/cpi/tables/">Tables</a>
+								        			        	        		                                								<a class="dropdown-item" role="menuitem" href="/cpi/research-series/">Research</a>
+								        			        	        		                                								<a class="dropdown-item" role="menuitem" href="/cpi/regional-resources.htm">Regional Resources</a>
+								        			        	        		                                								<a class="dropdown-item" role="menuitem" href="/cpi/latest-numbers.htm">Latest Numbers</a>
+								        			        	        		                                								<a class="dropdown-item" role="menuitem" href="https://www.bls.gov/bls/erratabysubject.htm">Data Corrections</a>
+								</div></li>        															        					<li class="nav-item dropdown" role="none">
+        																						<a data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle nav-link methods progNav" href="javascript:">CPI Methods</a>
+				        			        	        		<div class="dropdown-menu" role="menu">                                								<a class="dropdown-item heading" role="menuitem" href="/cpi/methods-overview.htm">Methods Overview</a>
+								        			        	        		                                								<a class="dropdown-item" role="menuitem" target="_blank" href="https://www.bls.gov/opub/hom/cpi/">Handbook of Methods</a>
+								        			        	        		                                								<a class="dropdown-item" role="menuitem" href="/cpi/additional-resources/chained-cpi.htm">Chained CPI</a>
+								        			        	        		                                								<a class="dropdown-item" role="menuitem" href="/cpi/quality-adjustment/">Quality Adjustment</a>
+								        			        	        		                                								<a class="dropdown-item" role="menuitem" href="/cpi/seasonal-adjustment/">Seasonal Adjustment</a>
+								        			        	        		                                								<a class="dropdown-item" role="menuitem" href="/cpi/white-papers/">White Papers</a>
+								        			        	        		                                								<a class="dropdown-item" role="menuitem" href="/cpi/technical-notes/">Technical Notes</a>
+								        			        	        		                                								<a class="dropdown-item" role="menuitem" href="/cpi/additional-resources/">Additional Resources</a>
+								</div></li>        															        					<li class="nav-item dropdown" role="none">
+        																						<a data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle nav-link about progNav" href="javascript:">About CPI</a>
+				        			        	        		<div class="dropdown-menu" role="menu">                                								<a class="dropdown-item heading" role="menuitem" href="/cpi/about-overview.htm">About CPI Overview</a>
+								        			        	        		                                								<a class="dropdown-item" role="menuitem" href="/cpi/overview.htm">Overview</a>
+								        			        	        		                                								<a class="dropdown-item" role="menuitem" href="/respondents/cpi/">Info for Survey Participants</a>
+								        			        	        		                                								<a class="dropdown-item" role="menuitem" href="/cpi/questions-and-answers.htm">Questions &amp; Answers</a>
+								        			        	        		                                								<a class="dropdown-item" role="menuitem" href="/cpi/notices/">Notices</a>
+								</div></li>        												        					<li class="nav-item" role="none">
+        																						<a role="menuitem" class="nav-link contact progNav" href="/cpi/contact.htm">Contact CPI</a>
+				</li>        				  </ul>
+</nav>
+</div>
+</div>
+
+  <h1 class="invisible">Relative importance of components in the Consumer Price Indexes: U.S. city average, December 2022, old weights </h1>
+               <div class="cpi--tables--relative-importance">
+         
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><table class="regular" id="BLStable_2023_2_8_13_9" style="width: 95%;"><caption><span class="tableTitle">Table 1 (2019 - 2020 Weights). Relative importance of components in the Consumer Price Indexes: U.S. city average, December 2022</span><span class="headnote">[Percent of all items]</span></caption><thead><tr><th style="vertical-align: middle; min-width: 80px;" rowspan="1" scope="col">Item and Group</th><th scope="col"> <p>U.S. City Average,</p> <p>CPI-U</p> </th><th scope="col"> <p>U.S. City Average,</p> <p>CPI-W</p> </th></tr></thead><tbody><tr><th scope="row"> <p>All items</p> </th><td>100.000</td><td>100.000</td></tr><tr class="greenbar"><th scope="row"> <p>Food and beverages</p> </th><td>14.750</td><td>15.638</td></tr><tr><th scope="row"> <p>Food</p> </th><td>13.867</td><td>14.861</td></tr><tr class="greenbar"><th scope="row"> <p>Food at home</p> </th><td>8.574</td><td>9.100</td></tr><tr><th scope="row"> <p>Cereals and bakery products</p> </th><td>1.123</td><td>1.189</td></tr><tr class="greenbar"><th scope="row"> <p>Cereals and cereal products</p> </th><td>0.360</td><td>0.396</td></tr><tr><th scope="row"> <p>Flour and prepared flour mixes</p> </th><td>0.059</td><td>0.065</td></tr><tr class="greenbar"><th scope="row"> <p>Breakfast cereal</p> </th><td>0.151</td><td>0.166</td></tr><tr><th scope="row"> <p>Rice, pasta, cornmeal</p> </th><td>0.150</td><td>0.165</td></tr><tr class="greenbar"><th scope="row"> <p>Bakery products</p> </th><td>0.763</td><td>0.792</td></tr><tr><th scope="row"> <p>Bread</p> </th><td>0.216</td><td>0.232</td></tr><tr class="greenbar"><th scope="row"> <p>Fresh biscuits, rolls, muffins</p> </th><td>0.116</td><td>0.112</td></tr><tr><th scope="row"> <p>Cakes, cupcakes, and cookies</p> </th><td>0.188</td><td>0.206</td></tr><tr class="greenbar"><th scope="row"> <p>Other bakery products</p> </th><td>0.243</td><td>0.242</td></tr><tr><th scope="row"> <p>Meats, poultry, fish, and eggs</p> </th><td>1.910</td><td>2.118</td></tr><tr class="greenbar"><th scope="row"> <p>Meats, poultry, and fish</p> </th><td>1.746</td><td>1.937</td></tr><tr><th scope="row"> <p>Meats</p> </th><td>1.099</td><td>1.243</td></tr><tr class="greenbar"><th scope="row"> <p>Beef and veal</p> </th><td>0.497</td><td>0.566</td></tr><tr><th scope="row"> <p>Uncooked ground beef</p> </th><td>0.183</td><td>0.205</td></tr><tr class="greenbar"><th scope="row"> <p>Uncooked beef roasts</p> </th><td>0.074</td><td>0.081</td></tr><tr><th scope="row"> <p>Uncooked beef steaks</p> </th><td>0.192</td><td>0.217</td></tr><tr class="greenbar"><th scope="row"> <p>Uncooked other beef and veal</p> </th><td>0.048</td><td>0.063</td></tr><tr><th scope="row"> <p>Pork</p> </th><td>0.347</td><td>0.393</td></tr><tr class="greenbar"><th scope="row"> <p>Bacon, breakfast sausage, and related products</p> </th><td>0.155</td><td>0.164</td></tr><tr><th scope="row"> <p>Ham</p> </th><td>0.062</td><td>0.068</td></tr><tr class="greenbar"><th scope="row"> <p>Pork chops</p> </th><td>0.051</td><td>0.063</td></tr><tr><th scope="row"> <p>Other pork including roasts, steaks, and ribs</p> </th><td>0.080</td><td>0.098</td></tr><tr class="greenbar"><th scope="row"> <p>Other meats</p> </th><td>0.254</td><td>0.284</td></tr><tr><th scope="row"> <p>Poultry</p> </th><td>0.362</td><td>0.394</td></tr><tr class="greenbar"><th scope="row"> <p>Chicken</p> </th><td>0.293</td><td>0.328</td></tr><tr><th scope="row"> <p>Other uncooked poultry including turkey</p> </th><td>0.069</td><td>0.066</td></tr><tr class="greenbar"><th scope="row"> <p>Fish and seafood</p> </th><td>0.285</td><td>0.301</td></tr><tr><th scope="row"> <p>Fresh fish and seafood</p> </th><td>0.143</td><td>0.148</td></tr><tr class="greenbar"><th scope="row"> <p>Processed fish and seafood</p> </th><td>0.142</td><td>0.153</td></tr><tr><th scope="row"> <p>Eggs</p> </th><td>0.164</td><td>0.180</td></tr><tr class="greenbar"><th scope="row"> <p>Dairy and related products</p> </th><td>0.814</td><td>0.829</td></tr><tr><th scope="row"> <p>Milk</p> </th><td>0.205</td><td>0.228</td></tr><tr class="greenbar"><th scope="row"> <p>Cheese and related products</p> </th><td>0.264</td><td>0.261</td></tr><tr><th scope="row"> <p>Ice cream and related products</p> </th><td>0.122</td><td>0.125</td></tr><tr class="greenbar"><th scope="row"> <p>Other dairy and related products</p> </th><td>0.223</td><td>0.215</td></tr><tr><th scope="row"> <p>Fruits and vegetables</p> </th><td>1.435</td><td>1.456</td></tr><tr class="greenbar"><th scope="row"> <p>Fresh fruits and vegetables</p> </th><td>1.084</td><td>1.109</td></tr><tr><th scope="row"> <p>Fresh fruits</p> </th><td>0.565</td><td>0.572</td></tr><tr class="greenbar"><th scope="row"> <p>Apples</p> </th><td>0.076</td><td>0.080</td></tr><tr><th scope="row"> <p>Bananas</p> </th><td>0.078</td><td>0.089</td></tr><tr class="greenbar"><th scope="row"> <p>Citrus fruits</p> </th><td>0.153</td><td>0.165</td></tr><tr><th scope="row"> <p>Other fresh fruits</p> </th><td>0.258</td><td>0.238</td></tr><tr class="greenbar"><th scope="row"> <p>Fresh vegetables</p> </th><td>0.519</td><td>0.537</td></tr><tr><th scope="row"> <p>Potatoes</p> </th><td>0.079</td><td>0.089</td></tr><tr class="greenbar"><th scope="row"> <p>Lettuce</p> </th><td>0.072</td><td>0.075</td></tr><tr><th scope="row"> <p>Tomatoes</p> </th><td>0.086</td><td>0.094</td></tr><tr class="greenbar"><th scope="row"> <p>Other fresh vegetables</p> </th><td>0.282</td><td>0.279</td></tr><tr><th scope="row"> <p>Processed fruits and vegetables</p> </th><td>0.351</td><td>0.347</td></tr><tr class="greenbar"><th scope="row"> <p>Canned fruits and vegetables</p> </th><td>0.181</td><td>0.182</td></tr><tr><th scope="row"> <p>Frozen fruits and vegetables</p> </th><td>0.104</td><td>0.103</td></tr><tr class="greenbar"><th scope="row"> <p>Other processed fruits and vegetables including dried</p> </th><td>0.066</td><td>0.061</td></tr><tr><th scope="row"> <p>Nonalcoholic beverages and beverage materials</p> </th><td>0.988</td><td>1.098</td></tr><tr class="greenbar"><th scope="row"> <p>Juices and nonalcoholic drinks</p> </th><td>0.698</td><td>0.813</td></tr><tr><th scope="row"> <p>Carbonated drinks</p> </th><td>0.294</td><td>0.341</td></tr><tr class="greenbar"><th scope="row"> <p>Frozen noncarbonated juices and drinks</p> </th><td>0.007</td><td>0.011</td></tr><tr><th scope="row"> <p>Nonfrozen noncarbonated juices and drinks</p> </th><td>0.397</td><td>0.461</td></tr><tr class="greenbar"><th scope="row"> <p>Beverage materials including coffee and tea</p> </th><td>0.289</td><td>0.285</td></tr><tr><th scope="row"> <p>Coffee</p> </th><td>0.187</td><td>0.178</td></tr><tr class="greenbar"><th scope="row"> <p>Other beverage materials including tea</p> </th><td>0.102</td><td>0.107</td></tr><tr><th scope="row"> <p>Other food at home</p> </th><td>2.305</td><td>2.411</td></tr><tr class="greenbar"><th scope="row"> <p>Sugar and sweets</p> </th><td>0.292</td><td>0.300</td></tr><tr><th scope="row"> <p>Sugar and sugar substitutes</p> </th><td>0.043</td><td>0.044</td></tr><tr class="greenbar"><th scope="row"> <p>Candy and chewing gum</p> </th><td>0.187</td><td>0.191</td></tr><tr><th scope="row"> <p>Other sweets</p> </th><td>0.062</td><td>0.065</td></tr><tr class="greenbar"><th scope="row"> <p>Fats and oils</p> </th><td>0.266</td><td>0.289</td></tr><tr><th scope="row"> <p>Butter and margarine</p> </th><td>0.084</td><td>0.085</td></tr><tr class="greenbar"><th scope="row"> <p>Salad dressing</p> </th><td>0.061</td><td>0.070</td></tr><tr><th scope="row"> <p>Other fats and oils including peanut butter</p> </th><td>0.120</td><td>0.134</td></tr><tr class="greenbar"><th scope="row"> <p>Other foods</p> </th><td>1.746</td><td>1.822</td></tr><tr><th scope="row"> <p>Soups</p> </th><td>0.103</td><td>0.099</td></tr><tr class="greenbar"><th scope="row"> <p>Frozen and freeze dried prepared foods</p> </th><td>0.284</td><td>0.307</td></tr><tr><th scope="row"> <p>Snacks</p> </th><td>0.374</td><td>0.400</td></tr><tr class="greenbar"><th scope="row"> <p>Spices, seasonings, condiments, sauces</p> </th><td>0.333</td><td>0.342</td></tr><tr><th scope="row"> <p>Baby food</p> </th><td>0.045</td><td>0.063</td></tr><tr class="greenbar"><th scope="row"> <p>Other miscellaneous foods</p> </th><td>0.608</td><td>0.610</td></tr><tr><th scope="row"> <p>Food away from home</p> </th><td>5.293</td><td>5.761</td></tr><tr class="greenbar"><th scope="row"> <p>Full service meals and snacks</p> </th><td>2.449</td><td>2.375</td></tr><tr><th scope="row"> <p>Limited service meals and snacks</p> </th><td>2.554</td><td>3.080</td></tr><tr class="greenbar"><th scope="row"> <p>Food at employee sites and schools</p> </th><td>0.078</td><td>0.074</td></tr><tr><th scope="row"> <p>Food from vending machines and mobile vendors</p> </th><td>0.039</td><td>0.058</td></tr><tr class="greenbar"><th scope="row"> <p>Other food away from home</p> </th><td>0.174</td><td>0.175</td></tr><tr><th scope="row"> <p>Alcoholic beverages</p> </th><td>0.883</td><td>0.777</td></tr><tr class="greenbar"><th scope="row"> <p>Alcoholic beverages at home</p> </th><td>0.586</td><td>0.539</td></tr><tr><th scope="row"> <p>Beer, ale, and other malt beverages at home</p> </th><td>0.228</td><td>0.262</td></tr><tr class="greenbar"><th scope="row"> <p>Distilled spirits at home</p> </th><td>0.105</td><td>0.092</td></tr><tr><th scope="row"> <p>Wine at home</p> </th><td>0.253</td><td>0.186</td></tr><tr class="greenbar"><th scope="row"> <p>Alcoholic beverages away from home</p> </th><td>0.297</td><td>0.237</td></tr><tr><th scope="row"> <p>Housing</p> </th><td>43.008</td><td>40.726</td></tr><tr class="greenbar"><th scope="row"> <p>Shelter</p> </th><td>33.273</td><td>30.880</td></tr><tr><th scope="row"> <p>Rent of primary residence</p> </th><td>7.530</td><td>9.900</td></tr><tr class="greenbar"><th scope="row"> <p>Lodging away from home</p> </th><td>0.885</td><td>0.575</td></tr><tr><th scope="row"> <p>Housing at school, excluding board</p> </th><td>0.125</td><td>0.104</td></tr><tr class="greenbar"><th scope="row"> <p>Other lodging away from home including hotels and motels</p> </th><td>0.761</td><td>0.472</td></tr><tr><th scope="row"> <p>Owners equivalent rent of residences</p> </th><td>24.496</td><td>20.076</td></tr><tr class="greenbar"><th scope="row"> <p>Owners equivalent rent of primary residence</p> </th><td>23.225</td><td>19.484</td></tr><tr><th scope="row"> <p>Unsampled owners equivalent rent of secondary residences</p> </th><td>1.271</td><td>0.592</td></tr><tr class="greenbar"><th scope="row"> <p>Tenants and household insurance</p> </th><td>0.362</td><td>0.329</td></tr><tr><th scope="row"> <p>Fuels and utilities</p> </th><td>4.943</td><td>5.464</td></tr><tr class="greenbar"><th scope="row"> <p>Household energy</p> </th><td>3.848</td><td>4.293</td></tr><tr><th scope="row"> <p>Fuel oil and other fuels</p> </th><td>0.227</td><td>0.200</td></tr><tr class="greenbar"><th scope="row"> <p>Fuel oil</p> </th><td>0.153</td><td>0.131</td></tr><tr><th scope="row"> <p>Propane, kerosene, and firewood</p> </th><td>0.074</td><td>0.068</td></tr><tr class="greenbar"><th scope="row"> <p>Energy services</p> </th><td>3.620</td><td>4.094</td></tr><tr><th scope="row"> <p>Electricity</p> </th><td>2.635</td><td>3.067</td></tr><tr class="greenbar"><th scope="row"> <p>Utility (piped) gas service</p> </th><td>0.985</td><td>1.027</td></tr><tr><th scope="row"> <p>Water and sewer and trash collection services</p> </th><td>1.095</td><td>1.170</td></tr><tr class="greenbar"><th scope="row"> <p>Water and sewerage maintenance</p> </th><td>0.786</td><td>0.858</td></tr><tr><th scope="row"> <p>Garbage and trash collection</p> </th><td>0.309</td><td>0.313</td></tr><tr class="greenbar"><th scope="row"> <p>Household furnishings and operations</p> </th><td>4.792</td><td>4.382</td></tr><tr><th scope="row"> <p>Window and floor coverings and other linens</p> </th><td>0.292</td><td>0.265</td></tr><tr class="greenbar"><th scope="row"> <p>Floor coverings</p> </th><td>0.069</td><td>0.060</td></tr><tr><th scope="row"> <p>Window coverings</p> </th><td>0.057</td><td>0.042</td></tr><tr class="greenbar"><th scope="row"> <p>Other linens</p> </th><td>0.165</td><td>0.163</td></tr><tr><th scope="row"> <p>Furniture and bedding</p> </th><td>0.955</td><td>1.052</td></tr><tr class="greenbar"><th scope="row"> <p>Bedroom furniture</p> </th><td>0.308</td><td>0.350</td></tr><tr><th scope="row"> <p>Living room, kitchen, and dining room furniture</p> </th><td>0.470</td><td>0.535</td></tr><tr class="greenbar"><th scope="row"> <p>Other furniture</p> </th><td>0.168</td><td>0.148</td></tr><tr><th scope="row"> <p>Unsampled furniture</p> </th><td>0.009</td><td>0.018</td></tr><tr class="greenbar"><th scope="row"> <p>Appliances</p> </th><td>0.241</td><td>0.274</td></tr><tr><th scope="row"> <p>Major appliances</p> </th><td>0.078</td><td>0.098</td></tr><tr class="greenbar"><th scope="row"> <p>Other appliances</p> </th><td>0.161</td><td>0.171</td></tr><tr><th scope="row"> <p>Unsampled appliances</p> </th><td>0.003</td><td>0.005</td></tr><tr class="greenbar"><th scope="row"> <p>Other household equipment and furnishings</p> </th><td>0.545</td><td>0.372</td></tr><tr><th scope="row"> <p>Clocks, lamps, and decorator items</p> </th><td>0.324</td><td>0.189</td></tr><tr class="greenbar"><th scope="row"> <p>Indoor plants and flowers</p> </th><td>0.101</td><td>0.072</td></tr><tr><th scope="row"> <p>Dishes and flatware</p> </th><td>0.049</td><td>0.048</td></tr><tr class="greenbar"><th scope="row"> <p>Nonelectric cookware and tableware</p> </th><td>0.071</td><td>0.062</td></tr><tr><th scope="row"> <p>Tools, hardware, outdoor equipment and supplies</p> </th><td>0.968</td><td>0.999</td></tr><tr class="greenbar"><th scope="row"> <p>Tools, hardware and supplies</p> </th><td>0.254</td><td>0.349</td></tr><tr><th scope="row"> <p>Outdoor equipment and supplies</p> </th><td>0.480</td><td>0.463</td></tr><tr class="greenbar"><th scope="row"> <p>Unsampled tools, hardware, outdoor equipment and supplies</p> </th><td>0.233</td><td>0.186</td></tr><tr><th scope="row"> <p>Housekeeping supplies</p> </th><td>0.967</td><td>1.006</td></tr><tr class="greenbar"><th scope="row"> <p>Household cleaning products</p> </th><td>0.346</td><td>0.369</td></tr><tr><th scope="row"> <p>Household paper products</p> </th><td>0.229</td><td>0.229</td></tr><tr class="greenbar"><th scope="row"> <p>Miscellaneous household products</p> </th><td>0.391</td><td>0.408</td></tr><tr><th scope="row"> <p>Household operations</p> </th><td>0.825</td><td>0.414</td></tr><tr class="greenbar"><th scope="row"> <p>Domestic services</p> </th><td>0.239</td><td>0.082</td></tr><tr><th scope="row"> <p>Gardening and lawncare services</p> </th><td>0.292</td><td>0.128</td></tr><tr class="greenbar"><th scope="row"> <p>Moving, storage, freight expense</p> </th><td>0.099</td><td>0.077</td></tr><tr><th scope="row"> <p>Repair of household items</p> </th><td>0.111</td><td>0.080</td></tr><tr class="greenbar"><th scope="row"> <p>Unsampled household operations</p> </th><td>0.083</td><td>0.047</td></tr><tr><th scope="row"> <p>Apparel</p> </th><td>2.376</td><td>2.511</td></tr><tr class="greenbar"><th scope="row"> <p>Men's and boys' apparel</p> </th><td>0.600</td><td>0.665</td></tr><tr><th scope="row"> <p>Men's apparel</p> </th><td>0.461</td><td>0.473</td></tr><tr class="greenbar"><th scope="row"> <p>Men's suits, sport coats, and outerwear</p> </th><td>0.075</td><td>0.070</td></tr><tr><th scope="row"> <p>Men's underwear, nightwear, swimwear, and accessories</p> </th><td>0.154</td><td>0.162</td></tr><tr class="greenbar"><th scope="row"> <p>Men's shirts and sweaters</p> </th><td>0.113</td><td>0.111</td></tr><tr><th scope="row"> <p>Men's pants and shorts</p> </th><td>0.113</td><td>0.123</td></tr><tr class="greenbar"><th scope="row"> <p>Unsampled men's apparel</p> </th><td>0.006</td><td>0.007</td></tr><tr><th scope="row"> <p>Boys' apparel</p> </th><td>0.139</td><td>0.192</td></tr><tr class="greenbar"><th scope="row"> <p>Women's and girls' apparel</p> </th><td>0.931</td><td>0.913</td></tr><tr><th scope="row"> <p>Women's apparel</p> </th><td>0.780</td><td>0.712</td></tr><tr class="greenbar"><th scope="row"> <p>Women's outerwear</p> </th><td>0.055</td><td>0.050</td></tr><tr><th scope="row"> <p>Women's dresses</p> </th><td>0.082</td><td>0.083</td></tr><tr class="greenbar"><th scope="row"> <p>Women's suits and separates</p> </th><td>0.376</td><td>0.320</td></tr><tr><th scope="row"> <p>Women's underwear, nightwear, swimwear, and accessories</p> </th><td>0.259</td><td>0.250</td></tr><tr class="greenbar"><th scope="row"> <p>Unsampled women's apparel</p> </th><td>0.008</td><td>0.009</td></tr><tr><th scope="row"> <p>Girls' apparel</p> </th><td>0.152</td><td>0.201</td></tr><tr class="greenbar"><th scope="row"> <p>Footwear</p> </th><td>0.577</td><td>0.690</td></tr><tr><th scope="row"> <p>Men's footwear</p> </th><td>0.194</td><td>0.288</td></tr><tr class="greenbar"><th scope="row"> <p>Boys' and girls' footwear</p> </th><td>0.114</td><td>0.134</td></tr><tr><th scope="row"> <p>Women's footwear</p> </th><td>0.269</td><td>0.268</td></tr><tr class="greenbar"><th scope="row"> <p>Infants' and toddlers' apparel</p> </th><td>0.112</td><td>0.146</td></tr><tr><th scope="row"> <p>Jewelry and watches</p> </th><td>0.156</td><td>0.096</td></tr><tr class="greenbar"><th scope="row"> <p>Watches</p> </th><td>0.029</td><td>0.028</td></tr><tr><th scope="row"> <p>Jewelry</p> </th><td>0.126</td><td>0.068</td></tr><tr class="greenbar"><th scope="row"> <p>Transportation</p> </th><td>17.737</td><td>21.235</td></tr><tr><th scope="row"> <p>Private transportation</p> </th><td>16.868</td><td>20.603</td></tr><tr class="greenbar"><th scope="row"> <p>New and used motor vehicles</p> </th><td>8.716</td><td>10.399</td></tr><tr><th scope="row"> <p>New vehicles</p> </th><td>4.083</td><td>4.562</td></tr><tr class="greenbar"><th scope="row"> <p>Used cars and trucks</p> </th><td>3.548</td><td>4.795</td></tr><tr><th scope="row"> <p>Leased cars and trucks</p> </th><td>0.864</td><td>0.818</td></tr><tr class="greenbar"><th scope="row"> <p>Car and truck rental</p> </th><td>0.137</td><td>0.126</td></tr><tr><th scope="row"> <p>Unsampled new and used motor vehicles</p> </th><td>0.083</td><td>0.097</td></tr><tr class="greenbar"><th scope="row"> <p>Motor fuel</p> </th><td>3.559</td><td>4.746</td></tr><tr><th scope="row"> <p>Gasoline (all types)</p> </th><td>3.467</td><td>4.639</td></tr><tr class="greenbar"><th scope="row"> <p>Other motor fuels</p> </th><td>0.092</td><td>0.107</td></tr><tr><th scope="row"> <p>Motor vehicle parts and equipment</p> </th><td>0.437</td><td>0.526</td></tr><tr class="greenbar"><th scope="row"> <p>Tires</p> </th><td>0.274</td><td>0.323</td></tr><tr><th scope="row"> <p>Vehicle accessories other than tires</p> </th><td>0.163</td><td>0.202</td></tr><tr class="greenbar"><th scope="row"> <p>Motor vehicle maintenance and repair</p> </th><td>1.102</td><td>1.215</td></tr><tr><th scope="row"> <p>Motor vehicle body work</p> </th><td>0.053</td><td>0.070</td></tr><tr class="greenbar"><th scope="row"> <p>Motor vehicle maintenance and servicing</p> </th><td>0.593</td><td>0.637</td></tr><tr><th scope="row"> <p>Motor vehicle repair</p> </th><td>0.410</td><td>0.470</td></tr><tr class="greenbar"><th scope="row"> <p>Unsampled service policies</p> </th><td>0.046</td><td>0.039</td></tr><tr><th scope="row"> <p>Motor vehicle insurance</p> </th><td>2.557</td><td>3.221</td></tr><tr class="greenbar"><th scope="row"> <p>Motor vehicle fees</p> </th><td>0.498</td><td>0.496</td></tr><tr><th scope="row"> <p>State motor vehicle registration and license fees</p> </th><td>0.289</td><td>0.318</td></tr><tr class="greenbar"><th scope="row"> <p>Parking and other fees</p> </th><td>0.194</td><td>0.164</td></tr><tr><th scope="row"> <p>Unsampled motor vehicle fees</p> </th><td>0.015</td><td>0.014</td></tr><tr class="greenbar"><th scope="row"> <p>Public transportation</p> </th><td>0.869</td><td>0.632</td></tr><tr><th scope="row"> <p>Airline fares</p> </th><td>0.580</td><td>0.372</td></tr><tr class="greenbar"><th scope="row"> <p>Other intercity transportation</p> </th><td>0.092</td><td>0.053</td></tr><tr><th scope="row"> <p>Intracity transportation</p> </th><td>0.195</td><td>0.200</td></tr><tr class="greenbar"><th scope="row"> <p>Unsampled public transportation</p> </th><td>0.002</td><td>0.007</td></tr><tr><th scope="row"> <p>Medical care</p> </th><td>8.288</td><td>6.929</td></tr><tr class="greenbar"><th scope="row"> <p>Medical care commodities</p> </th><td>1.478</td><td>1.186</td></tr><tr><th scope="row"> <p>Medicinal drugs</p> </th><td>1.373</td><td>1.116</td></tr><tr class="greenbar"><th scope="row"> <p>Prescription drugs</p> </th><td>0.998</td><td>0.807</td></tr><tr><th scope="row"> <p>Nonprescription drugs</p> </th><td>0.374</td><td>0.309</td></tr><tr class="greenbar"><th scope="row"> <p>Medical equipment and supplies</p> </th><td>0.105</td><td>0.070</td></tr><tr><th scope="row"> <p>Medical care services</p> </th><td>6.810</td><td>5.743</td></tr><tr class="greenbar"><th scope="row"> <p>Professional services</p> </th><td>3.467</td><td>2.785</td></tr><tr><th scope="row"> <p>Physicians' services</p> </th><td>1.815</td><td>1.497</td></tr><tr class="greenbar"><th scope="row"> <p>Dental services</p> </th><td>0.924</td><td>0.733</td></tr><tr><th scope="row"> <p>Eyeglasses and eye care</p> </th><td>0.355</td><td>0.299</td></tr><tr class="greenbar"><th scope="row"> <p>Services by other medical professionals</p> </th><td>0.374</td><td>0.257</td></tr><tr><th scope="row"> <p>Hospital and related services</p> </th><td>2.528</td><td>2.152</td></tr><tr class="greenbar"><th scope="row"> <p>Hospital services</p> </th><td>2.158</td><td>1.944</td></tr><tr><th scope="row"> <p>Nursing homes and adult day services</p> </th><td>0.206</td><td>0.114</td></tr><tr class="greenbar"><th scope="row"> <p>Care of invalids and elderly at home</p> </th><td>0.163</td><td>0.093</td></tr><tr><th scope="row"> <p>Health insurance</p> </th><td>0.815</td><td>0.806</td></tr><tr class="greenbar"><th scope="row"> <p>Recreation</p> </th><td>5.044</td><td>4.350</td></tr><tr><th scope="row"> <p>Video and audio</p> </th><td>1.407</td><td>1.442</td></tr><tr class="greenbar"><th scope="row"> <p>Televisions</p> </th><td>0.118</td><td>0.123</td></tr><tr><th scope="row"> <p>Cable and satellite television service</p> </th><td>1.044</td><td>1.061</td></tr><tr class="greenbar"><th scope="row"> <p>Other video equipment</p> </th><td>0.023</td><td>0.026</td></tr><tr><th scope="row"> <p>Video discs and other media, including rental of video</p> </th><td>0.094</td><td>0.092</td></tr><tr class="greenbar"><th scope="row"> <p>Audio equipment</p> </th><td>0.071</td><td>0.086</td></tr><tr><th scope="row"> <p>Recorded music and music subscriptions</p> </th><td>0.052</td><td>0.048</td></tr><tr class="greenbar"><th scope="row"> <p>Unsampled video and audio</p> </th><td>0.006</td><td>0.006</td></tr><tr><th scope="row"> <p>Pets, pet products and services</p> </th><td>1.102</td><td>1.001</td></tr><tr class="greenbar"><th scope="row"> <p>Pets and pet products</p> </th><td>0.577</td><td>0.561</td></tr><tr><th scope="row"> <p>Pet services including veterinary</p> </th><td>0.525</td><td>0.439</td></tr><tr class="greenbar"><th scope="row"> <p>Sporting goods</p> </th><td>0.548</td><td>0.477</td></tr><tr><th scope="row"> <p>Sports vehicles including bicycles</p> </th><td>0.314</td><td>0.238</td></tr><tr class="greenbar"><th scope="row"> <p>Sports equipment</p> </th><td>0.223</td><td>0.231</td></tr><tr><th scope="row"> <p>Unsampled sporting goods</p> </th><td>0.011</td><td>0.008</td></tr><tr class="greenbar"><th scope="row"> <p>Photography</p> </th><td>0.051</td><td>0.036</td></tr><tr><th scope="row"> <p>Photographic equipment and supplies</p> </th><td>0.021</td><td>0.015</td></tr><tr class="greenbar"><th scope="row"> <p>Photographers and photo processing</p> </th><td>0.030</td><td>0.020</td></tr><tr><th scope="row"> <p>Unsampled photography</p> </th><td>0.000</td><td>0.000</td></tr><tr class="greenbar"><th scope="row"> <p>Other recreational goods</p> </th><td>0.369</td><td>0.348</td></tr><tr><th scope="row"> <p>Toys</p> </th><td>0.285</td><td>0.263</td></tr><tr class="greenbar"><th scope="row"> <p>Sewing machines, fabric and supplies</p> </th><td>0.027</td><td>0.015</td></tr><tr><th scope="row"> <p>Music instruments and accessories</p> </th><td>0.042</td><td>0.032</td></tr><tr class="greenbar"><th scope="row"> <p>Unsampled recreation commodities</p> </th><td>0.016</td><td>0.038</td></tr><tr><th scope="row"> <p>Other recreation services</p> </th><td>1.473</td><td>1.005</td></tr><tr class="greenbar"><th scope="row"> <p>Club membership for shopping clubs, fraternal, or other organizations, or participant sports fees</p> </th><td>0.641</td><td>0.412</td></tr><tr><th scope="row"> <p>Admissions</p> </th><td>0.465</td><td>0.292</td></tr><tr class="greenbar"><th scope="row"> <p>Fees for lessons or instructions</p> </th><td>0.176</td><td>0.096</td></tr><tr><th scope="row"> <p>Unsampled recreation services</p> </th><td>0.191</td><td>0.205</td></tr><tr class="greenbar"><th scope="row"> <p>Recreational reading materials</p> </th><td>0.095</td><td>0.041</td></tr><tr><th scope="row"> <p>Newspapers and magazines</p> </th><td>0.056</td><td>0.021</td></tr><tr class="greenbar"><th scope="row"> <p>Recreational books</p> </th><td>0.039</td><td>0.021</td></tr><tr><th scope="row"> <p>Unsampled recreational reading materials</p> </th><td>0.000</td><td>0.000</td></tr><tr class="greenbar"><th scope="row"> <p>Education and communication</p> </th><td>6.063</td><td>5.824</td></tr><tr><th scope="row"> <p>Education</p> </th><td>2.599</td><td>1.822</td></tr><tr class="greenbar"><th scope="row"> <p>Educational books and supplies</p> </th><td>0.086</td><td>0.099</td></tr><tr><th scope="row"> <p>Tuition, other school fees, and childcare</p> </th><td>2.513</td><td>1.724</td></tr><tr class="greenbar"><th scope="row"> <p>College tuition and fees</p> </th><td>1.434</td><td>0.954</td></tr><tr><th scope="row"> <p>Elementary and high school tuition and fees</p> </th><td>0.316</td><td>0.146</td></tr><tr class="greenbar"><th scope="row"> <p>Day care and preschool</p> </th><td>0.634</td><td>0.497</td></tr><tr><th scope="row"> <p>Technical and business school tuition and fees</p> </th><td>0.039</td><td>0.038</td></tr><tr class="greenbar"><th scope="row"> <p>Unsampled tuition, other school fees, and childcare</p> </th><td>0.090</td><td>0.088</td></tr><tr><th scope="row"> <p>Communication</p> </th><td>3.464</td><td>4.002</td></tr><tr class="greenbar"><th scope="row"> <p>Postage and delivery services</p> </th><td>0.085</td><td>0.079</td></tr><tr><th scope="row"> <p>Postage</p> </th><td>0.076</td><td>0.075</td></tr><tr class="greenbar"><th scope="row"> <p>Delivery services</p> </th><td>0.009</td><td>0.004</td></tr><tr><th scope="row"> <p>Information and information processing</p> </th><td>3.379</td><td>3.923</td></tr><tr class="greenbar"><th scope="row"> <p>Telephone services</p> </th><td>1.818</td><td>2.197</td></tr><tr><th scope="row"> <p>Wireless telephone services</p> </th><td>1.509</td><td>1.945</td></tr><tr class="greenbar"><th scope="row"> <p>Residential telephone services</p> </th><td>0.309</td><td>0.252</td></tr><tr><th scope="row"> <p>Information technology, hardware and services</p> </th><td>1.561</td><td>1.726</td></tr><tr class="greenbar"><th scope="row"> <p>Computers, peripherals, and smart home assistants</p> </th><td>0.319</td><td>0.291</td></tr><tr><th scope="row"> <p>Computer software and accessories</p> </th><td>0.019</td><td>0.013</td></tr><tr class="greenbar"><th scope="row"> <p>Internet services and electronic information providers</p> </th><td>0.918</td><td>1.056</td></tr><tr><th scope="row"> <p>Telephone hardware, calculators, and other consumer information items</p> </th><td>0.297</td><td>0.360</td></tr><tr class="greenbar"><th scope="row"> <p>Unsampled information and information processing</p> </th><td>0.008</td><td>0.006</td></tr><tr><th scope="row"> <p>Other goods and services</p> </th><td>2.735</td><td>2.787</td></tr><tr class="greenbar"><th scope="row"> <p>Tobacco and smoking products</p> </th><td>0.521</td><td>0.845</td></tr><tr><th scope="row"> <p>Cigarettes</p> </th><td>0.451</td><td>0.743</td></tr><tr class="greenbar"><th scope="row"> <p>Tobacco products other than cigarettes</p> </th><td>0.065</td><td>0.097</td></tr><tr><th scope="row"> <p>Unsampled tobacco and smoking products</p> </th><td>0.005</td><td>0.006</td></tr><tr class="greenbar"><th scope="row"> <p>Personal care</p> </th><td>2.213</td><td>1.942</td></tr><tr><th scope="row"> <p>Personal care products</p> </th><td>0.654</td><td>0.647</td></tr><tr class="greenbar"><th scope="row"> <p>Hair, dental, shaving, and miscellaneous personal care products</p> </th><td>0.341</td><td>0.333</td></tr><tr><th scope="row"> <p>Cosmetics, perfume, bath, nail preparations and implements</p> </th><td>0.304</td><td>0.297</td></tr><tr class="greenbar"><th scope="row"> <p>Unsampled personal care products</p> </th><td>0.009</td><td>0.017</td></tr><tr><th scope="row"> <p>Personal care services</p> </th><td>0.545</td><td>0.504</td></tr><tr class="greenbar"><th scope="row"> <p>Haircuts and other personal care services</p> </th><td>0.545</td><td>0.504</td></tr><tr><th scope="row"> <p>Miscellaneous personal services</p> </th><td>0.822</td><td>0.652</td></tr><tr class="greenbar"><th scope="row"> <p>Legal services</p> </th><td>0.231</td><td>0.139</td></tr><tr><th scope="row"> <p>Funeral expenses</p> </th><td>0.148</td><td>0.084</td></tr><tr class="greenbar"><th scope="row"> <p>Laundry and dry cleaning services</p> </th><td>0.155</td><td>0.176</td></tr><tr><th scope="row"> <p>Apparel services other than laundry and dry cleaning</p> </th><td>0.019</td><td>0.014</td></tr><tr class="greenbar"><th scope="row"> <p>Financial services</p> </th><td>0.187</td><td>0.139</td></tr><tr><th scope="row"> <p>Unsampled items</p> </th><td>0.082</td><td>0.100</td></tr><tr class="greenbar"><th scope="row"> <p>Miscellaneous personal goods</p> </th><td>0.191</td><td>0.138</td></tr></tbody><tfoot id="BLStable_2023_2_8_13_9_footnotes" style="display: none;"><tr class="footnotes"><td class="footnotes"></td></tr></tfoot></table><p><strong>Last modified date: </strong>February 17, 2023</p></div>
+      
+         </div>
+        
+      <ul class="gb-info" aria-hidden="true" style="display:none;"><li><a href="/cpi/">Consumer Price Index</a></li><li>Data</li></ul><style>.programsNavBar .navbar-nav li:nth-child(3){background: url(/images/regions/triangle.png) no-repeat center bottom;}</style>
+          
+
+  
+
+      <!-- OneColFootBasic Begin -->
+
+<!-- Footer Filename: -->
+
+<!--no_index_start-->
+
+<!-- 1COL CMS BASIC LAYOUT COL1 END -->
+
+
+
+<div class="clearfloat"></div>
+<div class="social-media">
+</div>
+</div> 
+
+
+
+<!-- 1COL CMS LAYOUT COL1 END -->
+
+
+
+
+
+
+<!-- WRAPPER BOTTOM BEGIN -->
+
+
+		
+		
+		</div><!-- close id="wrapper-outer" -->
+	</div><!-- close id="wrapper" -->
+</div><!-- close id="container" -->
+
+	
+
+
+<!-- WRAPPER BOTTOM END -->
+
+
+
+<!-- FOOTER LEFT BEGIN -->
+
+<footer >
+	
+<!-- Footer Nav Menu-->
+<div class="footerNav">
+<ul class="footerNavInner">
+   <li class="footerNavItem"><a href="https://www.bls.gov/">Home</a></li>
+   <li class="footerNavItem"><a href="/bls/proghome.htm">Subjects</a></li>
+   <li class="footerNavItem"><a href="/data/">Data Tools</a></li>
+   <li class="footerNavItem"><a href="/opub/">Publications</a></li>
+   <li class="footerNavItem"><a href="/bls/newsrels.htm">Economic Releases</a></li>
+   <li class="footerNavItem"><a href="/k12/" >Classroom</a></li>
+   <li class="footerNavItem"><a href="/beta/">Beta</a></li>
+</ul>
+</div>
+<!-- Footer Nav Menu-->
+<script>/*<![CDATA[*/(function(){var sz = document.createElement('script'); sz.type = 'text/javascript'; sz.async = true;sz.src = '//siteimproveanalytics.com/js/siteanalyze_6032860.js';var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(sz, s);})();/*]]>*/</script> 
+
+<script src="/javascripts/touchpointsForms.js"></script>
+<link rel="stylesheet" type="text/css" href="/stylesheets/touchpointsForms.css">
+
+<div id="footer-primary-wrapper">
+<div class="bootstrap standard-width">
+<div id="footer-container" class="row">
+	<div id="footer-links-container" class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+	
+	
+<div class="bls-lftside-holder">	
+<div class="bls-logo-footer">
+<img src="/images/bls_emblem_trans.png" class="responsiveImg" alt="U.S. Bureau of Labor Statistics Logo "/><div class="d-none d-md-block clearfloat"><br><br></div>
+
+ </div>
+ <div class="address-contact-footer">
+
+<!-- FOOTER LEFT END -->
+
+
+
+
+<address class="footer-address"  >   
+<strong>U.S. Bureau of Labor Statistics</strong>
+<span>Consumer Price Index</span> 
+<span>Office of Prices and Living Conditions</span> 
+<span>Suitland Federal Center</span>
+<span>Floor 7</span>
+<span>4600 Silver Hill Road</span>  
+<span>Washington, DC 20212-0002</span>
+</address>
+
+
+
+<!-- FOOTER CENTER BEGIN -->
+
+
+
+
+
+<!-- FOOTER CENTER END -->
+
+
+
+
+<span class="footer-contact">  
+
+<a href="tel:12026917000" class="number" aria-label="Telephone: 202-691-7000">
+<span>Telephone:</span><span> 202-691-7000 </span>
+
+</a>
+
+
+<a href="/cpi/home.htm" aria-label="www.bls.gov/CPI" >www.bls.gov/CPI</a>
+<a href="https://data.bls.gov/forms/cpi.htm?/cpi/tables/relative-importance/old-weights-2022.htm" aria-label="Contact CPI">Contact CPI</a>
+
+</span>
+		
+
+
+
+
+
+<!-- FOOTER RIGHT BEGIN -->
+
+</div> 
+</div>
+</div>
+
+				<div id="quicklinks" class="row col-xs-12 col-sm-12 col-md-8 col-lg-8">
+					<div class="col-xs-6 col-sm-6 col-md-6 col-lg-5">
+					<strong>resources</strong>
+					<a class="d-sm-none" data-toggle="collapse" href="#quicklinksli5" role="button" aria-expanded="false" aria-controls="quicklinksli5" aria-label="resources Sub Menu"></a>
+						<div class="collapse" id="quicklinksli5">
+							<ul class="d-sm-block">						
+								<li><a href="https://www.oig.dol.gov/" aria-label="Office of Inspector General (OIG) website">Inspector General (OIG)</a></li>
+								<li><a href="/bls/bls_budget_and_performance.htm" aria-label="Budget and Performance">Budget and Performance</a></li>	
+								<li><a href="https://www.dol.gov/grants" aria-label="Department of Labor Grants">Department of Labor Grants</a></li>									
+								<li><a href="/bls/no_fear_act.htm" aria-label="No Fear Act">No Fear Act</a></li>
+								<li><a href="https://www.usa.gov/" aria-label="USA.gov website">USA.gov</a></li>
+							</ul>
+						</div>
+					</div>		
+					<div class="col-xs-6 col-sm-6 col-md-6 col-lg-5">
+					<strong>about the site</strong>
+					<a class="d-sm-none" data-toggle="collapse" href="#quicklinksli6" role="button" aria-expanded="false" aria-controls="quicklinksli6" aria-label="about this site Sub Menu"></a>
+						<div class="collapse" id="quicklinksli6">
+							<ul class="d-sm-block">	
+								<li><a href="/bls/sitemap.htm" aria-label="Sitemap">Sitemap</a></li>						
+								<li><a href="/bls/blsfoia.htm" aria-label="Freedom of Information Act">Freedom of Information Act</a></li>
+								<li><a href="/bls/pss.htm" aria-label="Privacy and Security Statement">Privacy and Security Statement</a></li>
+								<li><a href="/bls/disclaimer.htm" aria-label="Disclaimers">Disclaimers</a></li>
+								<li><a href="/bls/linksite.htm" aria-label="Linking and Copyright Information">Linking and Copyright Info</a></li>	
+								<li><a href="/bls/website-policies.htm" aria-label="Important Website Notices">Important Website Notices</a></li>
+								<li><a href="/help/" aria-label="Help and Tutorials">Help and Tutorials</a></li>
+								<li><a href="/bls/ada.htm" aria-label="Accessibility Statement">Accessibility Statement</a></li>
+							</ul>
+						</div>
+					</div>				
+                </div>
+				 
+</div>
+</div>
+</div>
+<div id="footer-secondary-wrapper">
+
+<div class="bootstrap standard-width">
+
+<div>
+<span>Connect With BLS</span>
+  <div class="social-media-icons"> 
+    
+			<a class="social-media-icon" href="https://bsky.app/profile/usbls.bsky.social" title="Connect with BLS on Bluesky" target="_blank" rel="noopener noreferrer" >
+              <!--?xml version="1.0" encoding="utf-8"?-->
+				<svg aria-hidden="true" data-prefix="fas" data-icon="bluesky" class="svg-inline--fa fa-w-16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 530"><path fill="currentColor" xmlns="http://www.w3.org/2000/svg" d="m135.72 44.03c66.496 49.921 138.02 151.14 164.28 205.46 26.262-54.316 97.782-155.54 164.28-205.46 47.98-36.021 125.72-63.892 125.72 24.795 0 17.712-10.155 148.79-16.111 170.07-20.703 73.984-96.144 92.854-163.25 81.433 117.3 19.964 147.14 86.092 82.697 152.22-122.39 125.59-175.91-31.511-189.63-71.766-2.514-7.3797-3.6904-10.832-3.7077-7.8964-0.0174-2.9357-1.1937 0.51669-3.7077 7.8964-13.714 40.255-67.233 197.36-189.63 71.766-64.444-66.128-34.605-132.26 82.697-152.22-67.108 11.421-142.55-7.4491-163.25-81.433-5.9562-21.282-16.111-152.36-16.111-170.07 0-88.687 77.742-60.816 125.72-24.795z"/></svg>
+              <span class="sr-only">Bluesky</span>
+          </a>
+
+           <a class="social-media-icon" href="https://www.instagram.com/usbls_gov/" title="Connect with BLS on Instagram" target="_blank" rel="noopener noreferrer" >
+              <!--?xml version="1.0" encoding="utf-8"?-->
+				<svg aria-hidden="true" data-prefix="fas" data-icon="instagram" class="svg-inline--fa fa-w-16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"/></svg>
+              <span class="sr-only">Instagram</span>
+          </a>
+
+           <a class="social-media-icon" href="https://www.linkedin.com/company/bureau-of-labor-statistics/" title="Connect with BLS on LinkedIn" target="_blank" rel="noopener noreferrer" >
+              <!--?xml version="1.0" encoding="utf-8"?-->
+			  <svg aria-hidden="true" data-prefix="fas" data-icon="linkedin" class="svg-inline--fa fa-w-16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"/></svg>
+              <span class="sr-only">LinkedIn</span>
+          </a>
+
+           <a class="social-media-icon" href="https://www.threads.net/@usbls_gov" title="Connect with BLS on Threads" target="_blank" rel="noopener noreferrer" >
+              <!--?xml version="1.0" encoding="utf-8"?-->
+				<svg aria-hidden="true" data-prefix="fas" data-icon="threads" class="svg-inline--fa fa-w-16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M331.5 235.7c2.2 .9 4.2 1.9 6.3 2.8c29.2 14.1 50.6 35.2 61.8 61.4c15.7 36.5 17.2 95.8-30.3 143.2c-36.2 36.2-80.3 52.5-142.6 53h-.3c-70.2-.5-124.1-24.1-160.4-70.2c-32.3-41-48.9-98.1-49.5-169.6V256v-.2C17 184.3 33.6 127.2 65.9 86.2C102.2 40.1 156.2 16.5 226.4 16h.3c70.3 .5 124.9 24 162.3 69.9c18.4 22.7 32 50 40.6 81.7l-40.4 10.8c-7.1-25.8-17.8-47.8-32.2-65.4c-29.2-35.8-73-54.2-130.5-54.6c-57 .5-100.1 18.8-128.2 54.4C72.1 146.1 58.5 194.3 58 256c.5 61.7 14.1 109.9 40.3 143.3c28 35.6 71.2 53.9 128.2 54.4c51.4-.4 85.4-12.6 113.7-40.9c32.3-32.2 31.7-71.8 21.4-95.9c-6.1-14.2-17.1-26-31.9-34.9c-3.7 26.9-11.8 48.3-24.7 64.8c-17.1 21.8-41.4 33.6-72.7 35.3c-23.6 1.3-46.3-4.4-63.9-16c-20.8-13.8-33-34.8-34.3-59.3c-2.5-48.3 35.7-83 95.2-86.4c21.1-1.2 40.9-.3 59.2 2.8c-2.4-14.8-7.3-26.6-14.6-35.2c-10-11.7-25.6-17.7-46.2-17.8H227c-16.6 0-39 4.6-53.3 26.3l-34.4-23.6c19.2-29.1 50.3-45.1 87.8-45.1h.8c62.6 .4 99.9 39.5 103.7 107.7l-.2 .2zm-156 68.8c1.3 25.1 28.4 36.8 54.6 35.3c25.6-1.4 54.6-11.4 59.5-73.2c-13.2-2.9-27.8-4.4-43.4-4.4c-4.8 0-9.6 .1-14.4 .4c-42.9 2.4-57.2 23.2-56.2 41.8l-.1 .1z"/></svg>
+              <span class="sr-only">Threads</span>
+          </a>  
+    
+           <a class="social-media-icon" href="https://x.com/BLS_gov" title="Connect with BLS on X, formerly referred to as Twitter" target="_blank" rel="noopener noreferrer" >
+              <!--?xml version="1.0" encoding="utf-8"?-->
+              <svg aria-hidden="true" data-prefix="fab" data-icon="x.com" class="svg-inline--fa fa-twitter fa-w-16"  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z"></path></svg>
+              <span class="sr-only">Visit BLS on X</span>
+          </a>
+                  
+           <a class="social-media-icon" href="https://www.youtube.com/channel/UCijn3WBpHtx4AvSya7NER9Q" title="BLS Youtube" target="_blank" rel="noopener noreferrer" >
+              <!--?xml version="1.0" encoding="utf-8"?-->
+              <svg aria-hidden="true" data-prefix="fab" data-icon="youtube" class="svg-inline--fa fa-youtube fa-w-18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path fill="currentColor" d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z"></path></svg>
+              <span class="sr-only">Youtube</span>
+          </a>
+          <a class="social-media-icon" href="javascript:window.open('https://public.govdelivery.com/accounts/USDOLBLS/subscriber/new ','Popup','width=800,height=500,toolbar=no,scrollbars=yes,resizable=yes'); void('');" onclick="window.status='Subscribe'; return true" onmouseover="window.status='Subscribe'; return true" onmouseout="window.status=''; return true" id="social-email-3" title="Subscribe to BLS E-mail Updates">
+              <!--?xml version="1.0" encoding="utf-8"?-->
+              <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="envelope" class="svg-inline--fa fa-envelope fa-w-16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M502.3 190.8c3.9-3.1 9.7-.2 9.7 4.7V400c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V195.6c0-5 5.7-7.8 9.7-4.7 22.4 17.4 52.1 39.5 154.1 113.6 21.1 15.4 56.7 47.8 92.2 47.6 35.7.3 72-32.8 92.3-47.6 102-74.1 131.6-96.3 154-113.7zM256 320c23.2.4 56.6-29.2 73.4-41.4 132.7-96.3 142.8-104.7 173.4-128.7 5.8-4.5 9.2-11.5 9.2-18.9v-19c0-26.5-21.5-48-48-48H48C21.5 64 0 85.5 0 112v19c0 7.4 3.4 14.3 9.2 18.9 30.6 23.9 40.7 32.4 173.4 128.7 16.8 12.2 50.2 41.8 73.4 41.4z"></path></svg>
+              <span class="sr-only">Email</span>
+          </a>
+        </div>
+</div>
+</div>
+</div>
+</footer>
+
+<!-- FOOTER RIGHT END -->
+
+
+
+<!--no_index_end-->
+
+<!-- OneColFootBasic End -->
+
+
+
+
+
+
+  </div>
+
+      </body>
+</html>

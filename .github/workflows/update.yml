@@ -1,0 +1,91 @@
+# Pulls new CPI data after each BLS release and republishes the site.
+#
+# Runs a few times every weekday after 08:30 ET; schedule.py decides whether BLS has released
+# a month the site does not have yet (release_schedule.json, from
+# https://www.bls.gov/schedule/news_release/cpi.htm). Most runs stop after that check.
+#
+# Secrets (Settings -> Secrets and variables -> Actions):
+#   BLS_API_KEY      optional but recommended; free at https://data.bls.gov/registrationEngine/
+#   BLS_USER_AGENT   optional; bls.gov wants a contact string with an email, e.g. "us-cpi-driver you@example.com"
+name: Update CPI data
+
+on:
+  schedule:
+    # 08:30 ET is 12:30 UTC in summer and 13:30 UTC in winter
+    - cron: "45 13 * * 1-5"
+    - cron: "45 15 * * 1-5"
+    - cron: "45 19 * * 1-5"
+  workflow_dispatch:
+    inputs:
+      force:
+        description: "Recompute and publish even if no new release is due"
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: update-cpi
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    outputs:
+      changed: ${{ steps.commit.outputs.changed }}
+    env:
+      BLS_API_KEY: ${{ secrets.BLS_API_KEY }}
+      BLS_USER_AGENT: ${{ secrets.BLS_USER_AGENT }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - run: pip install -r requirements.txt
+
+      - name: Is a new release out?
+        id: gate
+        run: |
+          python schedule.py --download check >> "$GITHUB_OUTPUT"
+          if [ "${{ inputs.force }}" = "true" ]; then echo "run=true" >> "$GITHUB_OUTPUT"; fi
+
+      - name: Official weight tables (only when last December's table is missing)
+        if: steps.gate.outputs.run == 'true'
+        continue-on-error: true   # bls.gov may refuse cloud IPs; the committed tables are used then
+        run: python ri_official.py --download --if-missing
+
+      - name: Compute contributions
+        if: steps.gate.outputs.run == 'true'
+        run: |
+          cp web/data/cpi_data.json "$RUNNER_TEMP/previous.json" || true
+          python cpi_contrib.py --html ""
+
+      - name: Sanity checks
+        if: steps.gate.outputs.run == 'true'
+        run: python checks.py --previous "$RUNNER_TEMP/previous.json"
+
+      - name: Commit
+        id: commit
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add release_schedule.json web/data ri_official ri_official.csv ri_official_full.csv
+          if git diff --cached --quiet; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          else
+            latest=$(python -c "import json;print(max(json.load(open('web/data/cpi_data.json'))['breakdowns']['basic4']['mom']['dates']))")
+            git commit -m "data: CPI through ${latest}"
+            git push
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          fi
+
+  deploy:
+    needs: update
+    if: needs.update.outputs.changed == 'true' || inputs.force
+    uses: ./.github/workflows/pages.yml
