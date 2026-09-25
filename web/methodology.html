@@ -99,7 +99,16 @@
 <tr><td>rent_shelter / svc_less_ros</td><td><code>SAS2RS</code> / <code>SASL2RS</code></td><td>住宅租金 / 服務（不含住宅租金）</td></tr>
 </table></div>
 <h3>2.2 權重</h3>
-<p>BLS 每年公布一張「Relative importance of components in the Consumer Price Indexes: U.S. city average, December」表（Table 1）。本專案解析了 1987–2025 年共 47 張表（含「舊權重版」），來源依年份不同：1987–2019 年是 BLS 歷史壓縮檔內的純文字檔，2020 年起是 Excel，舊權重版是 HTML。各年細項代碼不一致（例如 Food 在 1987 年是 <code>SA11</code>），因此一律以細項名稱比對。2010 年以前的表沒有 Energy services 這一列，以 Energy − Energy commodities 推得。</p>
+<p>BLS 每年公布一張「Relative importance of components in the Consumer Price Indexes: U.S. city average, December」表（Table 1），列出全美城市平均、所有細項在 12 月的相對重要性。本專案解析了 1987–2025 年共 47 張（含舊權重版）。各年細項代碼不一致（例如 Food 在 1987 年是 <code>SA11</code>），因此一律以細項名稱比對。2010 年以前的表沒有 Energy services 這一列，以 Energy − Energy commodities 推得。</p>
+<div class="scroll"><table>
+<tr><th>來源</th><th>內容</th><th>用途</th></tr>
+<tr><td><a href="https://www.bls.gov/cpi/tables/relative-importance/home.htm">12 月 Table 1</a><br><span class="muted">2020 年起 <code>YYYY.xlsx</code>；1987–2019 年為 BLS 壓縮檔內的純文字檔</span></td><td>12 月的相對重要性，已是下一年度的新權重</td><td><strong>錨點權重</strong>（第 5.1 節）</td></tr>
+<tr><td>舊權重版 <code>old-weights-YYYY</code><br><span class="muted">2021 年起 HTML；更早為 TXT / PDF</span></td><td>同一個 12 月，仍用當年的舊權重</td><td>驗證價格更新式（第 10.3 節）</td></tr>
+<tr><td><a href="https://www.bls.gov/news.release/cpi.t01.htm">每月 CPI 新聞稿 Table 1</a></td><td>上個月的相對重要性</td><td>驗證逐月權重（第 10.4 節）</td></tr>
+<tr><td><a href="https://www.bls.gov/cpi/tables/relative-importance/cost-weights.htm">Cost weights</a><br><span class="muted">2011 年 12 月起</span></td><td>以金額表示、可相加的權重</td><td>未使用：BLS 以「全體成本權重 × 相對重要性」計算，資訊與 12 月表相同；BLS 註明它在正式系統外計算，且只適用於單一權重年度</td></tr>
+<tr><td>1947–1986 歷史表、<a href="https://fraser.stlouisfed.org/title/5240">FRASER</a> 掃描公報</td><td>1987 年以前的相對重要性</td><td>未使用（本專案從 1990 年起算）</td></tr>
+</table></div>
+<p>新一年的 12 月表由 BLS 在 1 月隨權重更新一起公布。</p>
 
 <h2 id="zh-3">3. CPI 如何加總</h2>
 <p>CPI 是修正型 Laspeyres（Lowe）指數：固定一籃子數量，用當期價格重新計價。把指數表示成相對於錨點 \(a\) 的比值時，整體等於各互斥細項價格變動的加權平均，權重就是錨點當月的支出比重：</p>
@@ -212,6 +221,19 @@ $$c_i^{\text{YoY, exact}}(t) \;=\; \sum_{k=1}^{K} c_i^{(1)}(k)\prod_{j\lt k}(1+g
 <h3>10.3 價格更新式 (2)</h3>
 <p>把官方 12 月表用式 (2) 滾動一年，和 BLS 同月的「舊權重版」表比較：2021 年起誤差 ≤ 0.001pp，更早 ≤ 0.02pp。</p>
 
+<h3>10.4 與新聞稿的每月權重比對</h3>
+<p>每月 CPI 新聞稿的 Table 1 會列出上個月的相對重要性。以 2026 年 8 月新聞稿（列的是 7 月權重）為例，本專案用 12 月錨點加式 (2) 逐月滾出來的 7 月權重，與 BLS 公布值<strong>完全相同</strong>：</p>
+<div class="scroll"><table>
+<tr><th>細項</th><th>本專案</th><th>BLS 新聞稿</th></tr>
+<tr><td>Food</td><td class="n">13.540</td><td class="n">13.540</td></tr>
+<tr><td>Energy</td><td class="n">7.347</td><td class="n">7.347</td></tr>
+<tr><td>Core goods</td><td class="n">18.842</td><td class="n">18.842</td></tr>
+<tr><td>Core services</td><td class="n">60.272</td><td class="n">60.272</td></tr>
+<tr><td>Food at home</td><td class="n">8.232</td><td class="n">8.232</td></tr>
+<tr><td>Energy commodities</td><td class="n">4.044</td><td class="n">4.044</td></tr>
+<tr><td>Energy services</td><td class="n">3.303</td><td class="n">3.303</td></tr>
+</table></div>
+
 <h2 id="zh-11">11. 限制與參考資料</h2>
 <ul>
 <li>相對重要性本質上是未季調概念，月增率用它乘季調漲幅，會留下約 0.001pp 的 residual。</li>
@@ -276,7 +298,16 @@ $$c_i^{\text{YoY, exact}}(t) \;=\; \sum_{k=1}^{K} c_i^{(1)}(k)\prod_{j\lt k}(1+g
 <tr><td>rent_shelter / svc_less_ros</td><td><code>SAS2RS</code> / <code>SASL2RS</code></td><td>Rent of shelter / Services less rent of shelter</td></tr>
 </table></div>
 <h3>2.2 Weights</h3>
-<p>Every year BLS publishes "Relative importance of components in the Consumer Price Indexes: U.S. city average, December" (Table 1). The project parses 47 of these tables for 1987–2025, including the "old weights" editions. The format depends on the year: text files in BLS's archives for 1987–2019, Excel from 2020, HTML for the old-weight editions. Item codes changed over time (Food was <code>SA11</code> in 1987), so rows are matched by name. Tables before 2010 have no Energy services row; it is derived as Energy − Energy commodities.</p>
+<p>Every year BLS publishes "Relative importance of components in the Consumer Price Indexes: U.S. city average, December" (Table 1): the December relative importance of every item for the U.S. city average. The project parses 47 of these tables for 1987–2025, including the old-weights editions. Item codes changed over time (Food was <code>SA11</code> in 1987), so rows are matched by name. Tables before 2010 have no Energy services row; it is derived as Energy − Energy commodities.</p>
+<div class="scroll"><table>
+<tr><th>Source</th><th>Content</th><th>Use</th></tr>
+<tr><td><a href="https://www.bls.gov/cpi/tables/relative-importance/home.htm">December Table 1</a><br><span class="muted"><code>YYYY.xlsx</code> from 2020; text files in BLS archives for 1987–2019</span></td><td>December relative importance, already on next year's weights</td><td><strong>Anchor weights</strong> (section 5.1)</td></tr>
+<tr><td>Old-weights edition <code>old-weights-YYYY</code><br><span class="muted">HTML from 2021; TXT / PDF before</span></td><td>The same December on the outgoing weights</td><td>Validates the price update (section 10.3)</td></tr>
+<tr><td><a href="https://www.bls.gov/news.release/cpi.t01.htm">Monthly CPI news release, Table 1</a></td><td>Relative importance of the previous month</td><td>Validates the monthly weights (section 10.4)</td></tr>
+<tr><td><a href="https://www.bls.gov/cpi/tables/relative-importance/cost-weights.htm">Cost weights</a><br><span class="muted">from December 2011</span></td><td>Additive weights in dollars</td><td>Not used: BLS computes them as the all-items cost weight × relative importance, so they carry the same information as Table 1; BLS notes they are produced outside the official system and valid within one weight update only</td></tr>
+<tr><td>1947–1986 historical table, <a href="https://fraser.stlouisfed.org/title/5240">FRASER</a> scanned bulletins</td><td>Relative importance before 1987</td><td>Not used (the series starts in 1990)</td></tr>
+</table></div>
+<p>BLS posts each new December table in January, together with the weight update.</p>
 
 <h2 id="en-3">3. How the CPI aggregates</h2>
 <p>The CPI is a modified Laspeyres (Lowe) index: a fixed basket of quantities, repriced each month. Relative to an anchor month \(a\), the all-items index is the weighted mean of the price relatives of any mutually exclusive, exhaustive set of components, weighted by their expenditure shares in the anchor month:</p>
@@ -387,6 +418,19 @@ $$c_i^{\text{YoY, exact}}(t) \;=\; \sum_{k=1}^{K} c_i^{(1)}(k)\prod_{j\lt k}(1+g
 <p>Gap in the December weights of the four main components: mostly within ±0.05pp after 2007 (0.35pp in 2011), 1–4pp before. Year-by-year detail: <a href="data/ri_official_vs_estimated.csv"><code>data/ri_official_vs_estimated.csv</code></a>.</p>
 <h3>10.3 The price-update formula (2)</h3>
 <p>Rolling an official December table forward one year with (2) and comparing it with BLS's "old weights" table for the same December: within 0.001pp since 2021, within 0.02pp before.</p>
+
+<h3>10.4 Against the monthly weights in the news release</h3>
+<p>Table 1 of each CPI news release lists the previous month's relative importance. For the August 2026 release (July weights), the July weights this project rolls forward from the December anchor with (2) are <strong>identical</strong> to the published ones:</p>
+<div class="scroll"><table>
+<tr><th>Component</th><th>This project</th><th>BLS news release</th></tr>
+<tr><td>Food</td><td class="n">13.540</td><td class="n">13.540</td></tr>
+<tr><td>Energy</td><td class="n">7.347</td><td class="n">7.347</td></tr>
+<tr><td>Core goods</td><td class="n">18.842</td><td class="n">18.842</td></tr>
+<tr><td>Core services</td><td class="n">60.272</td><td class="n">60.272</td></tr>
+<tr><td>Food at home</td><td class="n">8.232</td><td class="n">8.232</td></tr>
+<tr><td>Energy commodities</td><td class="n">4.044</td><td class="n">4.044</td></tr>
+<tr><td>Energy services</td><td class="n">3.303</td><td class="n">3.303</td></tr>
+</table></div>
 
 <h2 id="en-11">11. Limitations and references</h2>
 <ul>

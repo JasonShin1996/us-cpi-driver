@@ -126,11 +126,39 @@ python cpi_contrib.py --no-ri-file     # 不用官方權重，全部由指數反
   （12 月年增率不跨更新，residual 為 0）。「精確加總」用逐月鏈式分解把它消除。
 - **缺漏月份**：2025 年 10 月未發布；2025-11 的月增率是兩個月的變動。
 
+## 6.1 官方權重資料：來源與用法
+
+BLS 發布的權重相關資料有好幾種，本專案都查過，以下是各自的角色。
+下載由 `ri_official.py --download` 自動完成，原始檔放在 `ri_official/`。
+
+| 來源 | 網址 | 內容 | 本專案怎麼用 |
+|---|---|---|---|
+| **12 月 Table 1（新基礎）** | [總覽頁](https://www.bls.gov/cpi/tables/relative-importance/home.htm)；2020 年起每年一份 `YYYY.xlsx` / `YYYY.htm`；1987–2019 年在 `ri-archive-*.zip` 內（純文字 `YYYY.txt`，例如 [2000.txt](https://www.bls.gov/cpi/tables/relative-importance/2000.txt)） | 每年 12 月、全美城市平均、所有細項的相對重要性（%）。已經是下一年度的新權重 | **主要來源**：權重年 Y+1 的錨點。解析成 `ri_official.csv` |
+| **舊權重版（old weights）** | `old-weights-YYYY.htm`（2021 年起）；2001、2003、2007 年的 TXT 與 2009–2019 年奇數年的 PDF 在壓縮檔內 | 同一個 12 月，但仍用當年的舊權重，也就是「12 月的第二套權重」 | **驗證**：把官方上一年 12 月表用價格更新式滾一年，與這張表比對（誤差 2021 年起 ≤ 0.001pp） |
+| **每月新聞稿 Table 1** | <https://www.bls.gov/news.release/cpi.t01.htm>（每月 CPI 新聞稿） | 「上個月」的相對重要性，例如 8 月新聞稿列的是 7 月權重 | **驗證逐月權重**：2026 年 7 月的食物 13.540、能源 7.347、核心商品 18.842、核心服務 60.272、在家食物 8.232、能源商品 4.044、能源服務 3.303，與本專案算出的值完全相同 |
+| Cost weights | [cost-weights.htm](https://www.bls.gov/cpi/tables/relative-importance/cost-weights.htm)（`cpi-u-historical-cost-weights.xlsx`，2011 年 12 月起） | 以金額表示、可以直接相加的權重 | **已下載、未使用**。BLS 的算法是「全體成本權重 × 官方相對重要性」，資訊和 12 月表相同。BLS 也註明它在正式系統外計算、錯誤風險較高，而且只能在單一權重年度內使用 |
+| 權重更新比較頁 | `weight-update-comparison-YYYY.htm` | 同一個月用新權重與舊權重各算一次的「指數」 | 已下載、未使用（是指數，不是權重） |
+| 1947–1986 歷史權重 | `historical-relative-importance-1947-1986.xlsx` | 1987 年以前的相對重要性，分類與現在不同 | 已下載、未解析（本專案從 1990 年起算） |
+| FRASER 掃描檔 | <https://fraser.stlouisfed.org/title/5240> | BLS 早年的 Relative Importance 公報（掃描 PDF） | 未使用 |
+
+**只需要哪幾列**：程式用到的是 14 個細項（清單見 [methodology.html](web/methodology.html) 第 2.1 節）。
+四大類要 Food、Energy、Commodities less food and energy commodities、Services less energy services；
+七細項再加 Food at home、Food away from home、Energy commodities、Energy services、Rent of shelter、
+Services less rent of shelter。解析時一律用**細項名稱**比對，因為代碼改過（例如 Food 在 1987 年是 `SA11`，現在是 `SAF1`）。
+
+**關於 bls.gov 擋自動抓取**：bls.gov 會擋「假裝成瀏覽器」或沒有聯絡資訊的程式請求（實測回 403），
+但接受附上聯絡 email 的識別字串（例如 `us-cpi-driver you@example.com`），所以程式可以自動下載，
+不必手動從瀏覽器存檔。GitHub Actions 上也實測可用。
+
+**公布時間**：新一年的 12 月表與 cost weights 由 BLS 在 1 月隨權重更新一起公布
+（依 cost weights 頁面說明，可能因人力延後）。
+
 ## 7. 驗證
 
 2026-03 YoY 與 Bloomberg 相比：總體 3.256、核心 2.595、食物 0.366、能源 0.791、核心商品 0.229
 完全一致，核心服務 1.847 vs 1.848；權重 13.681 / 6.312 / 19.367 一致，60.639 vs 60.640。
-2026-07 MoM 逐項相同。這組數字寫在 `checks.py` 裡，每次更新都會重新比對
+2026-07 MoM 逐項相同。另外，BLS 每月新聞稿 Table 1 公布的 2026 年 7 月權重，與本專案逐月滾出的權重完全相同（見 §6.1）。
+Bloomberg 這組數字寫在 `checks.py` 裡，每次更新都會重新比對
 （年增率用的是未季調資料，不會被修訂，可以一直當基準）。
 
 ## 8. 維護須知
