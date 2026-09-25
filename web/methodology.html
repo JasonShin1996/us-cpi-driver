@@ -61,7 +61,7 @@
   <li><a href="#zh-1">目標與名詞</a></li>
   <li><a href="#zh-2">資料來源</a></li>
   <li><a href="#zh-3">CPI 如何加總</a></li>
-  <li><a href="#zh-4">相對重要性（權重）</a></li>
+  <li><a href="#zh-4">支出權重與相對重要性</a></li>
   <li><a href="#zh-5">錨點權重從哪來</a></li>
   <li><a href="#zh-6">細項層級與組合</a></li>
   <li><a href="#zh-7">貢獻度公式</a></li>
@@ -128,18 +128,82 @@ $$\frac{I_{\text{all}}(t)}{I_{\text{all}}(a)} \;=\; \sum_i s_i(a)\,\frac{I_i(t)}
 </table></div>
 <p class="muted">2002–2022 年每兩年更新一次，2023 年起每年更新。即使支出資料沒換，每年 12 月仍是新權重年的錨點。</p>
 
-<h2 id="zh-4">4. 相對重要性（權重）</h2>
-<h3>4.1 年度內逐月更新</h3>
-<p>籃子數量固定，但各細項價格漲跌不同，支出比重會跟著變。從錨點 \(a\) 到 \(t\) 月：</p>
+<h2 id="zh-4">4. 支出權重與相對重要性</h2>
+<p>「權重」這個詞在 CPI 裡其實指兩個不同的東西：<strong>支出權重</strong>決定籃子裡放什麼、放多少；<strong>相對重要性</strong>是這個籃子在某個月、以那個月的價格計算時，各細項佔總成本的比例。兩者都在回答「這個細項在 CPI 裡佔多大」，差別在於用<strong>哪個時間點的價格</strong>來衡量。貢獻度要用的是後者。</p>
+
+<h3>4.1 兩個名詞</h3>
+<div class="scroll"><table>
+<tr><th></th><th>支出權重（expenditure weights）</th><th>相對重要性（relative importance, RI）</th></tr>
+<tr><td>回答的問題</td><td>籃子裡「買了多少」</td><td>同一個籃子「現在」各佔多少</td></tr>
+<tr><td>來源</td><td>BLS 的消費者支出調查（Consumer Expenditure Survey）：某段參考期間家庭實際的消費金額</td><td>把支出權重用之後的價格變動重新計價後算出</td></tr>
+<tr><td>多久變一次</td><td>只在權重更新時換（2023 年起每年，之前每兩年）</td><td><strong>每個月都不同</strong></td></tr>
+<tr><td>BLS 的稱呼</td><td>「2024 weights」這類標籤，指支出參考期間</td><td>「Relative importance, December 2025」，指計價的月份</td></tr>
+<tr><td>在本專案的用途</td><td>不直接使用</td><td>貢獻度的權重、每年 12 月的錨點、每月逐步更新</td></tr>
+</table></div>
+<p><strong>支出權重</strong>：例如 2026 年的 CPI 用的是「2024 weights」，也就是 2024 年美國家庭花在各細項上的金額。用這些金額除以當時的價格，等於固定了每樣東西的<strong>數量</strong>；之後整個權重年度都用這個數量固定的籃子。這就是第 3 節說的 Laspeyres（Lowe）指數：籃子內容不變，只有價格在變。</p>
+<p><strong>相對重要性</strong>：數量固定，但每個月價格都在變。把同一個籃子用當月價格重新計價，各細項佔總成本的百分比就是 RI。某項漲得比平均快，它的 RI 就上升，雖然買的量完全沒變。</p>
+
+<h3>4.2 從支出權重到相對重要性</h3>
+<p>設 \(b\) 是支出參考期間（例如 2024 年），\(E_i(b)\) 是當時花在細項 \(i\) 的金額，\(P_i\) 是價格。隱含的數量是 \(q_i = E_i(b)/P_i(b)\)，同一個籃子在 \(t\) 月價格下的成本是：</p>
+$$C_i(t) \;=\; q_i\,P_i(t) \;=\; E_i(b)\cdot\frac{P_i(t)}{P_i(b)} \;=\; E_i(b)\cdot\frac{I_i(t)}{I_i(b)}$$
+<p>\(C_i(t)\) 就是 BLS 所稱的 <strong>cost weight（成本權重）</strong>，以金額表示。相對重要性是把它換成百分比：</p>
+$$RI_i(t) \;=\; \frac{C_i(t)}{\sum_j C_j(t)}\times 100$$
+<p>所以 cost weights 和 RI 只是同一件事的兩種單位；這也是本專案不另外使用 cost weights 的原因（見第 2.2 節）。實務上 BLS 是在「細項 × 地區」的層級做這件事，再加總成全美城市平均；CPI-U 與 CPI-W 的消費族群不同，RI 也不同（例如 2025 年 12 月食物：CPI-U 13.698、CPI-W 14.889）。本專案一律使用 CPI-U。</p>
+<p>兩個月份 \(a\)、\(t\) 相比：籃子數量固定，所以總成本的變化就是整體指數的變化，\(\sum_j C_j(t)/\sum_j C_j(a) = I_{\text{all}}(t)/I_{\text{all}}(a)\)。代入上式就得到第 4.5 節的價格更新式 (2)：</p>
+$$\frac{RI_i(t)}{RI_i(a)} \;=\; \frac{C_i(t)/C_i(a)}{\sum_j C_j(t)/\sum_j C_j(a)} \;=\; \frac{I_i(t)/I_i(a)}{I_{\text{all}}(t)/I_{\text{all}}(a)}$$
+<p>也就是說，只要知道某個月的 RI 和之後的指數，就能推出之後任何一個月的 RI，不需要知道支出金額本身。</p>
+
+<h3>4.3 數字例子</h3>
+<p class="muted">以下是為了說明而簡化的虛構數字，只有三個細項。</p>
+<p>2024 年家庭支出：食物 $1,400、汽油 $400、其他 $8,200，共 $10,000。到 2025 年 12 月，食物漲 3%、汽油漲 20%、其他漲 4%。同一個籃子在 2025 年 12 月的成本與佔比：</p>
+<div class="scroll"><table>
+<tr><th>細項</th><th>2024 支出</th><th>支出權重</th><th>價格變動</th><th>2025/12 成本權重</th><th>2025/12 相對重要性</th></tr>
+<tr><td>食物</td><td class="n">$1,400</td><td class="n">14.00%</td><td class="n">+3%</td><td class="n">$1,442</td><td class="n">13.80%</td></tr>
+<tr><td>汽油</td><td class="n">$400</td><td class="n">4.00%</td><td class="n">+20%</td><td class="n">$480</td><td class="n">4.59%</td></tr>
+<tr><td>其他</td><td class="n">$8,200</td><td class="n">82.00%</td><td class="n">+4%</td><td class="n">$8,528</td><td class="n">81.61%</td></tr>
+<tr><td>合計</td><td class="n">$10,000</td><td class="n">100%</td><td class="n">+4.50%</td><td class="n">$10,450</td><td class="n">100%</td></tr>
+</table></div>
+<p>汽油的佔比從 4.00% 升到 4.59%，但家庭買的汽油<strong>數量沒有變</strong>，變的只是它的相對價格。</p>
+<p>再往下走一個月：假設 2026 年 1 月汽油再漲 10%，其他價格不變。</p>
+<div class="scroll"><table>
+<tr><th>細項</th><th>2026/01 成本權重</th><th>2026/01 相對重要性</th><th>貢獻度（用 12 月 RI）</th><th>若誤用支出權重</th></tr>
+<tr><td>食物</td><td class="n">$1,442</td><td class="n">13.74%</td><td class="n">0.000</td><td class="n">0.000</td></tr>
+<tr><td>汽油</td><td class="n">$528</td><td class="n">5.03%</td><td class="n">4.593% × 10% = <strong>0.459</strong></td><td class="n">4.00% × 10% = 0.400</td></tr>
+<tr><td>其他</td><td class="n">$8,528</td><td class="n">81.23%</td><td class="n">0.000</td><td class="n">0.000</td></tr>
+<tr><td>合計</td><td class="n">$10,498</td><td class="n">100%</td><td class="n"><strong>0.459</strong></td><td class="n">0.400</td></tr>
+</table></div>
+<p>整體 CPI 月增率是 \(10{,}498/10{,}450-1 = 0.459\%\)。用<strong>基期（12 月）的 RI</strong> 算出的貢獻度，加總剛好等於 0.459；如果誤用 2024 年的支出權重，只得到 0.400，會低估漲最多的項目，而且加不回總體。同時可以看到 1 月的 RI 又變了（汽油 5.03%），它會是 2 月貢獻度的權重。</p>
+
+<h3>4.4 BLS 表格的標題怎麼讀</h3>
+<p>BLS 的年度表標題像這樣：<code>Table 1 (2024 Weights). Relative importance of components … December 2025</code>。拆開來看：</p>
+<ul>
+<li><strong>2024 Weights</strong>：支出參考期間，也就是籃子內容來自 2024 年的消費。</li>
+<li><strong>December 2025</strong>：這個籃子用 2025 年 12 月的價格計價後的佔比。</li>
+<li>這張表是權重年 2026 的<strong>錨點</strong>：2026 年每個月的 RI 都從它用式 (2) 推出來。</li>
+</ul>
+<p>時間線：2024 年的消費被調查 → 用價格變動更新到 2025 年 12 月 → 從 2026 年 1 月起使用。支出資料比使用年份早兩年，是因為調查資料需要時間整理。各權重年對應的支出期間見第 3 節的表。</p>
+
+<h3>4.5 年度內逐月更新</h3>
+<p>由第 4.2 節的推導，從錨點 \(a\) 到 \(t\) 月：</p>
 $$RI_i(t) \;=\; RI_i(a)\cdot\frac{I_i(t)/I_i(a)}{I_{\text{all}}(t)/I_{\text{all}}(a)} \tag{2}$$
-<p>這是 BLS 標準的價格更新公式。把式 (2) 對所有細項加總，由式 (1) 可知結果仍是 100。</p>
-<h3>4.2 12 月有兩套權重</h3>
+<p>這是 BLS 標準的價格更新公式。把式 (2) 對所有細項加總，由式 (1) 可知結果仍是 100。本專案用這個公式從每年 12 月的官方錨點算出每個月的 RI，並與 BLS 每月新聞稿公布的值比對，結果完全相同（第 10.4 節）。</p>
+
+<h3>4.6 12 月有兩套權重</h3>
 <p>每年 12 月同時有兩組相對重要性：</p>
 <ul>
-<li><strong>舊基礎</strong> \(RI_i^{\text{old}}(\text{Dec } y)\)：權重年 \(y\) 的權重，用式 (2) 更新到 12 月。</li>
-<li><strong>新基礎</strong> \(RI_i^{\text{new}}(\text{Dec } y)\)：權重年 \(y+1\) 的錨點。BLS 每年公布的 12 月表就是這一組。</li>
+<li><strong>舊基礎</strong> \(RI_i^{\text{old}}(\text{Dec } y)\)：權重年 \(y\) 的籃子，用式 (2) 更新到 12 月。</li>
+<li><strong>新基礎</strong> \(RI_i^{\text{new}}(\text{Dec } y)\)：換成新支出權重後的籃子在 12 月價格下的佔比，也就是權重年 \(y+1\) 的錨點。BLS 每年公布的 12 月表就是這一組。</li>
 </ul>
-<p>貢獻度永遠使用<strong>基期</strong>的權重。12 月當基期時（隔年 1 月的月增率、隔年 12 月的年增率），價格變動發生在權重年 \(y+1\) 內，所以要用新基礎。本專案把每年 12 月的 \(RI\) 一律設為新基礎；少了這一步，12 月的貢獻度就加不起來。</p>
+<p>兩者的差別純粹來自籃子內容（支出權重）的更換，價格是同一個月的。貢獻度永遠使用<strong>基期</strong>的權重。12 月當基期時（隔年 1 月的月增率、隔年 12 月的年增率），價格變動發生在權重年 \(y+1\) 內，所以要用新基礎。本專案把每年 12 月的 \(RI\) 一律設為新基礎；少了這一步，12 月的貢獻度就加不起來。</p>
+
+<h3>4.7 常見誤解</h3>
+<ul>
+<li><strong>「權重一年只變一次。」</strong>只有支出權重（籃子內容）是這樣；相對重要性每個月都在變。</li>
+<li><strong>「某項 RI 上升，代表大家買得更多。」</strong>在同一個權重年度內，數量是固定的；RI 上升只代表它的價格漲得比平均快。消費數量的改變只會在權重更新時反映。</li>
+<li><strong>「貢獻度可以用支出權重算。」</strong>不行。要用基期當月的 RI，否則會像第 4.3 節的例子一樣低估漲幅大的項目，而且加不回總體。</li>
+<li><strong>「RI 不能相加。」</strong>同一個月、同一個指數族群（例如都是 CPI-U）、彼此互斥的細項，RI 可以直接相加，例如食物＋能源＋核心商品＋核心服務＝100；本專案用加減組出「核心服務不含住宅」也是靠這一點。不能相加的情況是：不同月份的 RI、CPI-U 與 CPI-W 混用、和支出權重混用，或是有重疊的細項（例如 Food 與 Food at home）。</li>
+<li><strong>「cost weights 提供了 RI 以外的資訊。」</strong>它只是把 RI 換成金額（全體成本權重 × RI），資訊相同。</li>
+</ul>
 
 <h2 id="zh-5">5. 錨點權重從哪來</h2>
 <h3>5.1 官方表（預設）</h3>
@@ -260,7 +324,7 @@ $$c_i^{\text{YoY, exact}}(t) \;=\; \sum_{k=1}^{K} c_i^{(1)}(k)\prod_{j\lt k}(1+g
   <li><a href="#en-1">Goal and notation</a></li>
   <li><a href="#en-2">Data</a></li>
   <li><a href="#en-3">How the CPI aggregates</a></li>
-  <li><a href="#en-4">Relative importance</a></li>
+  <li><a href="#en-4">Expenditure weights and relative importance</a></li>
   <li><a href="#en-5">Where the anchor weights come from</a></li>
   <li><a href="#en-6">Hierarchy and composite components</a></li>
   <li><a href="#en-7">Contribution formulas</a></li>
@@ -327,17 +391,81 @@ $$\frac{I_{\text{all}}(t)}{I_{\text{all}}(a)} \;=\; \sum_i s_i(a)\,\frac{I_i(t)}
 </table></div>
 <p class="muted">Updated every two years from 2002 to 2022 and every year since 2023. Each December is the anchor of a new weight year, even when the expenditure data did not change.</p>
 
-<h2 id="en-4">4. Relative importance</h2>
-<h3>4.1 Within the year</h3>
-<p>Quantities are fixed but prices move at different rates, so expenditure shares drift. From anchor \(a\) to month \(t\):</p>
-$$RI_i(t) \;=\; RI_i(a)\cdot\frac{I_i(t)/I_i(a)}{I_{\text{all}}(t)/I_{\text{all}}(a)} \tag{2}$$
-<p>This is BLS's standard price-update formula. Summing (2) over components and using (1) gives 100 again.</p>
-<h3>4.2 December has two sets of weights</h3>
+<h2 id="en-4">4. Expenditure weights and relative importance</h2>
+<p>"Weight" means two different things in the CPI. <strong>Expenditure weights</strong> decide what goes into the basket and how much of it. <strong>Relative importance</strong> is each item's share of the cost of that same basket in a given month, priced at that month's prices. Both answer "how big is this item in the CPI?"; they differ in <strong>which month's prices</strong> the answer uses. Contributions need the second one.</p>
+
+<h3>4.1 Two terms</h3>
+<div class="scroll"><table>
+<tr><th></th><th>Expenditure weights</th><th>Relative importance (RI)</th></tr>
+<tr><td>Question answered</td><td>How much is in the basket</td><td>What share each item of the same basket takes now</td></tr>
+<tr><td>Source</td><td>BLS Consumer Expenditure Survey: what households actually spent in a reference period</td><td>Expenditure weights repriced with later price changes</td></tr>
+<tr><td>How often it changes</td><td>Only at a weight update (every year since 2023, every two years before)</td><td><strong>Every month</strong></td></tr>
+<tr><td>BLS label</td><td>"2024 weights": the expenditure reference period</td><td>"Relative importance, December 2025": the pricing month</td></tr>
+<tr><td>Use in this project</td><td>Not used directly</td><td>Contribution weights, the December anchors, the monthly update</td></tr>
+</table></div>
+<p><strong>Expenditure weights.</strong> The 2026 CPI uses "2024 weights": what U.S. households spent on each item in 2024. Dividing those amounts by 2024 prices fixes the <strong>quantity</strong> of each item, and that fixed-quantity basket is used for the whole weight year. This is the Laspeyres (Lowe) index of section 3: the basket stays the same, only prices move.</p>
+<p><strong>Relative importance.</strong> Quantities are fixed but prices move every month. Reprice the same basket at this month's prices and each item's percentage of the total cost is its RI. An item whose price rises faster than average gains RI, even though the quantity bought has not changed at all.</p>
+
+<h3>4.2 From expenditure weights to relative importance</h3>
+<p>Let \(b\) be the expenditure reference period (say 2024), \(E_i(b)\) the amount spent on item \(i\) then, and \(P_i\) its price. The implied quantity is \(q_i = E_i(b)/P_i(b)\), and the cost of the same basket at month-\(t\) prices is</p>
+$$C_i(t) \;=\; q_i\,P_i(t) \;=\; E_i(b)\cdot\frac{P_i(t)}{P_i(b)} \;=\; E_i(b)\cdot\frac{I_i(t)}{I_i(b)}$$
+<p>\(C_i(t)\) is what BLS calls a <strong>cost weight</strong>, in dollars. Relative importance is the same thing as a percentage:</p>
+$$RI_i(t) \;=\; \frac{C_i(t)}{\sum_j C_j(t)}\times 100$$
+<p>Cost weights and RI are therefore one quantity in two units, which is why the project does not use cost weights separately (section 2.2). In practice BLS does this at the item × area level and aggregates to the U.S. city average. CPI-U and CPI-W cover different populations and have different RIs (December 2025 food: 13.698 in CPI-U, 14.889 in CPI-W); this project uses CPI-U throughout.</p>
+<p>Compare two months \(a\) and \(t\). With quantities fixed, the change in total cost is the change in the all-items index, \(\sum_j C_j(t)/\sum_j C_j(a) = I_{\text{all}}(t)/I_{\text{all}}(a)\). Substituting gives the price-update formula (2) of section 4.5:</p>
+$$\frac{RI_i(t)}{RI_i(a)} \;=\; \frac{C_i(t)/C_i(a)}{\sum_j C_j(t)/\sum_j C_j(a)} \;=\; \frac{I_i(t)/I_i(a)}{I_{\text{all}}(t)/I_{\text{all}}(a)}$$
+<p>So the RI of one month plus the indexes afterwards give the RI of any later month, without knowing the dollar amounts at all.</p>
+
+<h3>4.3 A worked example</h3>
+<p class="muted">Simplified, made-up numbers with three items, for illustration only.</p>
+<p>In 2024 households spend $1,400 on food, $400 on gasoline and $8,200 on everything else: $10,000 in total. By December 2025 food is up 3%, gasoline 20% and everything else 4%. The same basket in December 2025:</p>
+<div class="scroll"><table>
+<tr><th>Item</th><th>2024 spending</th><th>Expenditure weight</th><th>Price change</th><th>Dec-2025 cost weight</th><th>Dec-2025 RI</th></tr>
+<tr><td>Food</td><td class="n">$1,400</td><td class="n">14.00%</td><td class="n">+3%</td><td class="n">$1,442</td><td class="n">13.80%</td></tr>
+<tr><td>Gasoline</td><td class="n">$400</td><td class="n">4.00%</td><td class="n">+20%</td><td class="n">$480</td><td class="n">4.59%</td></tr>
+<tr><td>Other</td><td class="n">$8,200</td><td class="n">82.00%</td><td class="n">+4%</td><td class="n">$8,528</td><td class="n">81.61%</td></tr>
+<tr><td>Total</td><td class="n">$10,000</td><td class="n">100%</td><td class="n">+4.50%</td><td class="n">$10,450</td><td class="n">100%</td></tr>
+</table></div>
+<p>Gasoline's share rises from 4.00% to 4.59%, yet households buy <strong>the same quantity</strong> of it; only its relative price changed.</p>
+<p>One more month: in January 2026 gasoline rises another 10% and nothing else moves.</p>
+<div class="scroll"><table>
+<tr><th>Item</th><th>Jan-2026 cost weight</th><th>Jan-2026 RI</th><th>Contribution (December RI)</th><th>With expenditure weights (wrong)</th></tr>
+<tr><td>Food</td><td class="n">$1,442</td><td class="n">13.74%</td><td class="n">0.000</td><td class="n">0.000</td></tr>
+<tr><td>Gasoline</td><td class="n">$528</td><td class="n">5.03%</td><td class="n">4.593% × 10% = <strong>0.459</strong></td><td class="n">4.00% × 10% = 0.400</td></tr>
+<tr><td>Other</td><td class="n">$8,528</td><td class="n">81.23%</td><td class="n">0.000</td><td class="n">0.000</td></tr>
+<tr><td>Total</td><td class="n">$10,498</td><td class="n">100%</td><td class="n"><strong>0.459</strong></td><td class="n">0.400</td></tr>
+</table></div>
+<p>Headline CPI rises \(10{,}498/10{,}450-1 = 0.459\%\). Contributions computed with the <strong>base-month (December) RI</strong> add up to exactly 0.459. The 2024 expenditure weights give 0.400: they understate the item that rose most and do not add back to the headline. January's RI has moved again (gasoline 5.03%); it is the weight for February's contributions.</p>
+
+<h3>4.4 Reading a BLS table title</h3>
+<p>BLS titles its annual table like this: <code>Table 1 (2024 Weights). Relative importance of components … December 2025</code>. Taken apart:</p>
 <ul>
-<li><strong>Old basis</strong> \(RI_i^{\text{old}}(\text{Dec } y)\): weight year \(y\)'s weights, price-updated to December by (2).</li>
-<li><strong>New basis</strong> \(RI_i^{\text{new}}(\text{Dec } y)\): the anchor of weight year \(y+1\). This is the table BLS publishes every December.</li>
+<li><strong>2024 Weights</strong>: the expenditure reference period; the basket comes from 2024 spending.</li>
+<li><strong>December 2025</strong>: the shares of that basket priced at December 2025 prices.</li>
+<li>The table is the <strong>anchor</strong> of weight year 2026: every 2026 RI is derived from it with (2).</li>
 </ul>
-<p>Contributions always use <strong>base-period</strong> weights. When December is the base (January MoM, the following December's YoY), the price change happens inside weight year \(y+1\), so the new basis is the right one. The project sets every December's \(RI\) to the new basis; without that, December contributions do not add up.</p>
+<p>Timeline: 2024 spending is surveyed → price-updated to December 2025 → used from January 2026. The expenditure data lag the year of use by two years because the survey takes time to process. The weight year → expenditure period mapping is in the table in section 3.</p>
+
+<h3>4.5 Within the year</h3>
+<p>From the derivation in section 4.2, from anchor \(a\) to month \(t\):</p>
+$$RI_i(t) \;=\; RI_i(a)\cdot\frac{I_i(t)/I_i(a)}{I_{\text{all}}(t)/I_{\text{all}}(a)} \tag{2}$$
+<p>This is BLS's standard price-update formula. Summing (2) over components and using (1) gives 100 again. The project uses it to derive every month's RI from the official December anchor, and the result matches the RI in BLS's monthly news release exactly (section 10.4).</p>
+
+<h3>4.6 December has two sets of weights</h3>
+<ul>
+<li><strong>Old basis</strong> \(RI_i^{\text{old}}(\text{Dec } y)\): weight year \(y\)'s basket, price-updated to December by (2).</li>
+<li><strong>New basis</strong> \(RI_i^{\text{new}}(\text{Dec } y)\): the shares of the basket built from the new expenditure weights, at December prices: the anchor of weight year \(y+1\). This is the table BLS publishes every December.</li>
+</ul>
+<p>The two differ only because the basket (the expenditure weights) changed; the prices are the same month's. Contributions always use <strong>base-period</strong> weights. When December is the base (January MoM, the following December's YoY), the price change happens inside weight year \(y+1\), so the new basis is the right one. The project sets every December's \(RI\) to the new basis; without that, December contributions do not add up.</p>
+
+<h3>4.7 Common misconceptions</h3>
+<ul>
+<li><strong>"The weights change once a year."</strong> Only the expenditure weights (the basket) do; relative importance changes every month.</li>
+<li><strong>"An item's RI went up, so people are buying more of it."</strong> Within a weight year quantities are fixed; a higher RI only means its price rose faster than average. Changes in what people buy show up only at a weight update.</li>
+<li><strong>"Contributions can use the expenditure weights."</strong> No. They need the base month's RI, or, as in the example in 4.3, items with large price increases are understated and the pieces do not add up.</li>
+<li><strong>"RIs cannot be added."</strong> For the same month, the same index population (e.g. all CPI-U) and mutually exclusive items they can: food + energy + core goods + core services = 100, and the project builds "core services ex shelter" by adding and subtracting. What cannot be added: RIs from different months, CPI-U mixed with CPI-W, RIs mixed with expenditure weights, or overlapping items (e.g. Food and Food at home).</li>
+<li><strong>"Cost weights carry information beyond RI."</strong> They are RI expressed in dollars (the all-items cost weight × RI); the information is the same.</li>
+</ul>
 
 <h2 id="en-5">5. Where the anchor weights come from</h2>
 <h3>5.1 Official tables (default)</h3>
