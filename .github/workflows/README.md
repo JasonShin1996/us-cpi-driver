@@ -10,7 +10,7 @@ GitHub 會讀這裡的 `.yml` 檔，在它自己的雲端機器上照檔案寫�
 | [`pages.yml`](pages.yml) | Deploy site | 把 `web/` 資料夾發布成網站 |
 
 ```
-            平日每天 3 次
+            平日每天 1 次
                  │
         ┌────────▼─────────┐     沒有新資料
         │   update.yml     ├──────────────► 結束（大部分的日子）
@@ -59,19 +59,17 @@ Actions 的結構是三層：
 ```yaml
 on:
   schedule:
-    - cron: "45 13 * * 1-5"
-    - cron: "45 15 * * 1-5"
-    - cron: "45 19 * * 1-5"
+    - cron: "30 14 * * 1-5"
   workflow_dispatch:
     inputs:
       force: ...
 ```
 
 - **`schedule` / `cron`**：定時執行。`cron` 的五個欄位依序是「分 時 日 月 星期」，時間一律是 **UTC**：
-  - `45 13 * * 1-5` = 週一到週五（`1-5`）的 13:45 UTC
-  - 三行合起來是平日每天 13:45、15:45、19:45 UTC 各跑一次
-  - BLS 在美東 08:30 公布，夏令時間是 12:30 UTC、冬令時間是 13:30 UTC，所以第一次一定在公布之後；
-    後兩次是萬一第一次失敗（例如 BLS API 還沒更新）的重試
+  - `30 14 * * 1-5` = 週一到週五（`1-5`）的 14:30 UTC
+  - BLS 在美東 08:30 公布，夏令時間是 12:30 UTC、冬令時間是 13:30 UTC；14:30 UTC 一定在公布後一小時以上，
+    BLS 的 API 通常已經更新
+  - 一天只跑一次就夠：資料一年只更新 12 次，公布當天萬一失敗，隔一個平日會自動補上
   - GitHub 的排程可能延遲幾分鐘到幾十分鐘，這是正常的
 - **`workflow_dispatch`**：允許你在 GitHub 網頁上**手動按按鈕**執行
   （Actions → Update CPI data → Run workflow）。
@@ -120,7 +118,7 @@ concurrency:
 | 1 | `actions/checkout@v4` | 把這個 repo 的程式碼下載到機器上 | 流程停止 |
 | 2 | `actions/setup-python@v5` | 安裝 Python 3.12（`cache: pip` = 記住套件，下次比較快） | 流程停止 |
 | 3 | `pip install -r requirements.txt` | 安裝 numpy、openpyxl | 流程停止 |
-| 4 | **Is a new release out?**（`id: gate`） | 跑 `schedule.py --download check`：更新 BLS 公布時間表，比對「BLS 已公布的最新月份」和「網站上的最新月份」，輸出 `run=true` 或 `run=false` | 流程停止 |
+| 4 | **Is a new release out?**（`id: gate`） | 跑 `schedule.py --download-if-needed check`：比對「BLS 已公布的最新月份」和「網站上的最新月份」，輸出 `run=true` 或 `run=false`。只有在已知的未來公布日少於 3 個、或今天有新資料要更新時，才會去 bls.gov 重抓公布時間表（一年大約幾十次，不會天天打擾 BLS） | 流程停止 |
 | 5 | **Official weight tables** | 只有在缺前一年 12 月權重表時才去 bls.gov 下載 | `continue-on-error: true`：**失敗也繼續**，改用 repo 裡已有的權重表 |
 | 6 | **Compute contributions** | 先把舊資料備份一份，然後跑 `cpi_contrib.py` 重算（`--html ""` = 不產生本機用的 standalone 檔） | 流程停止 |
 | 7 | **Sanity checks** | 跑 `checks.py` 的 30 項檢查（含和 Bloomberg 對帳、確認沒有弄丟舊月份） | **流程停止、不會發布**，GitHub 寄信通知 |

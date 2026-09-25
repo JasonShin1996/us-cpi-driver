@@ -7,6 +7,9 @@ BLS CPI release calendar -> release_schedule.json, and the "is there new data?" 
   python schedule.py --download        refresh release_schedule.json from
                                        https://www.bls.gov/schedule/news_release/cpi.htm
   python schedule.py check             print run=true|false (GitHub Actions output format)
+  python schedule.py --download-if-needed check
+                                       what the daily job runs: only hits bls.gov when fewer
+                                       than 3 future releases are known or a new release is due
 
 `check` answers one question: has BLS already released a reference month that the site
 does not have yet?  That single rule covers the release day itself, retries later that day,
@@ -98,13 +101,30 @@ def main(argv=None) -> int:
     ap = argparse.ArgumentParser(description="BLS CPI release calendar")
     ap.add_argument("cmd", nargs="?", choices=["check"], help="print run=true|false")
     ap.add_argument("--download", action="store_true", help="refresh the calendar from bls.gov")
+    ap.add_argument("--download-if-needed", action="store_true",
+                    help="refresh only when fewer than 3 future releases are known, or a release "
+                         "the site does not have is due (catches a rescheduled release)")
     ap.add_argument("--file", default=os.path.join(HERE, "release_schedule.json"))
     ap.add_argument("--data", default=os.path.join(HERE, "web", "data", "cpi_data.json"))
     ap.add_argument("--user-agent", default=os.environ.get("BLS_USER_AGENT") or DEFAULT_UA)
     args = ap.parse_args(argv)
 
     rows = load(args.file)
-    if args.download:
+    now = datetime.now(ET)
+    try:
+        with open(args.data, encoding="utf-8") as f:
+            have = max(json.load(f)["breakdowns"]["basic4"]["mom"]["dates"])
+    except (OSError, ValueError, KeyError):
+        have = None
+
+    download = args.download
+    if args.download_if_needed and not download:
+        future = [r for r in rows if release_dt(r) > now]
+        want = latest_released(rows, now)
+        download = len(future) < 3 or want is None or have is None or want > have
+        if not download:
+            print(f"schedule: {len(future)} future releases known, no refresh needed", file=sys.stderr)
+    if download:
         req = urllib.request.Request(URL, headers={"User-Agent": args.user_agent})
         try:
             with urllib.request.urlopen(req, timeout=60) as r:
@@ -117,13 +137,7 @@ def main(argv=None) -> int:
             print(f"schedule: download failed ({e}); using {args.file}", file=sys.stderr)
 
     if args.cmd == "check":
-        now = datetime.now(ET)
         want = latest_released(rows, now)
-        try:
-            with open(args.data, encoding="utf-8") as f:
-                have = max(json.load(f)["breakdowns"]["basic4"]["mom"]["dates"])
-        except (OSError, ValueError, KeyError):
-            have = None
         nxt = next_release(rows, now)
         if not rows or nxt is None:
             print("schedule: calendar is empty or has no future release; run schedule.py --download",

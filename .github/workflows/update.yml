@@ -1,8 +1,9 @@
 # Pulls new CPI data after each BLS release and republishes the site.
 #
-# Runs a few times every weekday after 08:30 ET; schedule.py decides whether BLS has released
-# a month the site does not have yet (release_schedule.json, from
-# https://www.bls.gov/schedule/news_release/cpi.htm). Most runs stop after that check.
+# Runs once every weekday after the 08:30 ET release time; schedule.py decides whether BLS has
+# released a month the site does not have yet (release_schedule.json, from
+# https://www.bls.gov/schedule/news_release/cpi.htm). Most runs stop after that check; a failed
+# release-day run is simply picked up again the next weekday.
 #
 # Secrets (Settings -> Secrets and variables -> Actions):
 #   BLS_API_KEY      optional but recommended; free at https://data.bls.gov/registrationEngine/
@@ -11,10 +12,8 @@ name: Update CPI data
 
 on:
   schedule:
-    # 08:30 ET is 12:30 UTC in summer and 13:30 UTC in winter
-    - cron: "45 13 * * 1-5"
-    - cron: "45 15 * * 1-5"
-    - cron: "45 19 * * 1-5"
+    # 14:30 UTC = 10:30 ET in summer, 09:30 ET in winter: at least an hour after the 08:30 ET release
+    - cron: "30 14 * * 1-5"
   workflow_dispatch:
     inputs:
       force:
@@ -52,7 +51,7 @@ jobs:
       - name: Is a new release out?
         id: gate
         run: |
-          python schedule.py --download check >> "$GITHUB_OUTPUT"
+          python schedule.py --download-if-needed check >> "$GITHUB_OUTPUT"
           if [ "${{ inputs.force }}" = "true" ]; then echo "run=true" >> "$GITHUB_OUTPUT"; fi
 
       - name: Official weight tables (only when last December's table is missing)

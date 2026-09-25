@@ -16,7 +16,7 @@ BLS 每次公布 CPI 後，GitHub Actions 會自動更新資料並重新發布�
 ## 1. 運作方式
 
 ```
-                 ┌──────────── GitHub Actions（平日每天 3 次）────────────┐
+                 ┌──────────── GitHub Actions（平日每天 1 次）────────────┐
 BLS 公布時間表 ──► schedule.py check ── 有新月份？ ──否──► 結束            │
                  │        │是                                           │
 BLS 權重表 ──────► ri_official.py --if-missing（缺表時才下載）            │
@@ -78,13 +78,15 @@ python cpi_contrib.py --no-ri-file     # 不用官方權重，全部由指數反
 
 ## 4. 自動更新（GitHub Actions）
 
-**什麼時候跑**：平日 13:45、15:45、19:45 UTC（BLS 在美東 08:30 公布，也就是夏令 12:30 UTC、
-冬令 13:30 UTC）。每次先用 `schedule.py check` 比對「BLS 已公布的最新月份」與「網站上的最新月份」，
-沒有新資料就結束，所以大部分執行只花幾秒。公布當天失敗的話，同一天稍晚或之後幾天會自動重試。
+**什麼時候跑**：平日每天一次，14:30 UTC（美東夏令 10:30、冬令 09:30，都在 BLS 08:30 公布後一小時以上）。
+每次先用 `schedule.py check` 比對「BLS 已公布的最新月份」與「網站上的最新月份」，
+沒有新資料就結束，所以大部分執行只花幾秒。資料一年只更新 12 次，公布當天如果失敗，
+隔一個平日會自動補上（網站最多晚一天）。
 
 **每一步做什麼**：
 
-1. 更新公布時間表（抓 <https://www.bls.gov/schedule/news_release/cpi.htm>，失敗就用 repo 裡的版本）
+1. 需要時才更新公布時間表（已知的未來公布日少於 3 個、或當天有新資料要更新時，才抓
+   <https://www.bls.gov/schedule/news_release/cpi.htm>；失敗就用 repo 裡的版本）
 2. 缺前一年 12 月權重表時才下載（bls.gov 可能擋雲端 IP；失敗就沿用 repo 裡的表，當年權重改用反推並在網頁註明）
 3. `cpi_contrib.py` 重算
 4. `checks.py` 自我檢查，任一項失敗就停止，不會發布，GitHub 會寄信通知
