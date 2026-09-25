@@ -78,12 +78,18 @@ jobs:
           git add release_schedule.json web/data ri_official ri_official.csv ri_official_full.csv
           if git diff --cached --quiet; then
             echo "changed=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          if git diff --cached --quiet -- web/data; then
+            # only the release calendar (or raw BLS files) changed: save it, nothing to republish
+            git commit -m "schedule: refresh BLS release calendar"
+            echo "changed=false" >> "$GITHUB_OUTPUT"
           else
             latest=$(python -c "import json;print(max(json.load(open('web/data/cpi_data.json'))['breakdowns']['basic4']['mom']['dates']))")
             git commit -m "data: CPI through ${latest}"
-            git push
             echo "changed=true" >> "$GITHUB_OUTPUT"
           fi
+          git push
 
   deploy:
     needs: update
