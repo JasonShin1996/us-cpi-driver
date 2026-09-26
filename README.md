@@ -161,11 +161,13 @@ Services less rent of shelter。解析時一律用**細項名稱**比對，因�
 2026-03 YoY 與 Bloomberg 相比：總體 3.256、核心 2.595、食物 0.366、能源 0.791、核心商品 0.229
 完全一致，核心服務 1.847 vs 1.848；權重 13.681 / 6.312 / 19.367 一致，60.639 vs 60.640。
 2026-07 MoM 逐項相同。另外，BLS 每月新聞稿 Table 1 公布的 2026 年 7 月權重，與本專案逐月滾出的權重完全相同（見 §6.1）。
+Bloomberg 這組數字寫在 `checks.py` 裡，每次更新都會重新比對
+（年增率用的是未季調資料，不會被修訂，可以一直當基準）。
+
 與舊金山聯準銀行的 [CPI Inflation Contributions](https://www.frbsf.org/research-and-insights/data-and-indicators/cpi-inflation-contributions-from-goods-and-services/)
 資料頁比較（1999–2026 共 331 個月，五大類），平均差 0.002–0.015pp，差異主要來自住宅的定義
 （他們用 Shelter，我們用 Rent of shelter，兩者只差「租屋與住宅保險」一項）；細節見方法論 10.5 節。
-Bloomberg 這組數字寫在 `checks.py` 裡，每次更新都會重新比對
-（年增率用的是未季調資料，不會被修訂，可以一直當基準）。
+
 
 ## 8. 維護須知
 
