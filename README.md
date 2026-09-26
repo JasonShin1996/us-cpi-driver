@@ -161,6 +161,9 @@ Services less rent of shelter。解析時一律用**細項名稱**比對，因�
 2026-03 YoY 與 Bloomberg 相比：總體 3.256、核心 2.595、食物 0.366、能源 0.791、核心商品 0.229
 完全一致，核心服務 1.847 vs 1.848；權重 13.681 / 6.312 / 19.367 一致，60.639 vs 60.640。
 2026-07 MoM 逐項相同。另外，BLS 每月新聞稿 Table 1 公布的 2026 年 7 月權重，與本專案逐月滾出的權重完全相同（見 §6.1）。
+與舊金山聯準銀行的 [CPI Inflation Contributions](https://www.frbsf.org/research-and-insights/data-and-indicators/cpi-inflation-contributions-from-goods-and-services/)
+資料頁比較（1999–2026 共 331 個月，五大類），平均差 0.002–0.015pp，差異主要來自住宅的定義
+（他們用 Shelter，我們用 Rent of shelter，兩者只差「租屋與住宅保險」一項）；細節見方法論 10.5 節。
 Bloomberg 這組數字寫在 `checks.py` 裡，每次更新都會重新比對
 （年增率用的是未季調資料，不會被修訂，可以一直當基準）。
 
@@ -176,6 +179,10 @@ Bloomberg 這組數字寫在 `checks.py` 裡，每次更新都會重新比對
 - **2026 年 10 月的年增率**沒有基期（2025 年 10 月未發布），屆時要依 BLS 的處理方式調整。
 - **新增拆法**：在 `cpi_contrib.py` 的 `NODES`、`SPANNING_SYSTEMS`、`BREAKDOWNS` 加上即可，
   網頁會自動多一個 Breakdown 按鈕；新細項若要用官方權重，也要在 `ri_official.py` 的 `NODE_NAMES` 加上名稱。
+
+相關研究：Federal Reserve Bank of San Francisco,
+[CPI Inflation Contributions from Goods and Services](https://www.frbsf.org/research-and-insights/data-and-indicators/cpi-inflation-contributions-from-goods-and-services/)
+與介紹文章 [A Deep Dive into the Drivers of CPI Inflation](https://www.frbsf.org/research-and-insights/blog/sf-fed-blog/2024/11/14/deep-dive-into-drivers-of-cpi-inflation-introducing-our-new-data-page/)（2024）。
 
 資料來源：U.S. Bureau of Labor Statistics — CPI-U（api.bls.gov）；
 Relative importance of components（<https://www.bls.gov/cpi/tables/relative-importance/home.htm>）；

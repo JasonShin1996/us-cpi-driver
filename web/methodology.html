@@ -298,6 +298,18 @@ $$c_i^{\text{YoY, exact}}(t) \;=\; \sum_{k=1}^{K} c_i^{(1)}(k)\prod_{j\lt k}(1+g
 <tr><td>Energy services</td><td class="n">3.303</td><td class="n">3.303</td></tr>
 </table></div>
 
+<h3>10.5 與舊金山聯準銀行（SF Fed）比較</h3>
+<p>舊金山聯準銀行每月發布 <a href="https://www.frbsf.org/research-and-insights/data-and-indicators/cpi-inflation-contributions-from-goods-and-services/">CPI Inflation Contributions from Goods and Services</a>，同樣把 CPI 年增率（未季調）與月增率（季調）拆成食物、能源、核心商品、核心服務不含住宅、住宅五類，並提供 Excel 下載。用本專案的七細項組成相同的五類，與其 1999 年 1 月至 2026 年 8 月共 331 個月的資料比較（單位 pp，SF Fed 只到小數第二位）：</p>
+<div class="scroll"><table>
+<tr><th>類別</th><th>年增率 平均差</th><th>年增率 最大差</th><th>月增率 平均差</th><th>月增率 最大差</th></tr>
+<tr><td>食物</td><td class="n">0.005</td><td class="n">0.046</td><td class="n">0.003</td><td class="n">0.014</td></tr>
+<tr><td>能源</td><td class="n">0.007</td><td class="n">0.052</td><td class="n">0.004</td><td class="n">0.039</td></tr>
+<tr><td>核心商品</td><td class="n">0.002</td><td class="n">0.005</td><td class="n">0.002</td><td class="n">0.005</td></tr>
+<tr><td>核心服務不含住宅</td><td class="n">0.010</td><td class="n">0.043</td><td class="n">0.015</td><td class="n">0.074</td></tr>
+<tr><td>住宅</td><td class="n">0.009</td><td class="n">0.041</td><td class="n">0.009</td><td class="n">0.111</td></tr>
+</table></div>
+<p>差異主要來自「住宅」的定義：SF Fed 的 Shelter 對應 BLS 的 Shelter（<code>SAH1</code>），本專案用的是 Rent of shelter（<code>SAS2RS</code>）。兩者之差剛好就是「租屋與住宅保險」（Tenants' and household insurance）一項：2025 年 12 月的權重為 35.625 − 35.333 = 0.292，這一項在本專案被歸入「核心服務不含住宅」。其餘差異來自四捨五入，以及七細項是由不同細項組合而成、各自保留 residual。SF Fed 另外提供核心 CPI 月增率的 67 個細項貢獻，是本專案目前沒有的更細拆分。</p>
+
 <h2 id="zh-11">11. 限制與參考資料</h2>
 <ul>
 <li>相對重要性本質上是未季調概念，月增率用它乘季調漲幅，會留下約 0.001pp 的 residual。</li>
@@ -309,6 +321,8 @@ $$c_i^{\text{YoY, exact}}(t) \;=\; \sum_{k=1}^{K} c_i^{(1)}(k)\prod_{j\lt k}(1+g
 <li>BLS Handbook of Methods, Consumer Price Index：<a href="https://www.bls.gov/opub/hom/cpi/">bls.gov/opub/hom/cpi</a></li>
 <li>BLS Relative importance tables：<a href="https://www.bls.gov/cpi/tables/relative-importance/home.htm">bls.gov/cpi/tables/relative-importance</a></li>
 <li>BLS Public Data API：<a href="https://www.bls.gov/developers/">bls.gov/developers</a></li>
+<li>Federal Reserve Bank of San Francisco, <a href="https://www.frbsf.org/research-and-insights/data-and-indicators/cpi-inflation-contributions-from-goods-and-services/">CPI Inflation Contributions from Goods and Services</a>（每月更新的資料頁，含 Excel 下載）</li>
+<li>Abdelrahman, H., C. Fall, and L. E. Oliveira (2024), “<a href="https://www.frbsf.org/research-and-insights/blog/sf-fed-blog/2024/11/14/deep-dive-into-drivers-of-cpi-inflation-introducing-our-new-data-page/">A Deep Dive into the Drivers of CPI Inflation: Introducing Our New Data Page</a>,” SF Fed Blog, November 14.</li>
 <li>原始碼：<a href="https://github.com/JasonShin1996/us-cpi-driver">github.com/JasonShin1996/us-cpi-driver</a></li>
 </ul>
 </article>
@@ -560,6 +574,18 @@ $$c_i^{\text{YoY, exact}}(t) \;=\; \sum_{k=1}^{K} c_i^{(1)}(k)\prod_{j\lt k}(1+g
 <tr><td>Energy services</td><td class="n">3.303</td><td class="n">3.303</td></tr>
 </table></div>
 
+<h3>10.5 Against the San Francisco Fed</h3>
+<p>The Federal Reserve Bank of San Francisco publishes <a href="https://www.frbsf.org/research-and-insights/data-and-indicators/cpi-inflation-contributions-from-goods-and-services/">CPI Inflation Contributions from Goods and Services</a> every month. It splits YoY (not seasonally adjusted) and MoM (seasonally adjusted) CPI inflation into food, energy, core goods, core services excluding shelter, and shelter, with an Excel download. Building the same five groups from this project's seven components and comparing 331 months, January 1999 to August 2026 (pp; SF Fed rounds to two decimals):</p>
+<div class="scroll"><table>
+<tr><th>Group</th><th>YoY mean |Δ|</th><th>YoY max |Δ|</th><th>MoM mean |Δ|</th><th>MoM max |Δ|</th></tr>
+<tr><td>Food</td><td class="n">0.005</td><td class="n">0.046</td><td class="n">0.003</td><td class="n">0.014</td></tr>
+<tr><td>Energy</td><td class="n">0.007</td><td class="n">0.052</td><td class="n">0.004</td><td class="n">0.039</td></tr>
+<tr><td>Core goods</td><td class="n">0.002</td><td class="n">0.005</td><td class="n">0.002</td><td class="n">0.005</td></tr>
+<tr><td>Core services ex shelter</td><td class="n">0.010</td><td class="n">0.043</td><td class="n">0.015</td><td class="n">0.074</td></tr>
+<tr><td>Shelter</td><td class="n">0.009</td><td class="n">0.041</td><td class="n">0.009</td><td class="n">0.111</td></tr>
+</table></div>
+<p>Most of the gap comes from the definition of shelter: SF Fed's Shelter is BLS Shelter (<code>SAH1</code>), while this project uses Rent of shelter (<code>SAS2RS</code>). The difference is exactly one item, tenants' and household insurance (December 2025 weights: 35.625 − 35.333 = 0.292), which this project counts in "core services ex shelter". The rest is rounding, and the fact that the seven components are built from different aggregates that each keep their own residual. SF Fed also publishes contributions of 67 subcategories to monthly core CPI, a finer split this project does not have yet.</p>
+
 <h2 id="en-11">11. Limitations and references</h2>
 <ul>
 <li>Relative importance is a not-seasonally-adjusted concept; applying it to seasonally adjusted changes leaves a residual of about 0.001pp in MoM.</li>
@@ -571,6 +597,8 @@ $$c_i^{\text{YoY, exact}}(t) \;=\; \sum_{k=1}^{K} c_i^{(1)}(k)\prod_{j\lt k}(1+g
 <li>BLS Handbook of Methods, Consumer Price Index: <a href="https://www.bls.gov/opub/hom/cpi/">bls.gov/opub/hom/cpi</a></li>
 <li>BLS relative importance tables: <a href="https://www.bls.gov/cpi/tables/relative-importance/home.htm">bls.gov/cpi/tables/relative-importance</a></li>
 <li>BLS Public Data API: <a href="https://www.bls.gov/developers/">bls.gov/developers</a></li>
+<li>Federal Reserve Bank of San Francisco, <a href="https://www.frbsf.org/research-and-insights/data-and-indicators/cpi-inflation-contributions-from-goods-and-services/">CPI Inflation Contributions from Goods and Services</a> (monthly data page with Excel download)</li>
+<li>Abdelrahman, H., C. Fall, and L. E. Oliveira (2024), “<a href="https://www.frbsf.org/research-and-insights/blog/sf-fed-blog/2024/11/14/deep-dive-into-drivers-of-cpi-inflation-introducing-our-new-data-page/">A Deep Dive into the Drivers of CPI Inflation: Introducing Our New Data Page</a>,” SF Fed Blog, November 14.</li>
 <li>Source code: <a href="https://github.com/JasonShin1996/us-cpi-driver">github.com/JasonShin1996/us-cpi-driver</a></li>
 </ul>
 </article>
