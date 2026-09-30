@@ -42,12 +42,18 @@ release_schedule.json    BLS 公布時間表（自動更新）
 ri_official.csv          官方 12 月權重，程式用到的 14 個節點（自動產生）
 ri_official_full.csv     官方權重表全部細項，CPI-U 與 CPI-W（自動產生）
 ri_official/             從 bls.gov 下載的原始檔（xlsx / txt / htm / zip）
+detail/
+  cpi_detail.py          細項頁資料：拆到 level 5 的細項貢獻 → web/data/detail.json
+  README.md              細項資料的說明與驗證
+  PITFALLS.md            BLS 資料陷阱與處理方式（接手前必讀）
+CLAUDE.md                給接手的人與 AI agent 的導覽
 web/
   index.html             儀表板（中英雙語）
   methodology.html       計算方法（中英雙語）
   data/cpi_data.json|js  前端資料
   data/cpi_contrib_{basic4,detail7}_{yoy,mom}.csv   貢獻度長表
   data/ri_official_vs_estimated.csv                  官方權重 vs 反推權重逐年對照
+  data/detail.json       細項頁資料
 .github/workflows/
   update.yml             排程更新資料
   pages.yml              發布 web/ 到 GitHub Pages
