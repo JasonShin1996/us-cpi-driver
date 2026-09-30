@@ -146,7 +146,9 @@ commit 的作者會是 `github-actions[bot]`，所以你在 repo 歷史裡看到
     uses: ./.github/workflows/pages.yml             # 直接呼叫 pages.yml
 ```
 
-只有在資料真的變了（或手動勾了 `force`）才發布網站。
+只有在資料真的變了（或手動勾了 `force`）才發布網站，而且**只在 `main` 分支上發布**：
+在功能分支上手動執行時，會完整跑抓資料、重算、測試、檢查、commit（commit 到該分支），但不發布，
+方便合併前先測試。
 
 為什麼要在這裡**直接呼叫** `pages.yml`，而不是等它自己被 push 觸發？
 因為 GitHub 規定：流程用臨時鑰匙做的 push **不會觸發其他流程**（避免流程互相觸發、無限循環）。
