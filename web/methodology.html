@@ -63,7 +63,7 @@
 <!-- ======================================================================= -->
 <article data-lang="zh" hidden>
 <h1>美國 CPI 貢獻度：計算方法</h1>
-<p class="lead">本頁說明儀表板上每個數字的來源與公式：資料、權重（relative importance）、月增率與年增率的貢獻度、residual，以及驗證結果。</p>
+<p class="lead">本頁說明儀表板與細項頁上每個數字的來源與公式：資料、權重（relative importance）、月增率與年增率的貢獻度、residual、細項的異常標記，以及驗證結果。</p>
 
 <div class="toc"><ol>
   <li><a href="#zh-1">目標與名詞</a></li>
@@ -76,7 +76,8 @@
   <li><a href="#zh-8">Residual 與「精確加總」</a></li>
   <li><a href="#zh-9">缺漏月份</a></li>
   <li><a href="#zh-10">驗證</a></li>
-  <li><a href="#zh-11">限制與參考資料</a></li>
+  <li><a href="#zh-11">細項頁</a></li>
+  <li><a href="#zh-12">限制與參考資料</a></li>
 </ol></div>
 
 <h2 id="zh-1">1. 目標與名詞</h2>
@@ -318,7 +319,59 @@ $$c_i^{\text{YoY, exact}}(t) \;=\; \sum_{k=1}^{K} c_i^{(1)}(k)\prod_{j\lt k}(1+g
 </table></div>
 <p>差異主要來自「住宅」的定義：SF Fed 的 Shelter 對應 BLS 的 Shelter（<code>SAH1</code>），本專案用的是 Rent of shelter（<code>SAS2RS</code>）。兩者之差剛好就是「租屋與住宅保險」（Tenants' and household insurance）一項：2025 年 12 月的權重為 35.625 − 35.333 = 0.292，這一項在本專案被歸入「核心服務不含住宅」。其餘差異來自四捨五入，以及七細項是由不同細項組合而成、各自保留 residual。SF Fed 另外提供核心 CPI 月增率的 67 個細項貢獻，是本專案目前沒有的更細拆分。</p>
 
-<h2 id="zh-11">11. 限制與參考資料</h2>
+<h2 id="zh-11">11. 細項頁</h2>
+<p><a href="detail.html">細項頁</a>把 CPI 沿 BLS 的支出類別階層一路拆到 level 5，讓你看到某個月是哪些細項推升或拉低了通膨，並標出漲幅異常的細項。計算方法與主頁相同，只是逐一套用到每個細項。</p>
+
+<h3>11.1 範圍與資料</h3>
+<ul>
+<li><strong>細項</strong>：以最新一年 12 月官方權重表的支出類別階層為準，level 1（八大類）到 level 5，共 239 項，其中最底層 166 項。最底層彼此互斥，權重加總約為 100。</li>
+<li><strong>最底層不一定在 level 5</strong>：有些細項在較淺的層級就沒有再往下拆，它們本身就是最底層。</li>
+<li><strong>階層修正</strong>：BLS Excel 表裡有少數列的縮排標錯（例如「酒精飲料」被標到「食物」底下），程式會用「母項權重 ＝ 子項權重加總」自動偵測並修正。</li>
+<li><strong>指數</strong>：來自 BLS 整批資料檔（download.bls.gov），全美城市平均的 CPI-U，季調與未季調。</li>
+<li><strong>月份</strong>：可選最近 10 年；細項漲幅的歷史從 2006 年起，供異常比較使用。</li>
+</ul>
+
+<h3>11.2 權重與貢獻</h3>
+<p>與第 4、7 節相同，逐項套用：</p>
+<ul>
+<li><strong>12 月錨點</strong>：每年 12 月官方表中該細項的相對重要性（新基礎）。細項依名稱對應；BLS 改過名稱的細項，會用舊名稱對應舊年份的表（例如 Airline fares 在 2014–2016 年的表格裡叫 Airline fare）。</li>
+<li><strong>年度內</strong>：用式 (2) 逐月更新。</li>
+<li><strong>月增率貢獻</strong>：\(RI_i(p)\cdot\big(I_i(t)/I_i(p)-1\big)\)，\(p\) 是上一個有公布的月份。有季調指數就用季調，沒有就用未季調（頁面標「NSA」）。最底層約 34 項、合計約 11% 權重沒有季調指數，例如行動電話服務、健康保險；這是 BLS 的做法，沒有明顯季節性的序列不做季調。</li>
+<li><strong>年增率貢獻</strong>：\(RI_i(t-12)\cdot\big(I_i(t)/I_i(t-12)-1\big)\)，未季調。</li>
+</ul>
+
+<h3>11.3 BLS 沒有公布指數的細項</h3>
+<ul>
+<li><strong>未抽樣項目與少數沒有全美指數的細項</strong>（23 項，合計約 2% 權重，其中「第二住所的自有住宅設算租金」單獨約 1.2%）：BLS 有權重但不公布指數。本專案用最近一個有指數的上層細項的漲幅來估計，頁面標「估」。BLS 自己計算時，這類項目也是由上一層的變動補值。</li>
+<li><strong>某些月份沒有公布的細項</strong>（樣本不足時 BLS 不公布）：推算權重時，暫時讓它跟著上層細項變動；它自己那個月的漲幅和貢獻顯示「無資料」，不另外估計。</li>
+</ul>
+
+<h3>11.4 未分配</h3>
+$$\text{未分配}(t) \;=\; \text{總體變動率}(t) \;-\; \sum_{i\in\text{最底層}} c_i(t)$$
+<p>來源與第 8.1 節的 residual 相同（年增率跨過權重更新、四捨五入、季節調整），再加上當月 BLS 沒公布的細項。拆得越細，年增率跨過權重更新的效應越明顯。2016-09 至 2026-08：月增率平均 0.019pp、最大 0.077pp；年增率平均 0.079pp、最大 0.28pp。</p>
+
+<h3>11.5 異常標記</h3>
+<p>比較的是細項<strong>自己的漲幅</strong>，不是貢獻度（權重大的細項貢獻天生就大，用貢獻比會一直標出同一批細項）。對所選月份 \(t\)，取同一細項在 \(t\) 之前 120 個月的同類漲幅（月增率比月增率、年增率比年增率）\(g_{t-120},\dots,g_{t-1}\)，至少要有 36 個觀測值：</p>
+$$z_t \;=\; \frac{g_t-\bar g}{s_g}, \qquad \text{百分位}_t \;=\; 100\times\frac{\#\{g_j < g_t\}}{\#\{g_j\}}$$
+<p>\(\bar g\)、\(s_g\) 是這 120 個月的平均與標準差。\(|z_t|\ge 2\) 時標 ▲（異常高）或 ▼（異常低）。排行和表格的預設排序仍然依貢獻度。細項歷史圖中的灰色區塊，就是 \(\bar g \pm 2 s_g\)（右軸）。</p>
+
+<h3>11.6 深度與「只看核心」</h3>
+<ul>
+<li><strong>深度 \(d\)</strong>：排行使用「level 等於 \(d\) 的細項，加上比 \(d\) 淺但已經沒有子項的細項」，這樣任何深度下的細項都互斥且涵蓋全部。「最底層」則是 166 個最底層細項。</li>
+<li><strong>核心</strong>：不在「食物」、「家庭能源」、「汽車燃料」底下的細項，與 BLS 的「All items less food and energy」一致。</li>
+<li><strong>同時包含核心與非核心的上層細項</strong>（例如住宅含家庭能源）：在「只看核心」模式下，它的貢獻是底下核心細項的加總，漲幅與異常標記不顯示。</li>
+</ul>
+
+<h3>11.7 驗證</h3>
+<div class="scroll"><table>
+<tr><th>比對對象</th><th>結果（2026-08 資料）</th></tr>
+<tr><td>BLS 每月新聞稿 Table 2（56 個名稱能對上的細項）</td><td class="n">上月權重全部一致（最大差 0.001）；季調月增率 56/56、年增率 55/56 一致（唯一不同是四捨五入邊界）</td></tr>
+<tr><td>SF Fed 核心 CPI 細項月增率貢獻（2013 年起，6,522 筆）</td><td class="n">平均差 0.0005pp，95% 小於 0.0017pp</td></tr>
+<tr><td>未季調單月細項貢獻加總 vs 總體月增率</td><td class="n">平均差 0.012pp（差距較大的月份都有細項當月未公布）</td></tr>
+</table></div>
+<p>這些比對由 <code>detail/validate.py</code> 在每次資料更新時重新執行。</p>
+
+<h2 id="zh-12">12. 限制與參考資料</h2>
 <ul>
 <li>相對重要性本質上是未季調概念，月增率用它乘季調漲幅，會留下約 0.001pp 的 residual。</li>
 <li>2007 年前指數只有一位小數，標準年增率的 residual 約 0.04pp。</li>
@@ -340,7 +393,7 @@ $$c_i^{\text{YoY, exact}}(t) \;=\; \sum_{k=1}^{K} c_i^{(1)}(k)\prod_{j\lt k}(1+g
 <!-- ======================================================================= -->
 <article data-lang="en" hidden>
 <h1>US CPI contributions: methodology</h1>
-<p class="lead">Where every number on the dashboard comes from: data, weights (relative importance), MoM and YoY contributions, the residual, and how the results were validated.</p>
+<p class="lead">Where every number on the dashboard and the item detail page comes from: data, weights (relative importance), MoM and YoY contributions, the residual, item-level anomaly flags, and how the results were validated.</p>
 
 <div class="toc"><ol>
   <li><a href="#en-1">Goal and notation</a></li>
@@ -353,7 +406,8 @@ $$c_i^{\text{YoY, exact}}(t) \;=\; \sum_{k=1}^{K} c_i^{(1)}(k)\prod_{j\lt k}(1+g
   <li><a href="#en-8">The residual and the exact sum</a></li>
   <li><a href="#en-9">Missing months</a></li>
   <li><a href="#en-10">Validation</a></li>
-  <li><a href="#en-11">Limitations and references</a></li>
+  <li><a href="#en-11">The item detail page</a></li>
+  <li><a href="#en-12">Limitations and references</a></li>
 </ol></div>
 
 <h2 id="en-1">1. Goal and notation</h2>
@@ -594,7 +648,59 @@ $$c_i^{\text{YoY, exact}}(t) \;=\; \sum_{k=1}^{K} c_i^{(1)}(k)\prod_{j\lt k}(1+g
 </table></div>
 <p>Most of the gap comes from the definition of shelter: SF Fed's Shelter is BLS Shelter (<code>SAH1</code>), while this project uses Rent of shelter (<code>SAS2RS</code>). The difference is exactly one item, tenants' and household insurance (December 2025 weights: 35.625 − 35.333 = 0.292), which this project counts in "core services ex shelter". The rest is rounding, and the fact that the seven components are built from different aggregates that each keep their own residual. SF Fed also publishes contributions of 67 subcategories to monthly core CPI, a finer split this project does not have yet.</p>
 
-<h2 id="en-11">11. Limitations and references</h2>
+<h2 id="en-11">11. The item detail page</h2>
+<p>The <a href="detail.html">item detail page</a> follows the BLS expenditure hierarchy down to level 5, so you can see which items pushed inflation up or down in a given month, with unusual moves flagged. The method is the same as the main page's, applied item by item.</p>
+
+<h3>11.1 Scope and data</h3>
+<ul>
+<li><strong>Items</strong>: the expenditure-category hierarchy of the newest December table, level 1 (the eight major groups) to level 5: 239 items, 166 of them at the lowest level. The lowest-level items are mutually exclusive and their weights add up to about 100.</li>
+<li><strong>The lowest level is not always level 5</strong>: some items are not split further below a shallower level and are lowest-level items themselves.</li>
+<li><strong>Hierarchy repair</strong>: a few rows in BLS's Excel table are indented wrongly (e.g. "Alcoholic beverages" placed under "Food"); the code detects and fixes them by requiring every parent's weight to equal the sum of its children's.</li>
+<li><strong>Indexes</strong>: BLS bulk files (download.bls.gov), CPI-U U.S. city average, seasonally adjusted and not.</li>
+<li><strong>Months</strong>: the last 10 years are selectable; item price-change history starts in 2006 for the anomaly comparison.</li>
+</ul>
+
+<h3>11.2 Weights and contributions</h3>
+<p>As in sections 4 and 7, item by item:</p>
+<ul>
+<li><strong>December anchors</strong>: the item's relative importance in each December table (new basis), matched by name; items BLS renamed are matched to older tables by their earlier names (Airline fares is "Airline fare" in the 2014–2016 tables).</li>
+<li><strong>Within the year</strong>: price-updated with (2).</li>
+<li><strong>MoM contribution</strong>: \(RI_i(p)\cdot\big(I_i(t)/I_i(p)-1\big)\), \(p\) the previous published month; seasonally adjusted index where BLS publishes one, otherwise not seasonally adjusted (badged "NSA"). About 34 lowest-level items, some 11% of the weight, have no seasonally adjusted index (e.g. wireless telephone services, health insurance); BLS does not adjust series without identifiable seasonality.</li>
+<li><strong>YoY contribution</strong>: \(RI_i(t-12)\cdot\big(I_i(t)/I_i(t-12)-1\big)\), not seasonally adjusted.</li>
+</ul>
+
+<h3>11.3 Items without a published index</h3>
+<ul>
+<li><strong>Unsampled items and the odd item with no U.S. index</strong> (23 items, about 2% of the weight; "unsampled owners' equivalent rent of secondary residences" alone is about 1.2%): BLS publishes their weight but no index. They are estimated from the change of the nearest level above that has one and badged "est"; BLS imputes such items from the level above too.</li>
+<li><strong>Items missing in some months</strong> (BLS withholds them when the sample is too small): for the weights only, they move with the level above; their own change and contribution for that month show "no data" and are not estimated.</li>
+</ul>
+
+<h3>11.4 Remainder</h3>
+$$\text{remainder}(t) \;=\; \text{headline change}(t) \;-\; \sum_{i\in\text{lowest level}} c_i(t)$$
+<p>Its sources are those of the residual in section 8.1 (YoY spanning the weight update, rounding, seasonal adjustment) plus items not published that month. The finer the split, the larger the weight-update effect on YoY. September 2016 to August 2026: MoM mean 0.019pp, max 0.077pp; YoY mean 0.079pp, max 0.28pp.</p>
+
+<h3>11.5 Unusual moves</h3>
+<p>The flag compares the item's <strong>own change</strong>, not its contribution (items with large weights always have large contributions, so a contribution test would keep flagging the same items). For the selected month \(t\), take the item's changes of the same kind (MoM with MoM, YoY with YoY) over the 120 months before \(t\), \(g_{t-120},\dots,g_{t-1}\), with at least 36 observations:</p>
+$$z_t \;=\; \frac{g_t-\bar g}{s_g}, \qquad \text{percentile}_t \;=\; 100\times\frac{\#\{g_j < g_t\}}{\#\{g_j\}}$$
+<p>where \(\bar g\) and \(s_g\) are the mean and standard deviation over those 120 months. \(|z_t|\ge 2\) is flagged ▲ (unusually high) or ▼ (unusually low). Rankings and the default table order are still by contribution. The grey band in an item's history chart is \(\bar g \pm 2 s_g\) (right axis).</p>
+
+<h3>11.6 Depth and "core only"</h3>
+<ul>
+<li><strong>Depth \(d\)</strong>: the ranking uses the items at level \(d\) plus shallower items that have no children, so at any depth the items are mutually exclusive and cover everything. "Lowest" is the 166 lowest-level items.</li>
+<li><strong>Core</strong>: items not under "Food", "Household energy" or "Motor fuel", matching BLS's "All items less food and energy".</li>
+<li><strong>Parents that mix core and non-core items</strong> (e.g. Housing, which contains household energy): in core-only mode their contribution is the sum of their core descendants; change and flags are not shown.</li>
+</ul>
+
+<h3>11.7 Validation</h3>
+<div class="scroll"><table>
+<tr><th>Compared with</th><th>Result (August 2026 data)</th></tr>
+<tr><td>BLS news release Table 2 (56 items matched by name)</td><td class="n">previous-month weights all equal (max diff 0.001); MoM SA 56/56 and YoY 55/56 equal (the one miss is a rounding boundary)</td></tr>
+<tr><td>SF Fed item contributions to monthly core CPI (since 2013, 6,522 points)</td><td class="n">mean gap 0.0005pp, 95% below 0.0017pp</td></tr>
+<tr><td>Sum of one-month NSA item contributions vs headline</td><td class="n">mean gap 0.012pp (the larger gaps are months with unpublished items)</td></tr>
+</table></div>
+<p><code>detail/validate.py</code> reruns these comparisons with every data update.</p>
+
+<h2 id="en-12">12. Limitations and references</h2>
 <ul>
 <li>Relative importance is a not-seasonally-adjusted concept; applying it to seasonally adjusted changes leaves a residual of about 0.001pp in MoM.</li>
 <li>Before 2007 indexes have one decimal, so the standard YoY residual is about 0.04pp.</li>
