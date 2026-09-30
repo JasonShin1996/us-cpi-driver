@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Item detail · US CPI Driver</title>
+<meta name="description" content="Contributions of individual CPI items (down to BLS level 5) to US CPI inflation, ranked, with 10-year anomaly flags. 美國 CPI 細項貢獻排行與異常標記。">
+<style>
+  :root{
+    --bg:#000; --panel:#0b0b0c; --grid:#232326; --amber:#ff9d1c; --amber-dim:#a8650f;
+    --field:#e2761b; --text:#e8e8ea; --muted:#8b8b93; --cyan:#22d3ee;
+    --up:#ff6b6b; --down:#5aa9ff;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;background:var(--bg);color:var(--text);
+    font-family:"Helvetica Neue",Helvetica,Arial,"Noto Sans TC",sans-serif;
+    font-variant-numeric:tabular-nums;-webkit-font-smoothing:antialiased}
+  body{padding:10px 12px 40px;max-width:1680px;margin:0 auto}
+  .topbar{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:6px}
+  .brand{color:var(--amber);font-size:15px;font-weight:700;letter-spacing:.03em;text-decoration:none}
+  .tabs{display:flex;gap:2px;margin-right:auto;margin-left:14px}
+  .tabs a{color:var(--muted);font-size:12.5px;text-decoration:none;padding:3px 10px;border-bottom:2px solid transparent}
+  .tabs a:hover{color:var(--amber)}
+  .tabs a.on{color:var(--text);border-bottom-color:var(--amber)}
+  .btn{background:#1b1b1e;border:1px solid #37373c;color:var(--text);font-size:12px;
+    padding:3px 10px;cursor:pointer;font-family:inherit}
+  .btn:hover{border-color:var(--amber-dim);color:var(--amber)}
+  .btn:focus-visible,select:focus-visible,input:focus-visible{outline:2px solid var(--amber);outline-offset:1px}
+  .btn.on{background:var(--field);border-color:var(--field);color:#120a02;font-weight:700}
+  .btn[disabled]{opacity:.35;cursor:default}
+  .ctl{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin:4px 0}
+  .lbl{color:var(--amber);font-size:12px;letter-spacing:.02em;margin-left:6px}
+  .lbl:first-child{margin-left:0}
+  .seg{display:flex}
+  .seg .btn{border-right-width:0}
+  .seg .btn:last-child{border-right-width:1px}
+  select,input[type=search]{background:#151007;border:1px solid var(--field);color:var(--amber);
+    font-size:12.5px;padding:3px 6px;font-family:inherit}
+  input[type=search]{min-width:200px;color:var(--text);background:#111}
+  h1{font-size:19px;font-weight:600;margin:14px 0 2px;color:#f2f2f4}
+  h2{font-size:15px;font-weight:600;margin:22px 0 4px;color:#f2f2f4}
+  .sub{color:var(--muted);font-size:12px;margin-bottom:8px}
+  .cards{display:flex;gap:10px;flex-wrap:wrap;margin:10px 0 4px}
+  .card{background:var(--panel);border:1px solid #1c1c20;padding:6px 12px;min-width:120px}
+  .card .k{color:var(--muted);font-size:11px}
+  .card .v{font-size:18px;font-weight:600;color:#fff}
+  .groups{display:flex;gap:10px;flex-wrap:wrap;font-size:12px;margin:6px 0}
+  .gchip{display:flex;align-items:center;gap:5px;cursor:pointer;user-select:none;padding:1px 3px;border:0;background:none;color:var(--text);font:inherit}
+  .gchip.off{opacity:.3}
+  .sw{width:11px;height:11px;flex:none;display:inline-block}
+  .chartwrap{position:relative;border:1px solid #1c1c20;background:var(--panel)}
+  svg{display:block;width:100%;height:auto}
+  #tip{position:absolute;pointer-events:none;background:#0d0d10;border:1px solid var(--amber-dim);
+    padding:7px 9px;font-size:11.5px;line-height:1.55;display:none;z-index:5;max-width:320px;box-shadow:0 4px 18px #000a}
+  #tip .hd{color:var(--amber);margin-bottom:3px;font-weight:700}
+  #tip .r{display:flex;justify-content:space-between;gap:14px}
+  table{border-collapse:collapse;width:100%;font-size:12px;margin-top:6px}
+  th,td{padding:3px 8px;text-align:right;white-space:nowrap}
+  thead th{color:var(--amber);border-bottom:1px solid #35353a;font-weight:600;cursor:pointer;user-select:none;position:sticky;top:0;background:#000}
+  thead th.nosort{cursor:default}
+  thead th .arr{color:var(--muted);font-size:10px}
+  tbody td.name{text-align:left;max-width:520px;overflow:hidden;text-overflow:ellipsis}
+  tbody tr{border-bottom:1px solid #141417}
+  tbody tr:hover{background:#101014}
+  tbody tr.sel{background:#1a1408}
+  .tog{display:inline-block;width:14px;color:var(--muted);cursor:pointer;text-align:center}
+  .nm{cursor:pointer}
+  .nm:hover{color:var(--amber)}
+  .badge{font-size:9.5px;color:#111;background:#8b8b93;padding:0 4px;margin-left:5px;border-radius:2px;vertical-align:1px}
+  .badge.est{background:#c9a978}
+  .pos{color:#ff8a8a}.neg{color:#7fb6ff}
+  .flag{font-weight:700}
+  .flag.up{color:var(--up)}.flag.down{color:var(--down)}
+  td.muted,.muted{color:var(--muted)}
+  tr.hist td{padding:6px 8px 12px;background:#07070a;text-align:left;white-space:normal}
+  .scroll{overflow-x:auto}
+  .note{color:var(--muted);font-size:11.5px;margin-top:12px;line-height:1.7;max-width:90ch}
+  .note a{color:#c9a978}
+  .err{color:#ff7a7a;font-size:13px;padding:20px;border:1px solid #5a2020;background:#180a0a}
+  @media (max-width:760px){ .tabs{margin-left:0;order:3;width:100%} h1{font-size:16px} input[type=search]{min-width:140px} }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <a class="brand" id="brand" href="index.html">US CPI Driver</a>
+  <nav class="tabs">
+    <a id="tabMain" href="index.html">Contributions</a>
+    <a id="tabDetail" class="on" href="detail.html">Item detail</a>
+    <a id="tabMethod" href="methodology.html">Methodology</a>
+  </nav>
+  <button class="btn" id="btnLang" title="Language / 語言">中文</button>
+</div>
+
+<div class="ctl">
+  <span class="lbl" data-i18n="month">Month</span>
+  <button class="btn" id="prevM" aria-label="previous month">◀</button>
+  <select id="selM"></select>
+  <button class="btn" id="nextM" aria-label="next month">▶</button>
+  <span class="lbl" data-i18n="transform">Transform</span>
+  <div class="seg" id="segTf"><button class="btn" data-v="mom">MoM%</button><button class="btn" data-v="yoy">YoY%</button></div>
+  <span class="lbl" data-i18n="scope">Scope</span>
+  <div class="seg" id="segScope"><button class="btn" data-v="all" data-i18n="all">All items</button><button class="btn" data-v="core" data-i18n="core">Core only</button></div>
+</div>
+<div class="ctl">
+  <span class="lbl" data-i18n="depth">Depth</span>
+  <div class="seg" id="segDepth"></div>
+  <span class="lbl" data-i18n="show">Show</span>
+  <div class="seg" id="segN"><button class="btn" data-v="5">5</button><button class="btn" data-v="10">10</button><button class="btn" data-v="15">15</button><button class="btn" data-v="20">20</button></div>
+</div>
+<div class="groups" id="groups"></div>
+
+<div id="app"></div>
+
+<script>
+(function(){
+"use strict";
+
+/* ---------------- i18n ---------------- */
+var I18N = {
+  zh: { htmlLang:"zh-Hant", other:"EN", title:"細項貢獻 · US CPI Driver",
+    tabMain:"貢獻度", tabDetail:"細項", tabMethod:"計算方法",
+    month:"月份", transform:"變動率", scope:"範圍", all:"全部", core:"只看核心", depth:"深度", show:"顯示前後",
+    lowest:"最底層",
+    h1:function(tf,m){ return "細項對美國 CPI "+(tf==="mom"?"月增率":"年增率")+"的貢獻 · "+m; },
+    sub:function(tf){ return (tf==="mom"?"月增率：有季調指數用季調，沒有就用未季調":"年增率：未季調")+
+      "　·　貢獻度單位為百分點，對整體 CPI"; },
+    headline:"整體 CPI", coreCpi:"核心 CPI", remainder:"未分配", anomalies:"漲幅異常",
+    rankTitle:function(n){ return "貢獻最大與最小的 "+n+" 項"; },
+    largest:"最大貢獻", smallest:"最小貢獻",
+    tableTitle:"所有細項", expandAll:"全部展開", collapseAll:"全部收合", search:"搜尋細項…",
+    cName:"細項", cW:"權重", cChg:"漲幅 %", cC:"貢獻", cSpark:"近 3 年漲幅", cPct:"10 年百分位", cZ:"z 分數",
+    wTip:"基期權重（MoM：上個月；YoY：去年同月），占整體 CPI 的 %",
+    zTip:"這個月的漲幅，和它自己過去 10 年同類漲幅相比，差幾個標準差",
+    pctTip:"這個月的漲幅在過去 10 年中的百分位",
+    est:"估", estTip:"BLS 未公布此細項指數，以上層細項的漲幅估計",
+    nsa:"NSA", nsaTip:"BLS 沒有這個細項的季調指數，月增率用未季調",
+    remRow:"未分配（總體與細項加總之差）",
+    remTip:"包括年增率跨過一月權重更新的效應、當月 BLS 未公布的細項，以及四捨五入",
+    histTitle:function(n){ return n+"：過去 10 年"; },
+    histLegendC:"貢獻（左軸，pp）", histLegendG:"漲幅（右軸，%）", histBand:"過去 10 年平均 ±2 個標準差",
+    noData:"無資料", group:"大類", weightSum:"權重合計",
+    span:function(p){ return "　·　注意：本月月增率是自 "+p+" 起的兩個月變動（中間月份 BLS 未公布）"; },
+    note:"權重是 BLS 官方每年 12 月的相對重要性，年度內以價格變動逐月更新；貢獻度 = 基期權重 × 細項漲幅。"+
+      "異常標記（▲▼）比較的是細項<strong>自己的漲幅</strong>與它過去 10 年的分布（|z| ≥ 2）；排序依貢獻度。"+
+      "標「估」的細項 BLS 不公布指數，以上層漲幅估計；標「NSA」的細項沒有季調指數。細項名稱沿用 BLS 英文原名。",
+    more:"完整說明：", methodology:"計算方法",
+    loadErr:"找不到細項資料 <code>data/detail.json</code>。請在專案資料夾執行 <code>python detail/cpi_detail.py</code>。"
+  },
+  en: { htmlLang:"en", other:"中文", title:"Item detail · US CPI Driver",
+    tabMain:"Contributions", tabDetail:"Item detail", tabMethod:"Methodology",
+    month:"Month", transform:"Transform", scope:"Scope", all:"All items", core:"Core only", depth:"Depth", show:"Show top/bottom",
+    lowest:"Lowest",
+    h1:function(tf,m){ return "Item contributions to US CPI "+(tf==="mom"?"MoM%":"YoY%")+" · "+m; },
+    sub:function(tf){ return (tf==="mom"?"MoM: seasonally adjusted where BLS publishes an SA index, otherwise NSA":"YoY: not seasonally adjusted")+
+      " · contributions in percentage points of headline CPI"; },
+    headline:"Headline CPI", coreCpi:"Core CPI", remainder:"Remainder", anomalies:"Unusual moves",
+    rankTitle:function(n){ return "Largest and smallest "+n+" contributors"; },
+    largest:"Largest", smallest:"Smallest",
+    tableTitle:"All items", expandAll:"Expand all", collapseAll:"Collapse all", search:"Search items…",
+    cName:"Item", cW:"Weight", cChg:"Change %", cC:"Contribution", cSpark:"Change, last 3y", cPct:"10y pctile", cZ:"z-score",
+    wTip:"Base-period weight (MoM: previous month; YoY: same month last year), % of all items",
+    zTip:"This month's change vs the item's own changes over the past 10 years, in standard deviations",
+    pctTip:"Percentile of this month's change within the past 10 years",
+    est:"est", estTip:"BLS does not publish an index for this item; estimated from the level above",
+    nsa:"NSA", nsaTip:"No seasonally adjusted index from BLS; MoM uses the unadjusted index",
+    remRow:"Remainder (headline minus sum of items)",
+    remTip:"Includes the effect of YoY spanning the January weight update, items BLS did not publish this month, and rounding",
+    histTitle:function(n){ return n+": last 10 years"; },
+    histLegendC:"Contribution (left, pp)", histLegendG:"Change (right, %)", histBand:"10-year mean ±2 standard deviations",
+    noData:"no data", group:"Group", weightSum:"Weight total",
+    span:function(p){ return " · Note: this MoM is a two-month change since "+p+" (BLS did not publish the month in between)"; },
+    note:"Weights are BLS's official December relative importance, price-updated month by month; contribution = base-period weight × the item's change. "+
+      "Flags (▲▼) compare the item's <strong>own change</strong> with its distribution over the past 10 years (|z| ≥ 2); ranking is by contribution. "+
+      "Items marked \"est\" have no published BLS index and are estimated from the level above; \"NSA\" items have no seasonally adjusted index.",
+    more:"Full details: ", methodology:"Methodology",
+    loadErr:"Item data <code>data/detail.json</code> not found. Run <code>python detail/cpi_detail.py</code> in the project folder."
+  }
+};
+var LANG = (function(){
+  var m = location.hash.match(/lang=(zh|en)/); if(m) return m[1];
+  try{ var s = localStorage.getItem("cpiLang"); if(s==="zh"||s==="en") return s; }catch(e){}
+  return /^zh/i.test(navigator.language||"") ? "zh" : "en";
+})();
+function T(k){ return I18N[LANG][k]; }
+
+var app = document.getElementById("app");
+fetch("data/detail.json").then(function(r){ if(!r.ok) throw 0; return r.json(); })
+  .then(boot).catch(function(){ app.innerHTML = '<div class="err">'+T("loadErr")+'</div>'; });
+
+function boot(D){
+var M = D.meta.months, H = D.meta.history, ITEMS = D.items, SER = D.series, G = D.meta.groups;
+var byId = {}; ITEMS.forEach(function(it){ byId[it.id] = it; it.kids = []; });
+ITEMS.forEach(function(it){ if(it.parent!=null && byId[it.parent]) byId[it.parent].kids.push(it.id); });
+var TOP = ITEMS.filter(function(it){ return it.level===1; }).map(function(it){ return it.id; });
+var hIndex = {}; H.forEach(function(m,i){ hIndex[m]=i; });
+var mIndex = {}; M.forEach(function(m,i){ mIndex[m]=i; });
+var VALID = M.filter(function(m,i){ return D.headline.mom[i]!=null || D.headline.yoy[i]!=null; });
+var MAXLV = D.meta.max_level || 5;
+
+/* pure-core: the item and everything below it is outside food and energy */
+var pureCore = {};
+(function walk(ids){ ids.forEach(function(id){ var it=byId[id]; walk(it.kids);
+  pureCore[id] = it.core && it.kids.every(function(k){ return pureCore[k]; }); }); })(TOP);
+function coreLeaves(id){ var it=byId[id]; if(!it.kids.length) return it.core?[id]:[];
+  return it.kids.reduce(function(a,k){ return a.concat(coreLeaves(k)); },[]); }
+
+var S = { m: VALID[VALID.length-1], tf:"mom", scope:"all", depth:0, n:10, sort:"c", dir:-1,
+          hidden:{}, open:{}, sel:null, q:"" };
+readHash();
+
+/* ---------------- numbers ---------------- */
+function kSel(){ return mIndex[S.m]; }
+function prevValid(k){ var j=k-1; while(j>=0 && D.headline.mom[j]==null) j--; return j; }
+function baseK(k){ if(S.tf==="mom") return prevValid(k); var m=M[k]; var b=(+m.slice(0,4)-1)+m.slice(4); return mIndex[b]==null?-1:mIndex[b]; }
+function contrib(id,k){ var s=SER[id]; return (S.tf==="mom"?s.cm:s.cy)[k]; }
+function change(id,m){ var s=SER[id], h=hIndex[m]; return h==null?null:(S.tf==="mom"?s.gm:s.gy)[h]; }
+function weight(id,k){ var b=baseK(k); return b<0?null:SER[id].w[b]; }
+function isMixed(id){ return S.scope==="core" && !pureCore[id]; }
+function val(id,k){                         /* contribution shown for a row (core mode sums core leaves of mixed nodes) */
+  if(!isMixed(id)) return contrib(id,k);
+  var t=0, any=false; coreLeaves(id).forEach(function(l){ var v=contrib(l,k); if(v!=null){ t+=v; any=true; } });
+  return any?t:null;
+}
+function wval(id,k){
+  if(!isMixed(id)) return weight(id,k);
+  var t=0, any=false; coreLeaves(id).forEach(function(l){ var v=weight(l,k); if(v!=null){ t+=v; any=true; } });
+  return any?t:null;
+}
+var statCache = {};
+function stats(id){                         /* own change vs trailing 10 years */
+  var key=id+"|"+S.tf+"|"+S.m; if(statCache[key]) return statCache[key];
+  var g=(S.tf==="mom"?SER[id].gm:SER[id].gy), h=hIndex[S.m], x=g[h], base=[];
+  for(var i=Math.max(0,h-12*(D.meta.baseline_years||10)); i<h; i++) if(g[i]!=null) base.push(g[i]);
+  var r={x:x, z:null, pct:null, mean:null, sd:null};
+  if(x!=null && base.length>=36){
+    var mu=base.reduce(function(a,b){return a+b;},0)/base.length;
+    var sd=Math.sqrt(base.reduce(function(a,b){return a+(b-mu)*(b-mu);},0)/(base.length-1));
+    r.mean=mu; r.sd=sd; r.z = sd>0 ? (x-mu)/sd : null;
+    r.pct = 100*base.filter(function(b){return b<x;}).length/base.length;
+  }
+  return (statCache[key]=r);
+}
+function flag(id){ if(isMixed(id)) return 0; var z=stats(id).z; return z==null?0:(z>=2?1:(z<=-2?-1:0)); }
+
+/* items at the chosen depth (a partition of all items, or of core items) */
+function partition(){
+  var out=[];
+  (function walk(ids){ ids.forEach(function(id){ var it=byId[id];
+    if(S.hidden[it.group]) return;
+    var atDepth = S.depth===0 ? !it.kids.length : (it.level===S.depth || (!it.kids.length && it.level<S.depth));
+    if(S.scope==="core"){
+      if(!it.kids.length && !it.core) return;
+      if(atDepth && pureCore[id]){ out.push(id); return; }
+      if(atDepth && !it.kids.length) return;
+      if(!atDepth || !pureCore[id]){ walk(it.kids); return; }
+    }
+    if(atDepth) out.push(id); else walk(it.kids);
+  }); })(TOP);
+  return out;
+}
+
+/* ---------------- formatting ---------------- */
+function f(v,d){ return v==null||isNaN(v) ? "—" : v.toFixed(d==null?3:d); }
+function cls(v){ return v==null?"muted":(v>0?"pos":(v<0?"neg":"")); }
+function esc(s){ return String(s).replace(/[&<>"]/g,function(c){ return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]; }); }
+function gcol(it){ var g=G[it.group]; return g?g.color:"#888"; }
+function gname(g){ return LANG==="zh"?g.zh:g.en; }
+function badges(it){ var b="";
+  if(it.proxy) b+='<span class="badge est" title="'+esc(T("estTip"))+'">'+T("est")+'</span>';
+  if(S.tf==="mom" && !it.sa) b+='<span class="badge" title="'+esc(T("nsaTip"))+'">'+T("nsa")+'</span>';
+  return b; }
+function flagHtml(id){ var fl=flag(id); return fl>0?'<span class="flag up" title="z ≥ 2">▲</span>':(fl<0?'<span class="flag down" title="z ≤ −2">▼</span>':""); }
+
+/* ---------------- controls ---------------- */
+var selM=document.getElementById("selM");
+VALID.slice().reverse().forEach(function(m){ var o=document.createElement("option"); o.value=m; o.textContent=m; selM.appendChild(o); });
+var segDepth=document.getElementById("segDepth");
+function buildDepth(){ segDepth.innerHTML='<button class="btn" data-v="0">'+T("lowest")+'</button>'+
+  [1,2,3,4,5].filter(function(l){return l<=MAXLV;}).map(function(l){ return '<button class="btn" data-v="'+l+'">'+l+'</button>'; }).join(""); }
+function buildGroups(){
+  document.getElementById("groups").innerHTML = G.map(function(g){
+    return '<button class="gchip'+(S.hidden[g.id]?" off":"")+'" data-g="'+g.id+'"><span class="sw" style="background:'+g.color+'"></span>'+esc(gname(g))+'</button>'; }).join("");
+}
+function applyStatic(){
+  document.documentElement.lang=T("htmlLang"); document.title=T("title");
+  Array.prototype.forEach.call(document.querySelectorAll("[data-i18n]"),function(el){ el.textContent=T(el.getAttribute("data-i18n")); });
+  document.getElementById("btnLang").textContent=T("other");
+  ["Main","Detail","Method"].forEach(function(k){ document.getElementById("tab"+k).textContent=T("tab"+k); });
+  document.getElementById("tabMain").href="index.html#lang="+LANG;
+  document.getElementById("brand").href="index.html#lang="+LANG;
+  document.getElementById("tabMethod").href="methodology.html#lang="+LANG;
+  buildDepth(); buildGroups();
+}
+
+/* ---------------- URL state ---------------- */
+function readHash(){
+  location.hash.replace(/^#/,"").split("&").forEach(function(kv){
+    var p=kv.split("="), k=p[0], v=decodeURIComponent(p[1]||"");
+    if(k==="m" && VALID.indexOf(v)>=0) S.m=v;
+    if(k==="tf" && (v==="mom"||v==="yoy")) S.tf=v;
+    if(k==="scope" && (v==="all"||v==="core")) S.scope=v;
+    if(k==="d" && /^[0-5]$/.test(v)) S.depth=+v;
+    if(k==="n" && /^(5|10|15|20)$/.test(v)) S.n=+v;
+  });
+}
+function writeHash(){
+  var h="#lang="+LANG+"&m="+S.m+"&tf="+S.tf+"&scope="+S.scope+"&d="+S.depth+"&n="+S.n;
+  if(location.hash!==h) try{ history.replaceState(null,"",h); }catch(e){ location.hash=h; }
+}
+
+/* ---------------- shell ---------------- */
+app.innerHTML =
+  '<h1 id="h1"></h1><div class="sub" id="sub"></div><div class="cards" id="cards"></div>'+
+  '<h2 id="rankTitle"></h2><div class="chartwrap"><svg id="rank"></svg><div id="tip"></div></div>'+
+  '<h2 id="tableTitle"></h2>'+
+  '<div class="ctl"><input type="search" id="q"> <button class="btn" id="expAll"></button><button class="btn" id="colAll"></button></div>'+
+  '<div class="scroll"><table id="tbl"></table></div>'+
+  '<div class="note" id="note"></div>';
+
+/* ---------------- ranking chart ---------------- */
+function drawRank(){
+  var k=kSel(), ids=partition().filter(function(id){ return val(id,k)!=null; });
+  ids.sort(function(a,b){ return val(b,k)-val(a,k); });
+  var n=S.n, top, bot;
+  if(ids.length<=2*n){ top=ids; bot=[]; } else { top=ids.slice(0,n); bot=ids.slice(ids.length-n); }
+  /* draw at the container's real width so text stays readable on phones */
+  var W=Math.max(320, Math.round(document.getElementById("rank").parentNode.clientWidth || 1200));
+  var rows=top.concat(bot), rowH=22, labW=Math.min(470, W*0.42), padR=W<600?52:70, gap=bot.length?18:0;
+  var maxCh=Math.max(12, Math.floor(labW/(W<600?5.6:6.4)));
+  var fs=W<600?10.5:12;
+  var Hh=rows.length*rowH+gap+30;
+  var lo=0, hi=0; rows.forEach(function(id){ var v=val(id,k); if(v<lo)lo=v; if(v>hi)hi=v; });
+  if(hi===lo){ hi+=0.01; }
+  var x0=labW+10, x1=W-padR, xs=function(v){ return x0+(v-lo)/(hi-lo)*(x1-x0); };
+  var g=['<rect x="0" y="0" width="'+W+'" height="'+Hh+'" fill="#0b0b0c"/>'];
+  var zx=xs(0);
+  rows.forEach(function(id,i){
+    var it=byId[id], v=val(id,k), y=6+i*rowH+(i>=top.length?gap:0), a=xs(Math.min(0,v)), b=xs(Math.max(0,v));
+    var name=it.name.length>maxCh?it.name.slice(0,maxCh-1)+"…":it.name;
+    g.push('<g class="rk" data-id="'+id+'" style="cursor:pointer">');
+    g.push('<rect x="0" y="'+y+'" width="'+W+'" height="'+rowH+'" fill="transparent"/>');
+    g.push('<text x="'+labW+'" y="'+(y+15)+'" fill="#d6d6da" font-size="'+fs+'" text-anchor="end">'+esc(name)+(it.proxy?" *":"")+'</text>');
+    g.push('<rect x="'+a.toFixed(1)+'" y="'+(y+4)+'" width="'+Math.max(1,b-a).toFixed(1)+'" height="'+(rowH-8)+'" fill="'+gcol(it)+'"/>');
+    var fl=flag(id), tx=(v>=0?b+6:zx+6);          /* negative values sit right of the zero line, clear of the labels */
+    g.push('<text x="'+tx.toFixed(1)+'" y="'+(y+15)+'" fill="#e8e8ea" font-size="11" text-anchor="start">'+f(v)+
+      (fl? (fl>0?' <tspan fill="#ff6b6b">▲</tspan>':' <tspan fill="#5aa9ff">▼</tspan>') : '')+'</text>');
+    g.push('</g>');
+  });
+  if(bot.length){ var yd=6+top.length*rowH+gap/2; g.push('<line x1="0" x2="'+W+'" y1="'+yd+'" y2="'+yd+'" stroke="#444" stroke-dasharray="4 4"/>');
+    g.push('<text x="'+(W-8)+'" y="'+(yd-4)+'" fill="#8b8b93" font-size="10.5" text-anchor="end">▲ '+T("largest")+'</text>');
+    g.push('<text x="'+(W-8)+'" y="'+(yd+12)+'" fill="#8b8b93" font-size="10.5" text-anchor="end">▼ '+T("smallest")+'</text>'); }
+  g.push('<line x1="'+zx.toFixed(1)+'" x2="'+zx.toFixed(1)+'" y1="2" y2="'+(Hh-24)+'" stroke="#bbb" stroke-width="1.2"/>');
+  var axY=Hh-10; [lo,0,hi].forEach(function(t){ if(t!==0 && Math.abs(xs(t)-zx)<60) return; g.push('<text x="'+xs(t).toFixed(1)+'" y="'+axY+'" fill="#7d7d86" font-size="10.5" text-anchor="middle">'+t.toFixed(3)+' pp</text>'); });
+  var svg=document.getElementById("rank"); svg.setAttribute("viewBox","0 0 "+W+" "+Hh); svg.innerHTML=g.join("");
+  document.getElementById("rankTitle").textContent=T("rankTitle")(n)+(ids.length<=2*n?" ("+ids.length+")":"");
+}
+var tip=document.getElementById("tip"), rankSvg=document.getElementById("rank");
+rankSvg.addEventListener("mousemove",function(e){
+  var gEl=e.target.closest && e.target.closest(".rk"); if(!gEl){ tip.style.display="none"; return; }
+  var id=+gEl.getAttribute("data-id"), it=byId[id], k=kSel(), st=stats(id);
+  var h='<div class="hd">'+esc(it.name)+'</div>'+
+    '<div class="r"><span>'+T("group")+'</span><b>'+esc(gname(G[it.group]))+'</b></div>'+
+    '<div class="r"><span>'+T("cC")+'</span><b>'+f(val(id,k))+' pp</b></div>'+
+    '<div class="r"><span>'+T("cChg")+'</span><b>'+(isMixed(id)?"—":f(st.x,2))+'</b></div>'+
+    '<div class="r"><span>'+T("cW")+'</span><b>'+f(wval(id,k))+'</b></div>'+
+    '<div class="r"><span>'+T("cZ")+'</span><b>'+(isMixed(id)?"—":f(st.z,1))+'</b></div>'+
+    '<div class="r"><span>'+T("cPct")+'</span><b>'+(isMixed(id)||st.pct==null?"—":Math.round(st.pct))+'</b></div>';
+  tip.innerHTML=h; tip.style.display="block";
+  var r=rankSvg.getBoundingClientRect(), wrapW=r.width, left=e.clientX-r.left+14;
+  if(left+330>wrapW) left=e.clientX-r.left-tip.offsetWidth-14;
+  tip.style.left=Math.max(4,left)+"px"; tip.style.top=(e.clientY-r.top+12)+"px";
+});
+rankSvg.addEventListener("mouseleave",function(){ tip.style.display="none"; });
+rankSvg.addEventListener("click",function(e){
+  var gEl=e.target.closest && e.target.closest(".rk"); if(!gEl) return;
+  var id=+gEl.getAttribute("data-id"); S.sel=id; S.q="";
+  var a=byId[id].parent; while(a!=null){ S.open[a]=true; a=byId[a].parent; }
+  renderTable(); var row=document.querySelector('tr[data-id="'+id+'"]'); if(row) row.scrollIntoView({block:"center"});
+});
+
+/* ---------------- tree table ---------------- */
+function sortKey(id,k){
+  switch(S.sort){
+    case "name": return byId[id].name.toLowerCase();
+    case "w": return wval(id,k);
+    case "g": return isMixed(id)?null:stats(id).x;
+    case "z": return isMixed(id)?null:stats(id).z;
+    case "p": return isMixed(id)?null:stats(id).pct;
+    default: return val(id,k);
+  }
+}
+function sorted(ids,k){
+  return ids.slice().sort(function(a,b){
+    var x=sortKey(a,k), y=sortKey(b,k);
+    if(x==null && y==null) return 0; if(x==null) return 1; if(y==null) return -1;
+    if(typeof x==="string") return S.dir*(x<y?-1:x>y?1:0);
+    return S.dir*(x-y);
+  });
+}
+function visibleKids(id){ return byId[id].kids.filter(function(c){ var it=byId[c];
+  if(S.scope==="core" && !it.kids.length && !it.core) return false;
+  if(S.scope==="core" && it.kids.length && coreLeaves(c).length===0) return false;
+  return true; }); }
+function spark(id){
+  var g=(S.tf==="mom"?SER[id].gm:SER[id].gy), h=hIndex[S.m], pts=[], w=110, hh=18;
+  var from=Math.max(0,h-35), vals=g.slice(from,h+1);
+  var nn=vals.filter(function(v){return v!=null;}); if(nn.length<2) return "";
+  var lo=Math.min.apply(null,nn.concat([0])), hi=Math.max.apply(null,nn.concat([0])); if(hi===lo) hi=lo+1;
+  var y=function(v){ return hh-1-(v-lo)/(hi-lo)*(hh-2); }, d="", pen=false;
+  vals.forEach(function(v,i){ if(v==null){ pen=false; return; } d+=(pen?"L":"M")+(i*(w/35)).toFixed(1)+" "+y(v).toFixed(1)+" "; pen=true; });
+  var last=vals[vals.length-1];
+  return '<svg width="'+w+'" height="'+hh+'" viewBox="0 0 '+w+' '+hh+'" style="display:inline-block;vertical-align:middle">'+
+    '<line x1="0" x2="'+w+'" y1="'+y(0).toFixed(1)+'" y2="'+y(0).toFixed(1)+'" stroke="#333"/>'+
+    '<path d="'+d+'" fill="none" stroke="#9aa0aa" stroke-width="1.2"/>'+
+    (last!=null?'<circle cx="'+w+'" cy="'+y(last).toFixed(1)+'" r="2.2" fill="#ff9d1c"/>':'')+'</svg>';
+}
+function rowHtml(id,k,depth,hasKids){
+  var it=byId[id], st=stats(id), mixed=isMixed(id), v=val(id,k);
+  var tog=hasKids?'<span class="tog" data-tog="'+id+'">'+(S.open[id]?"▾":"▸")+'</span>':'<span class="tog"></span>';
+  return '<tr data-id="'+id+'"'+(S.sel===id?' class="sel"':'')+'>'+
+    '<td class="name" style="padding-left:'+(6+depth*16)+'px" title="'+esc(it.name)+'">'+tog+
+      '<span class="sw" style="background:'+gcol(it)+';margin-right:6px;vertical-align:-1px"></span>'+
+      '<span class="nm" data-sel="'+id+'">'+esc(it.name)+'</span>'+badges(it)+'</td>'+
+    '<td class="muted">'+f(wval(id,k))+'</td>'+
+    '<td class="'+cls(mixed?null:st.x)+'">'+(mixed?"—":f(st.x,2))+'</td>'+
+    '<td class="'+cls(v)+'"><b>'+f(v)+'</b></td>'+
+    '<td>'+(mixed?"":spark(id))+'</td>'+
+    '<td class="muted">'+(mixed||st.pct==null?"—":Math.round(st.pct))+'</td>'+
+    '<td>'+(mixed?"—":f(st.z,1))+' '+flagHtml(id)+'</td></tr>'+
+    (S.sel===id?'<tr class="hist"><td colspan="7">'+histChart(id)+'</td></tr>':'');
+}
+function matches(id,q){ return byId[id].name.toLowerCase().indexOf(q)>=0; }
+function subtreeMatch(id,q){ return matches(id,q) || byId[id].kids.some(function(c){ return subtreeMatch(c,q); }); }
+function renderTable(){
+  var k=kSel(), q=S.q.trim().toLowerCase(), body=[];
+  (function walk(ids,depth){
+    sorted(ids,k).forEach(function(id){ var it=byId[id];
+      if(depth===0 && S.hidden[it.group]) return;
+      if(q && !subtreeMatch(id,q)) return;
+      var kids=visibleKids(id);
+      body.push(rowHtml(id,k,depth,kids.length>0));
+      if(kids.length && (S.open[id] || (q && kids.some(function(c){ return subtreeMatch(c,q); })))) walk(kids,depth+1);
+    });
+  })(TOP.filter(function(id){ return S.scope!=="core" || coreLeaves(id).length; }),0);
+  var rem=(S.tf==="mom"?D.headline.remainder_mom:D.headline.remainder_yoy)[k];
+  var cols=[["name",T("cName"),""],["w",T("cW"),T("wTip")],["g",T("cChg"),""],["c",T("cC"),""],["",T("cSpark"),""],["p",T("cPct"),T("pctTip")],["z",T("cZ"),T("zTip")]];
+  var head='<thead><tr>'+cols.map(function(c,i){
+    var arr=c[0]&&S.sort===c[0]?' <span class="arr">'+(S.dir<0?"▼":"▲")+'</span>':"";
+    return '<th'+(c[0]?' data-sort="'+c[0]+'"':' class="nosort"')+(i===0?' style="text-align:left"':'')+(c[2]?' title="'+esc(c[2])+'"':'')+'>'+c[1]+arr+'</th>'; }).join("")+'</tr></thead>';
+  var remRow = S.scope==="all" ? '<tr><td class="name muted" title="'+esc(T("remTip"))+'">'+T("remRow")+'</td><td></td><td></td><td class="'+cls(rem)+'">'+f(rem)+'</td><td></td><td></td><td></td></tr>' : '';
+  document.getElementById("tbl").innerHTML=head+'<tbody>'+body.join("")+remRow+'</tbody>';
+}
+document.getElementById("tbl").addEventListener("click",function(e){
+  var t=e.target, th=t.closest("th[data-sort]");
+  if(th){ var key=th.getAttribute("data-sort"); if(S.sort===key) S.dir=-S.dir; else { S.sort=key; S.dir=(key==="name"?1:-1); } renderTable(); return; }
+  var tg=t.closest("[data-tog]"); if(tg){ var id=+tg.getAttribute("data-tog"); S.open[id]=!S.open[id]; renderTable(); return; }
+  var sl=t.closest("[data-sel]"); if(sl){ var id2=+sl.getAttribute("data-sel"); S.sel=(S.sel===id2?null:id2); renderTable(); }
+});
+
+/* ---------------- history chart for one item ---------------- */
+function histChart(id){
+  var it=byId[id], cs=(S.tf==="mom"?SER[id].cm:SER[id].cy), gs=(S.tf==="mom"?SER[id].gm:SER[id].gy);
+  var W=1100, Hh=200, L=46, R=46, T0=14, B=24, n=M.length, bw=(W-L-R)/n, st=stats(id), k=kSel();
+  var cv=cs.filter(function(v){return v!=null;}), gv=M.map(function(m){ return gs[hIndex[m]]; }).filter(function(v){return v!=null;});
+  if(!cv.length && !gv.length) return '<span class="muted">'+T("noData")+'</span>';
+  var clo=Math.min.apply(null,cv.concat([0])), chi=Math.max.apply(null,cv.concat([0])); if(chi===clo) chi+=0.01;
+  var glo=Math.min.apply(null,gv.concat([0])), ghi=Math.max.apply(null,gv.concat([0]));
+  if(st.mean!=null){ glo=Math.min(glo,st.mean-2*st.sd); ghi=Math.max(ghi,st.mean+2*st.sd); } if(ghi===glo) ghi+=1;
+  var yc=function(v){ return T0+(chi-v)/(chi-clo)*(Hh-T0-B); }, yg=function(v){ return T0+(ghi-v)/(ghi-glo)*(Hh-T0-B); };
+  var x=function(i){ return L+bw*(i+0.5); };
+  var g=['<rect width="'+W+'" height="'+Hh+'" fill="#0b0b0c"/>'];
+  if(st.mean!=null) g.push('<rect x="'+L+'" width="'+(W-L-R)+'" y="'+yg(st.mean+2*st.sd).toFixed(1)+'" height="'+(yg(st.mean-2*st.sd)-yg(st.mean+2*st.sd)).toFixed(1)+'" fill="#ffffff" opacity="0.05"/>');
+  g.push('<line x1="'+L+'" x2="'+(W-R)+'" y1="'+yc(0).toFixed(1)+'" y2="'+yc(0).toFixed(1)+'" stroke="#444"/>');
+  cs.forEach(function(v,i){ if(v==null) return; var a=yc(Math.max(0,v)), b=yc(Math.min(0,v));
+    g.push('<rect x="'+(x(i)-bw*0.4).toFixed(1)+'" y="'+a.toFixed(1)+'" width="'+(bw*0.8).toFixed(1)+'" height="'+Math.max(0.6,b-a).toFixed(1)+'" fill="'+gcol(it)+'" opacity="'+(i===k?1:0.55)+'"/>'); });
+  var d="", pen=false; M.forEach(function(m,i){ var v=gs[hIndex[m]]; if(v==null){ pen=false; return; } d+=(pen?"L":"M")+x(i).toFixed(1)+" "+yg(v).toFixed(1)+" "; pen=true; });
+  g.push('<path d="'+d+'" fill="none" stroke="#e8e8ea" stroke-width="1.3"/>');
+  g.push('<line x1="'+x(k).toFixed(1)+'" x2="'+x(k).toFixed(1)+'" y1="'+T0+'" y2="'+(Hh-B)+'" stroke="#ff9d1c" stroke-dasharray="3 3"/>');
+  [clo,0,chi].forEach(function(t){ g.push('<text x="'+(L-5)+'" y="'+(yc(t)+3.5).toFixed(1)+'" fill="#7d7d86" font-size="10" text-anchor="end">'+t.toFixed(3)+'</text>'); });
+  [glo,ghi].forEach(function(t){ g.push('<text x="'+(W-R+5)+'" y="'+(yg(t)+3.5).toFixed(1)+'" fill="#7d7d86" font-size="10">'+t.toFixed(1)+'%</text>'); });
+  M.forEach(function(m,i){ if(m.slice(5)==="01") g.push('<text x="'+x(i).toFixed(1)+'" y="'+(Hh-8)+'" fill="#8b8b93" font-size="10" text-anchor="middle">'+m.slice(0,4)+'</text>'); });
+  return '<div style="color:#f2f2f4;font-size:12.5px;margin-bottom:4px"><b>'+esc(T("histTitle")(it.name))+'</b> '+badges(it)+'</div>'+
+    '<svg viewBox="0 0 '+W+' '+Hh+'" style="max-width:1100px">'+g.join("")+'</svg>'+
+    '<div class="muted" style="font-size:11px;margin-top:3px"><span class="sw" style="background:'+gcol(it)+'"></span> '+T("histLegendC")+
+    '　<span style="display:inline-block;width:14px;border-top:2px solid #e8e8ea;vertical-align:3px"></span> '+T("histLegendG")+
+    '　<span class="sw" style="background:#333"></span> '+T("histBand")+'</div>';
+}
+
+/* ---------------- header ---------------- */
+function renderHeader(){
+  var k=kSel(), h=(S.tf==="mom"?D.headline.mom:D.headline.yoy)[k], c=(S.tf==="mom"?D.headline.core_mom:D.headline.core_yoy)[k];
+  var rem=(S.tf==="mom"?D.headline.remainder_mom:D.headline.remainder_yoy)[k];
+  var ids=partition(), nf=ids.filter(function(id){ return flag(id)!==0; }).length;
+  document.getElementById("h1").textContent=T("h1")(S.tf,S.m);
+  var pk=prevValid(k);
+  document.getElementById("sub").textContent=T("sub")(S.tf)+
+    (S.tf==="mom" && pk>=0 && pk!==k-1 ? T("span")(M[pk]) : "");
+  document.getElementById("cards").innerHTML=
+    '<div class="card"><div class="k">'+T("headline")+'</div><div class="v">'+f(h,2)+'%</div></div>'+
+    '<div class="card"><div class="k">'+T("coreCpi")+'</div><div class="v">'+f(c,2)+'%</div></div>'+
+    '<div class="card"><div class="k">'+T("remainder")+'</div><div class="v" style="color:#aaa">'+f(rem)+'</div></div>'+
+    '<div class="card"><div class="k">'+T("anomalies")+' (▲▼)</div><div class="v">'+nf+' / '+ids.length+'</div></div>';
+  document.getElementById("tableTitle").textContent=T("tableTitle");
+  document.getElementById("q").placeholder=T("search");
+  document.getElementById("expAll").textContent=T("expandAll");
+  document.getElementById("colAll").textContent=T("collapseAll");
+  document.getElementById("note").innerHTML=T("note")+'<br>'+T("more")+'<a href="methodology.html#lang='+LANG+'">'+T("methodology")+'</a>';
+}
+
+function render(){
+  statCache={};
+  selM.value=S.m;
+  var i=VALID.indexOf(S.m);
+  document.getElementById("prevM").disabled = i<=0;
+  document.getElementById("nextM").disabled = i>=VALID.length-1;
+  [["segTf","tf"],["segScope","scope"],["segDepth","depth"],["segN","n"]].forEach(function(p){
+    Array.prototype.forEach.call(document.getElementById(p[0]).children,function(b){ b.classList.toggle("on", String(S[p[1]])===b.getAttribute("data-v")); }); });
+  renderHeader(); drawRank(); renderTable(); writeHash();
+}
+
+/* ---------------- events ---------------- */
+selM.addEventListener("change",function(){ S.m=selM.value; render(); });
+document.getElementById("prevM").onclick=function(){ var i=VALID.indexOf(S.m); if(i>0){ S.m=VALID[i-1]; render(); } };
+document.getElementById("nextM").onclick=function(){ var i=VALID.indexOf(S.m); if(i<VALID.length-1){ S.m=VALID[i+1]; render(); } };
+function seg(id,key,num){ document.getElementById(id).addEventListener("click",function(e){ var b=e.target.closest("button"); if(!b) return;
+  S[key]=num?+b.getAttribute("data-v"):b.getAttribute("data-v"); render(); }); }
+seg("segTf","tf"); seg("segScope","scope"); seg("segDepth","depth",true); seg("segN","n",true);
+document.getElementById("groups").addEventListener("click",function(e){ var b=e.target.closest(".gchip"); if(!b) return;
+  var g=+b.getAttribute("data-g"); S.hidden[g]=!S.hidden[g]; buildGroups(); render(); });
+document.getElementById("q").addEventListener("input",function(e){ S.q=e.target.value; renderTable(); });
+document.getElementById("expAll").onclick=function(){ ITEMS.forEach(function(it){ if(it.kids.length) S.open[it.id]=true; }); renderTable(); };
+document.getElementById("colAll").onclick=function(){ S.open={}; renderTable(); };
+document.getElementById("btnLang").onclick=function(){ LANG=LANG==="zh"?"en":"zh"; try{ localStorage.setItem("cpiLang",LANG); }catch(e){} applyStatic(); render(); };
+var rz=null; window.addEventListener("resize",function(){ clearTimeout(rz); rz=setTimeout(drawRank,150); });
+window.addEventListener("hashchange",function(){ var m=location.hash.match(/lang=(zh|en)/); if(m&&m[1]!==LANG){ LANG=m[1]; applyStatic(); } readHash(); render(); });
+
+applyStatic(); render();
+}
+})();
+</script>
+</body>
+</html>
