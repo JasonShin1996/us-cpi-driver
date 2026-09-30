@@ -10,7 +10,24 @@
 
 ```bash
 python detail/cpi_detail.py            # → web/data/detail.json
+python detail/validate.py              # 驗證（--offline 只跑不需網路的內部檢查）
+python -m pytest detail/tests -q       # 單元測試
 ```
+
+## 程式結構
+
+| 檔案 | 做什麼 |
+|---|---|
+| `cpi_detail.py` | 入口：參數、月份範圍，依序呼叫下面四個模組 |
+| `bls_flat.py` | 下載、讀取 BLS 整批資料檔（指數、細項代碼） |
+| `hierarchy.py` | 從最新 12 月表建立階層、修正 Excel 縮排錯誤、對應代碼、中文名稱、八大類與核心判斷 |
+| `weights.py` | 12 月錨點（含舊名稱對照）、未公布細項找上層代理、缺值補值、逐月權重 |
+| `contributions.py` | 細項漲幅與貢獻、總體與核心、未分配，組成輸出 JSON |
+| `common.py` | 名稱正規化、月份工具、專案路徑 |
+| `validate.py` | 驗證（見下）；內部檢查也由根目錄 `checks.py` 在每次發布前執行 |
+| `tests/` | 單元測試：縮排修正（含 2024、2025 年真實表格）、代碼對照、價格更新、12 月新基礎、代理與補值、SA/NSA 選擇 |
+
+要改哪一段邏輯，就只看對應的模組；每個模組開頭的說明寫了它對應 PITFALLS.md 的哪幾條。
 
 需要先有 `ri_official/`（官方權重表原始檔）與 `ri_official_full.csv`，由根目錄的
 `python ri_official.py --download` 產生。BLS 整批資料檔會下載到 `cache/bls_flat/`（12 小時內不重抓）。
@@ -53,7 +70,7 @@ series    {id: {w, cm, cy  （對齊 meta.months：權重、月增率貢獻、�
 - `sa=False`：月增率用的是未季調指數。
 - 缺值一律是 `null`（BLS 當月沒公布，或該年找不到權重）。
 
-## 驗證（2026-08 資料）
+## 驗證（2026-08 資料，`python detail/validate.py`）
 
 | 比對 | 結果 |
 |---|---|

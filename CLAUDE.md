@@ -18,7 +18,7 @@
 | `ri_official.py` | 下載、解析 BLS 官方 12 月權重表 → `ri_official*.csv` |
 | `schedule.py` | BLS 公布時間表與「是否有新資料」的判斷 |
 | `checks.py` | 發布前自我檢查（含 Bloomberg 基準），不過就不發布 |
-| `detail/` | 細項頁資料（拆到 level 5）：`cpi_detail.py`、說明與陷阱文件 |
+| `detail/` | 細項頁資料（拆到 level 5）：`cpi_detail.py` 串起 `bls_flat` → `hierarchy` → `weights` → `contributions`；`validate.py` 外部比對；`tests/`；說明與陷阱文件 |
 | `web/` | 網站（`index.html` 主頁、`methodology.html`、`data/`），GitHub Pages 只發布這個資料夾 |
 
 ## 常用指令
@@ -26,6 +26,8 @@
 ```bash
 pip install -r requirements.txt
 python cpi_contrib.py && python detail/cpi_detail.py && python checks.py
+python -m pytest detail/tests -q         # 單元測試（pip install -r requirements-dev.txt）
+python detail/validate.py                # 細項資料和 BLS 新聞稿、SF Fed 比對
 python -m http.server -d web 8000      # 本機預覽
 ```
 
