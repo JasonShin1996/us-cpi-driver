@@ -19,10 +19,12 @@
   .topbar{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:6px}
   .field{border:1px solid var(--field);color:var(--amber);padding:3px 10px;font-size:13px;
     background:#151007;white-space:nowrap}
-  .brand{color:var(--amber);font-size:15px;font-weight:700;letter-spacing:.03em;margin-right:auto}
+  .brand{color:var(--amber);font-size:15px;font-weight:700;letter-spacing:.03em;text-decoration:none}
+  .tabs{display:flex;gap:2px;margin-left:auto}
+  .tabs a{color:var(--muted);font-size:12.5px;text-decoration:none;padding:3px 10px;border-bottom:2px solid transparent}
+  .tabs a:hover{color:var(--amber)}
+  .tabs a.on{color:var(--text);border-bottom-color:var(--amber)}
   .toplinks{display:flex;gap:8px;align-items:center}
-  .toplinks a{color:var(--muted);font-size:12px;text-decoration:none;border-bottom:1px dotted #555}
-  .toplinks a:hover{color:var(--amber)}
   .note a{color:#c9a978}
   .btn{background:#1b1b1e;border:1px solid #37373c;color:var(--text);font-size:12px;
     padding:3px 10px;cursor:pointer;font-family:inherit}
@@ -60,15 +62,20 @@
   .note{color:var(--muted);font-size:11.5px;margin-top:10px;line-height:1.7;max-width:78ch}
   .note code{color:#c9a978}
   .err{color:#ff7a7a;font-size:13px;padding:20px;border:1px solid #5a2020;background:#180a0a}
+  @media (max-width:760px){ .tabs{margin-left:0;order:3;width:100%} .toplinks{margin-left:auto} }
   @media (max-width:760px){ .meta{float:none;text-align:left;margin-bottom:6px} h1{font-size:16px} }
 </style>
 </head>
 <body>
 
 <div class="topbar">
-  <div class="brand">US CPI Driver</div>
-  <div class="toplinks">
+  <a class="brand" id="brand" href="index.html">US CPI Driver</a>
+  <nav class="tabs">
+    <a id="tabMain" class="on" href="index.html">Contributions</a>
+    <a id="tabDetail" href="detail.html">Item detail</a>
     <a id="lnkMethod" href="methodology.html">Methodology</a>
+  </nav>
+  <div class="toplinks">
     <!-- Export buttons are hidden for now; remove the `hidden` attribute to bring them back. -->
     <button class="btn" id="btnCsv" hidden>Export CSV</button>
     <button class="btn" id="btnPng" hidden>Export SVG</button>
@@ -115,6 +122,7 @@ var I18N = {
   zh: {
     htmlLang:"zh-Hant", other:"EN", dimension:"維度", contribution:"貢獻度", transform:"變動率",
     breakdown:"拆分", exact:"精確加總", range:"區間", methodology:"計算方法",
+    tabMain:"貢獻度", tabDetail:"細項", clickTip:"點擊柱子可查看該月的細項貢獻",
     exactTip:"改用鏈式分解，讓各項貢獻加總完全等於總體漲幅",
     modeExact:"鏈式精確分解", modeStd:"標準分解（保留 residual）",
     through:"資料更新至", source:"來源：BLS CPI-U　產生於 ",
@@ -134,6 +142,7 @@ var I18N = {
   en: {
     htmlLang:"en", other:"中文", dimension:"Dimension", contribution:"Contribution", transform:"Transform",
     breakdown:"Breakdown", exact:"Exact sum", range:"Range", methodology:"Methodology",
+    tabMain:"Contributions", tabDetail:"Item detail", clickTip:"Click a bar to see that month's item-level contributions",
     exactTip:"Chain-link the decomposition so the components add up exactly to the headline",
     modeExact:"exact chained decomposition", modeStd:"standard decomposition (residual shown)",
     through:"Data through", source:"Source: BLS CPI-U · generated ",
@@ -167,9 +176,13 @@ function applyStatic(){
   });
   document.getElementById("btnExact").title = T("exactTip");
   document.getElementById("btnLang").textContent = T("other");
-  var lm = document.getElementById("lnkMethod");
+  var lm = document.getElementById("lnkMethod"), base = window.CPI_STANDALONE ? SITE : "";
   lm.textContent = T("methodology");
-  lm.href = (window.CPI_STANDALONE ? SITE : "") + "methodology.html#lang=" + LANG;
+  lm.href = base + "methodology.html#lang=" + LANG;
+  document.getElementById("tabMain").textContent = T("tabMain");
+  document.getElementById("tabDetail").textContent = T("tabDetail");
+  document.getElementById("tabDetail").href = base + "detail.html#lang=" + LANG;
+  document.getElementById("brand").href = window.CPI_STANDALONE ? SITE : "index.html#lang=" + LANG;
 }
 applyStatic();
 
@@ -391,12 +404,22 @@ svgEl.addEventListener("mousemove",function(e){
   });
   if(Math.abs(s.residual[k])>0.0005)
     h+='<div class="r" style="color:#8b8b93"><span>residual</span><b>'+fmt(s.residual[k])+'</b></div>';
+  h+='<div style="color:#8b8b93;margin-top:4px;font-size:10.5px">'+T("clickTip")+' →</div>';
   tip.innerHTML=h; tip.style.display="block";
   var wrapW=svgEl.getBoundingClientRect().width;
   var left=(px/W)*wrapW+14;
   if(left+215>wrapW) left=(px/W)*wrapW-tip.offsetWidth-14;
   tip.style.left=Math.max(4,left)+"px";
   tip.style.top=Math.min(e.clientY-r.top-10, r.height-tip.offsetHeight-6)+"px";
+});
+/* click a month -> item-level contributions for that month (detail.html; it falls back to
+   its latest month if the clicked one is older than its 10-year window) */
+svgEl.style.cursor="pointer";
+svgEl.addEventListener("click",function(e){
+  var c=svgEl.__ctx; if(!c) return;
+  var r=svgEl.getBoundingClientRect(), i=Math.floor(((e.clientX-r.left)/r.width*W-M.l)/c.bw);
+  if(i<0||i>=c.N) return;
+  location.href=(window.CPI_STANDALONE?SITE:"")+"detail.html#lang="+LANG+"&m="+c.dates[i]+"&tf="+S.tf;
 });
 svgEl.addEventListener("mouseleave",function(){
   tip.style.display="none";

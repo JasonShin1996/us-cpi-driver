@@ -39,15 +39,30 @@ ri_official.py           下載並解析 BLS 官方 relative importance（每年
 schedule.py              BLS CPI 公布時間表 → release_schedule.json；判斷是否有新資料
 checks.py                發布前的自我檢查
 release_schedule.json    BLS 公布時間表（自動更新）
+requirements.txt         執行需要的套件；requirements-dev.txt 另加測試用的 pytest
 ri_official.csv          官方 12 月權重，程式用到的 14 個節點（自動產生）
 ri_official_full.csv     官方權重表全部細項，CPI-U 與 CPI-W（自動產生）
 ri_official/             從 bls.gov 下載的原始檔（xlsx / txt / htm / zip）
+detail/
+  cpi_detail.py          細項頁資料的入口：依序呼叫下面四個模組 → web/data/detail.json
+  bls_flat.py            下載、讀取 BLS 整批資料檔
+  hierarchy.py           細項階層（修正 Excel 縮排錯誤）、代碼、中文名稱、八大類
+  weights.py             每個細項每月的權重（12 月錨點、價格更新、估計與補值）
+  contributions.py       漲幅、貢獻、未分配，組成輸出 JSON
+  common.py              共用小工具（名稱正規化、月份）
+  validate.py            驗證：內部檢查＋和 BLS 新聞稿、SF Fed 比對
+  tests/                 單元測試（python -m pytest detail/tests -q）
+  item_names_zh.csv      239 個細項的中文名稱
+  README.md              細項資料的說明與驗證
+  PITFALLS.md            BLS 資料陷阱與處理方式（接手前必讀）
+CLAUDE.md                給接手的人與 AI agent 的導覽
 web/
   index.html             儀表板（中英雙語）
   methodology.html       計算方法（中英雙語）
   data/cpi_data.json|js  前端資料
   data/cpi_contrib_{basic4,detail7}_{yoy,mom}.csv   貢獻度長表
   data/ri_official_vs_estimated.csv                  官方權重 vs 反推權重逐年對照
+  data/detail.json       細項頁資料
 .github/workflows/
   update.yml             排程更新資料
   pages.yml              發布 web/ 到 GitHub Pages

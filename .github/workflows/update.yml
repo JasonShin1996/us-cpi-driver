@@ -64,6 +64,18 @@ jobs:
         run: |
           cp web/data/cpi_data.json "$RUNNER_TEMP/previous.json" || true
           python cpi_contrib.py --html ""
+          python detail/cpi_detail.py
+
+      - name: Tests
+        if: steps.gate.outputs.run == 'true'
+        run: |
+          pip install -r requirements-dev.txt
+          python -m pytest detail/tests -q
+
+      - name: Compare with BLS news release and SF Fed (warning only)
+        if: steps.gate.outputs.run == 'true'
+        continue-on-error: true   # another site being down or late must not block our release
+        run: python detail/validate.py
 
       - name: Sanity checks
         if: steps.gate.outputs.run == 'true'
@@ -92,5 +104,6 @@ jobs:
 
   deploy:
     needs: update
-    if: needs.update.outputs.changed == 'true' || inputs.force
+    # only main publishes the site; a run on a feature branch tests everything up to the commit
+    if: github.ref == 'refs/heads/main' && (needs.update.outputs.changed == 'true' || inputs.force)
     uses: ./.github/workflows/pages.yml

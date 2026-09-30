@@ -15,6 +15,9 @@ Checks
   5. benchmark against Bloomberg WMA, March 2026 YoY (NSA data is never revised)
   6. recovered vs official December weights agree after 2007 (catches a mis-parsed table)
   7. the new file has at least the months of the previous one
+  8. item-level data (web/data/detail.json), when present: the internal checks of
+     detail/validate.py (coverage, weights, remainder, NSA identity), and the latest month
+     matches cpi_data.json
 """
 
 from __future__ import annotations
@@ -39,6 +42,8 @@ def main(argv=None) -> int:
     ap.add_argument("--data", default=os.path.join(HERE, "web", "data", "cpi_data.json"))
     ap.add_argument("--compare", default=os.path.join(HERE, "web", "data", "ri_official_vs_estimated.csv"))
     ap.add_argument("--previous", default=None, help="the data file before this run")
+    ap.add_argument("--detail", default=os.path.join(HERE, "web", "data", "detail.json"))
+    ap.add_argument("--detail-cache", default=os.path.join(HERE, "cache", "bls_flat"))
     args = ap.parse_args(argv)
 
     with open(args.data, encoding="utf-8") as f:
@@ -105,6 +110,17 @@ def main(argv=None) -> int:
         old = set(P["breakdowns"]["basic4"]["yoy"]["dates"])
         new = set(y["dates"])
         check(old <= new, f"history kept ({len(old)} → {len(new)} YoY months)")
+
+    # 8. item-level data
+    if os.path.exists(args.detail):
+        sys.path.insert(0, os.path.join(HERE, "detail"))
+        import validate
+        for ok, msg in validate.internal_checks(args.detail, args.detail_cache):
+            check(ok, "detail: " + msg)
+        with open(args.detail, encoding="utf-8") as f:
+            latest = json.load(f)["meta"]["latest"]
+        main_latest = max(D["breakdowns"]["basic4"]["mom"]["dates"])
+        check(latest == main_latest, f"detail latest month {latest} = main page {main_latest}")
 
     for n in notes + fails:
         print(n)

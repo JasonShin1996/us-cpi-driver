@@ -120,12 +120,14 @@ concurrency:
 | 3 | `pip install -r requirements.txt` | 安裝 numpy、openpyxl | 流程停止 |
 | 4 | **Is a new release out?**（`id: gate`） | 跑 `schedule.py --download-if-needed check`：比對「BLS 已公布的最新月份」和「網站上的最新月份」，輸出 `run=true` 或 `run=false`。只有在已知的未來公布日少於 3 個、或今天有新資料要更新時，才會去 bls.gov 重抓公布時間表（一年大約幾十次，不會天天打擾 BLS） | 流程停止 |
 | 5 | **Official weight tables** | 只有在缺前一年 12 月權重表時才去 bls.gov 下載 | `continue-on-error: true`：**失敗也繼續**，改用 repo 裡已有的權重表 |
-| 6 | **Compute contributions** | 先把舊資料備份一份，然後跑 `cpi_contrib.py` 重算（`--html ""` = 不產生本機用的 standalone 檔） | 流程停止 |
-| 7 | **Sanity checks** | 跑 `checks.py` 的 30 項檢查（含和 Bloomberg 對帳、確認沒有弄丟舊月份） | **流程停止、不會發布**，GitHub 寄信通知 |
-| 8 | **Commit** | 把變更存進 repo（見下） | 流程停止 |
+| 6 | **Compute contributions** | 先把舊資料備份一份，然後跑 `cpi_contrib.py`（主頁）與 `detail/cpi_detail.py`（細項頁）重算（`--html ""` = 不產生本機用的 standalone 檔） | 流程停止 |
+| 7 | **Tests** | 安裝 `requirements-dev.txt`（pytest），跑 `detail/tests` 的單元測試 | 流程停止 |
+| 8 | **Compare with BLS news release and SF Fed** | 跑 `detail/validate.py`：和 BLS 新聞稿、SF Fed 的公布值比對 | `continue-on-error: true`：**只警告、不阻擋**（別的網站當機或較晚更新，不代表我們的資料錯） |
+| 9 | **Sanity checks** | 跑 `checks.py` 的 38 項檢查（含和 Bloomberg 對帳、確認沒有弄丟舊月份、細項頁的內部檢查、細項與主頁月份一致） | **流程停止、不會發布**，GitHub 寄信通知 |
+| 10 | **Commit** | 把變更存進 repo（見下） | 流程停止 |
 
-步驟 5–7 都有 `if: steps.gate.outputs.run == 'true'`：意思是**只有第 4 步說有新資料時才做**。
-沒有新資料的日子，第 5–7 步會顯示灰色的「skipped」，整個流程約 15 秒結束。
+步驟 5–9 都有 `if: steps.gate.outputs.run == 'true'`：意思是**只有第 4 步說有新資料時才做**。
+沒有新資料的日子，第 5–9 步會顯示灰色的「skipped」，整個流程約 15 秒結束。
 
 第 8 步（Commit）的邏輯：
 
@@ -144,7 +146,9 @@ commit 的作者會是 `github-actions[bot]`，所以你在 repo 歷史裡看到
     uses: ./.github/workflows/pages.yml             # 直接呼叫 pages.yml
 ```
 
-只有在資料真的變了（或手動勾了 `force`）才發布網站。
+只有在資料真的變了（或手動勾了 `force`）才發布網站，而且**只在 `main` 分支上發布**：
+在功能分支上手動執行時，會完整跑抓資料、重算、測試、檢查、commit（commit 到該分支），但不發布，
+方便合併前先測試。
 
 為什麼要在這裡**直接呼叫** `pages.yml`，而不是等它自己被 push 觸發？
 因為 GitHub 規定：流程用臨時鑰匙做的 push **不會觸發其他流程**（避免流程互相觸發、無限循環）。
