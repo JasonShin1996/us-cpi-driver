@@ -266,6 +266,14 @@ def load_hierarchy(ri_dir: str, max_level: int) -> List[dict]:
     return rows
 
 
+def load_zh_names(path: str) -> Dict[str, str]:
+    """detail/item_names_zh.csv: BLS item name -> Traditional Chinese name."""
+    if not os.path.exists(path):
+        return {}
+    with open(path, newline="", encoding="utf-8") as f:
+        return {norm(r["name"]): r["zh"].strip() for r in csv.DictReader(f) if r.get("zh")}
+
+
 def load_official(path: str, first_dec: int) -> Dict[int, Dict[str, float]]:
     """{dec_year: {normalised name: RI %}} from the new-basis December tables."""
     out: Dict[int, Dict[str, float]] = {}
@@ -317,8 +325,12 @@ def build(args) -> dict:
     print("→ hierarchy and codes")
     rows = load_hierarchy(os.path.join(ROOT, "ri_official"), args.max_level)
     official = load_official(os.path.join(ROOT, "ri_official_full.csv"), int(ri_months[0][:4]) - 1)
-    missing_code = []
+    zh = load_zh_names(os.path.join(ROOT, "detail", "item_names_zh.csv"))
+    missing_code, missing_zh = [], []
     for i, row in enumerate(rows):
+        row["zh"] = zh.get(norm(row["name"]))
+        if row["zh"] is None:
+            missing_zh.append(row["name"])
         n = norm(row["name"])
         row["id"] = i
         row["unsampled"] = n.startswith("unsampled")
@@ -339,6 +351,8 @@ def build(args) -> dict:
         row["core"] = not any(c in NON_CORE_ROOTS for c in chain)
     if missing_code:
         print(f"   ! no BLS item code for: {', '.join(missing_code)}")
+    if missing_zh:
+        print(f"   ! no Chinese name in detail/item_names_zh.csv for: {', '.join(missing_zh)}")
 
     # December anchors per item (current name first, then earlier names)
     def anchor(row, dec_year: int) -> Optional[float]:
@@ -441,7 +455,7 @@ def build(args) -> dict:
             wt.append(w.get(m))
         series[row["id"]] = {"w": [r3(x, 3) for x in wt], "cm": [r3(x) for x in cm], "cy": [r3(x) for x in cy],
                              "gm": [r3(x, 3) for x in chg_m], "gy": [r3(x, 3) for x in chg_y]}
-        out_items.append({k: row[k] for k in ("id", "name", "level", "parent", "leaf", "group", "core",
+        out_items.append({k: row[k] for k in ("id", "name", "zh", "level", "parent", "leaf", "group", "core",
                                                "code", "sa", "unsampled", "proxy")})
 
     # headline and the unexplained remainder at the lowest level

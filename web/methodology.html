@@ -13,10 +13,14 @@
   *{box-sizing:border-box}
   html,body{margin:0;background:var(--bg);color:var(--text);
     font-family:"Helvetica Neue",Helvetica,Arial,"Noto Sans TC","PingFang TC",sans-serif;-webkit-font-smoothing:antialiased}
-  body{padding:14px 16px 80px}
-  .top{max-width:860px;margin:0 auto;display:flex;align-items:center;gap:10px}
-  .brand{color:var(--amber);font-weight:700;letter-spacing:.03em;margin-right:auto;text-decoration:none}
-  .top a.back{color:var(--muted);font-size:13px;text-decoration:none;border-bottom:1px dotted #555}
+  body{padding:10px 12px 80px}
+  .top{max-width:1680px;margin:0 auto;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+  .brand{color:var(--amber);font-size:15px;font-weight:700;letter-spacing:.03em;text-decoration:none}
+  .tabs{display:flex;gap:2px;margin-right:auto;margin-left:14px}
+  .tabs a{color:var(--muted);font-size:12.5px;text-decoration:none;padding:3px 10px;border-bottom:2px solid transparent}
+  .tabs a:hover{color:var(--amber)}
+  .tabs a.on{color:var(--text);border-bottom-color:var(--amber)}
+  @media (max-width:760px){ .top{flex-wrap:wrap} .tabs{margin-left:0;order:3;width:100%} }
   .btn{background:#1b1b1e;border:1px solid #37373c;color:var(--text);font-size:12px;padding:3px 10px;cursor:pointer;font-family:inherit}
   .btn:hover{border-color:#a8650f;color:var(--amber)}
   article{max-width:860px;margin:0 auto;line-height:1.75;font-size:15.5px}
@@ -46,7 +50,11 @@
 
 <div class="top">
   <a class="brand" id="home" href="index.html">US CPI Driver</a>
-  <a class="back" id="back" href="index.html">← Dashboard</a>
+  <nav class="tabs">
+    <a id="tabMain" href="index.html">Contributions</a>
+    <a id="tabDetail" href="detail.html">Item detail</a>
+    <a id="tabMethod" class="on" href="methodology.html">Methodology</a>
+  </nav>
   <button class="btn" id="btnLang">中文</button>
 </div>
 
@@ -617,8 +625,12 @@ $$c_i^{\text{YoY, exact}}(t) \;=\; \sum_{k=1}^{K} c_i^{(1)}(k)\prod_{j\lt k}(1+g
       a.hidden = a.getAttribute("data-lang") !== LANG;
     });
     document.getElementById("btnLang").textContent = LANG==="zh" ? "EN" : "中文";
-    document.getElementById("back").textContent = LANG==="zh" ? "← 回到圖表" : "← Dashboard";
-    document.getElementById("back").href = "index.html#lang=" + LANG;
+    var zh = LANG==="zh";
+    document.getElementById("tabMain").textContent = zh ? "貢獻度" : "Contributions";
+    document.getElementById("tabDetail").textContent = zh ? "細項" : "Item detail";
+    document.getElementById("tabMethod").textContent = zh ? "計算方法" : "Methodology";
+    document.getElementById("tabMain").href = "index.html#lang=" + LANG;
+    document.getElementById("tabDetail").href = "detail.html#lang=" + LANG;
     document.getElementById("home").href = "index.html#lang=" + LANG;
     document.title = (LANG==="zh" ? "計算方法" : "Methodology") + " · US CPI Driver";
   }

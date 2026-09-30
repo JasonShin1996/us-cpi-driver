@@ -21,6 +21,13 @@ python detail/cpi_detail.py            # → web/data/detail.json
 | `--years` | 10 | 可選月份：最近幾年 |
 | `--history-start` | 2006-01 | 漲幅歷史從哪個月開始（異常比較的基準要往前 10 年） |
 
+## 中文名稱
+
+`item_names_zh.csv`（欄位 `name,zh`）是 BLS 英文細項名稱 → 繁體中文的對照表，由本專案翻譯，
+`cpi_detail.py` 讀進 `detail.json` 的 `zh` 欄位。BLS 新增或改名細項時，執行會印出
+`! no Chinese name in detail/item_names_zh.csv for: ...`，把缺的補進 CSV 即可（名稱內有逗號要加引號）。
+網頁中文版顯示中文名稱，旁邊附灰色英文原名，搜尋中英文都可以。
+
 ## 計算方式
 
 和主頁相同，只是一個細項一個細項做（完整說明見 [methodology.html](../web/methodology.html)）：
@@ -37,7 +44,7 @@ python detail/cpi_detail.py            # → web/data/detail.json
 meta      latest, months（可選月份）, history（漲幅歷史月份）, groups（八大類：en/zh/color）,
           unpublished_months, max_level, baseline_years
 headline  mom, yoy, core_mom, core_yoy, remainder_mom, remainder_yoy     （對齊 meta.months）
-items[]   id, name, level, parent, leaf, group, core, code, sa, unsampled, proxy
+items[]   id, name, zh, level, parent, leaf, group, core, code, sa, unsampled, proxy
 series    {id: {w, cm, cy  （對齊 meta.months：權重、月增率貢獻、年增率貢獻）
                 gm, gy     （對齊 meta.history：細項自己的月增率、年增率，%）}}
 ```
