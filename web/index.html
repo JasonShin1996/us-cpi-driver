@@ -132,6 +132,7 @@ var I18N = {
       "MoM 使用季調指數（CUSR0000），YoY 使用未季調指數（CUUR0000），與 BLS／Bloomberg 慣例一致。"+
       "權重欄位為<strong>基期</strong>（YoY 為 t−12 月、MoM 為前一月）的相對重要性。",
     unpublished:function(l){ return " 未發布月份："+l+"；橘色底線標記的長條代表跨越缺漏月份的多月變動。"; },
+    yoyNa:function(m,b){ return m+" 年增率無法計算：BLS 未公布 "+b+" 的指數（基期缺漏）"; },
     wOfficial:"BLS 官方公布的 12 月相對重要性（權重年 ", wEst:"由指數反推（", wCarried:"沿用前一年（",
     wLabel:"權重：", wNone:"由指數以最小平方反推。", sep:"；", comma:"、",
     more:"完整公式與資料來源見 ",
@@ -153,6 +154,7 @@ var I18N = {
       "indexes (CUUR0000), as BLS and Bloomberg do. The weight column is the relative importance in the "+
       "<strong>base</strong> period (t−12 for YoY, the prior month for MoM).",
     unpublished:function(l){ return " Not published: "+l+"; bars with an orange underline span more than one month."; },
+    yoyNa:function(m,b){ return m+" YoY unavailable: BLS did not publish the "+b+" index (no base month)"; },
     wOfficial:"BLS published December relative importance (weight years ", wEst:"recovered from the indexes (",
     wCarried:"carried forward (", wLabel:"Weights: ", wNone:"recovered from the indexes by least squares.",
     sep:"; ", comma:", ",
@@ -462,6 +464,7 @@ function render(){
   document.getElementById("subtitle").innerHTML =
     "All Items &nbsp;·&nbsp; "+bkl+" &nbsp;·&nbsp; "+(S.exact?T("modeExact"):T("modeStd"));
   var latest = s.dates[last], now = new Date();
+  var mdates = D.breakdowns[S.bk].mom.dates, mlast = mdates[mdates.length-1];
   var lag = (now.getFullYear()*12 + now.getMonth()) - monthNum(latest);
   // BLS releases month M around the middle of M+1, so a lag above 2 months means a newer print exists
   document.getElementById("meta").innerHTML =
@@ -469,7 +472,8 @@ function render(){
     (D.meta.next_release ? "　"+T("next")+" <span style='color:#fff'>"+D.meta.next_release.date+
       " "+D.meta.next_release.time_et+" ET</span>" : "")+"<br>"+
     T("source")+D.meta.generated_utc.slice(0,10)+
-    (lag>2 ? "<br><span style='color:#ff7a7a'>"+T("stale")+"</span>" : "");
+    (lag>2 ? "<br><span style='color:#ff7a7a'>"+T("stale")+"</span>" : "")+
+    (S.tf==="yoy" && mlast>latest ? "<br><span style='color:#ffd27a'>"+T("yoyNa")(mlast,(parseInt(mlast.slice(0,4),10)-1)+mlast.slice(4))+"</span>" : "");
 
   var i0=sliceIdx();
   document.getElementById("rangeLabel").textContent=s.dates[i0]+"  —  "+s.dates[last];

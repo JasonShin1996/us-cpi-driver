@@ -62,11 +62,18 @@ def check_coverage(D: dict) -> List[Result]:
     leaves = [i for i in items if i["leaf"]]
     no_zh = [i["name"] for i in items if not i.get("zh")]
     k = len(D["meta"]["months"]) - 1
+    latest = D["meta"]["latest"]
+    # YoY needs the same month a year earlier; when BLS never published that month
+    # (2025-10, government shutdown) YoY is legitimately unavailable, MoM is still required.
+    base = f"{int(latest[:4]) - 1}{latest[4:]}"
+    base_missing = base in D["meta"]["unpublished_months"]
+    yoy_ok = D["headline"]["yoy"][k] is not None or base_missing
+    yoy_msg = "YoY n/a (base month %s unpublished)" % base if base_missing else "YoY"
     return [
         (len(items) >= 200 and len(leaves) >= 140, f"{len(items)} items, {len(leaves)} lowest-level"),
         (not no_zh, "every item has a Chinese name" + (f" (missing: {', '.join(no_zh[:5])})" if no_zh else "")),
-        (D["headline"]["mom"][k] is not None and D["headline"]["yoy"][k] is not None,
-         f"latest month {D['meta']['latest']} has headline MoM and YoY"),
+        (D["headline"]["mom"][k] is not None and yoy_ok,
+         f"latest month {latest} has headline MoM and {yoy_msg}"),
     ]
 
 

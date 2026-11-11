@@ -148,3 +148,19 @@ def test_mom_uses_sa_when_published_and_nsa_otherwise():
     no_sa = contributions.item_series({"id": 0}, "X", U, {}, W(), hist, sel, ri_months, prev)
     assert with_sa["gm"][1] == pytest.approx(2.0) and with_sa["cm"][1] == pytest.approx(0.2)
     assert no_sa["gm"][1] == pytest.approx(1.0) and no_sa["cm"][1] == pytest.approx(0.1)
+
+
+# ---------------------------------------------------------------- validate
+def test_latest_month_check_allows_missing_yoy_when_base_month_unpublished():
+    import validate
+    items = [{"leaf": i < 150, "zh": "x"} for i in range(240)]
+
+    def D(yoy, unpublished):
+        return {"items": items,
+                "meta": {"months": ["2026-09", "2026-10"], "latest": "2026-10", "unpublished_months": unpublished},
+                "headline": {"mom": [0.2, 0.3], "yoy": [3.0, yoy]}}
+
+    ok = lambda d: all(r[0] for r in validate.check_coverage(d))
+    assert ok(D(None, ["2025-10"]))        # base month never published: YoY legitimately missing
+    assert not ok(D(None, []))             # YoY missing for any other reason is still an error
+    assert ok(D(3.1, []))

@@ -150,6 +150,7 @@ var I18N = {
     bandShort:"漲幅正常範圍", axisC:"貢獻 pp", axisG:"漲幅 %",
     noData:"無資料", group:"大類", weightSum:"權重合計",
     span:function(p){ return "　·　注意：本月月增率是自 "+p+" 起的兩個月變動（中間月份 BLS 未公布）"; },
+    yoyNa:function(b){ return "　·　年增率無法計算：BLS 未公布 "+b+" 的指數（基期缺漏）"; },
     note:"權重是 BLS 官方每年 12 月的相對重要性，年度內以價格變動逐月更新；貢獻度 = 基期權重 × 細項漲幅。"+
       "異常標記（▲▼）比較的是細項<strong>自己的漲幅</strong>與它過去 10 年的分布（|z| ≥ 2）；排序依貢獻度。"+
       "標「估」的細項 BLS 不公布指數，以上層漲幅估計；標「NSA」的細項沒有季調指數。細項中文名稱為本站翻譯，灰字為 BLS 英文原名。",
@@ -181,6 +182,7 @@ var I18N = {
     histSel:"selected month", bandShort:"Normal range of change", axisC:"Contribution pp", axisG:"Change %",
     noData:"no data", group:"Group", weightSum:"Weight total",
     span:function(p){ return " · Note: this MoM is a two-month change since "+p+" (BLS did not publish the month in between)"; },
+    yoyNa:function(b){ return " · YoY unavailable: BLS did not publish the "+b+" index (no base month)"; },
     note:"Weights are BLS's official December relative importance, price-updated month by month; contribution = base-period weight × the item's change. "+
       "Flags (▲▼) compare the item's <strong>own change</strong> with its distribution over the past 10 years (|z| ≥ 2); ranking is by contribution. "+
       "Items marked \"est\" have no published BLS index and are estimated from the level above; \"NSA\" items have no seasonally adjusted index.",
@@ -272,6 +274,7 @@ function partition(){
 }
 
 /* ---------------- formatting ---------------- */
+function minus12(m){ return (parseInt(m.slice(0,4),10)-1)+m.slice(4); }
 function f(v,d){ return v==null||isNaN(v) ? "—" : v.toFixed(d==null?3:d); }
 function cls(v){ return v==null?"muted":(v>0?"pos":(v<0?"neg":"")); }
 function esc(s){ return String(s).replace(/[&<>"]/g,function(c){ return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]; }); }
@@ -570,7 +573,8 @@ function renderHeader(){
   document.getElementById("h1").textContent=T("h1")(S.tf,S.m);
   var pk=prevValid(k);
   document.getElementById("sub").textContent=T("sub")(S.tf)+
-    (S.tf==="mom" && pk>=0 && pk!==k-1 ? T("span")(M[pk]) : "");
+    (S.tf==="mom" && pk>=0 && pk!==k-1 ? T("span")(M[pk]) : "")+
+    (S.tf==="yoy" && h==null && D.meta.unpublished_months.indexOf(minus12(S.m))>=0 ? T("yoyNa")(minus12(S.m)) : "");
   document.getElementById("cards").innerHTML=
     '<div class="card"><div class="k">'+T("headline")+'</div><div class="v">'+f(h,2)+'%</div></div>'+
     '<div class="card"><div class="k">'+T("coreCpi")+'</div><div class="v">'+f(c,2)+'%</div></div>'+
